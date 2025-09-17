@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5; /* Light grey background for the page */
+}
+
+.banner-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Adjust as needed */
+    height: 350px; /* Adjust banner height */
+    background-color: #2a6df2; /* Primary blue background */
+    overflow: hidden;
+    border-radius: 15px; /* Rounded corners for the banner */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 75% 25%, rgba(255,255,255,0.1) 0%, transparent 70%),
+        radial-gradient(circle at 25% 75%, rgba(0,0,0,0.1) 0%, transparent 70%);
+    opacity: 1;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    max-width: 1100px;
+    padding: 20px;
+}
+
+.app-icon {
+    width: 150px; /* Size of the app icon */
+    height: 150px;
+    flex-shrink: 0;
+    margin-right: 50px;
+}
+
+.app-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.text-content {
+    color: white;
+    text-align: left;
+    max-width: 600px;
+}
+
+.intro {
+    font-size: 1.1em;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+.app-name {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.tagline {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.download-button {
+    background-color: #00aaff; /* Button background color */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1em;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.download-button:hover {
+    background-color: #0088cc;
+}
+
+.app-stores {
+    display: flex;
+    gap: 15px;
+}
+
+.app-store-badge {
+    height: 40px; /* Adjust badge size */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.app-store-badge:hover {
+    transform: translateY(-3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .banner-container {
+        height: auto;
+        padding: 30px 0;
+    }
+
+    .content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .app-icon {
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .text-content {
+        max-width: 90%;
+    }
+
+    .app-name {
+        font-size: 2.5em;
+    }
+
+    .tagline {
+        font-size: 1em;
+    }
+
+    .app-stores {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-icon {
+        width: 120px;
+        height: 120px;
+    }
+
+    .app-name {
+        font-size: 2em;
+    }
+
+    .download-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .app-store-badge {
+        height: 35px;
+    }
+}
