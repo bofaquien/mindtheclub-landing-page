@@ -5,21 +5,34 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f2f5; /* Light grey background for the page */
+    background-color: #f0f2f5;
 }
 
 .banner-container {
     position: relative;
     width: 100%;
-    max-width: 1200px; /* Adjust as needed */
-    height: 350px; /* Adjust banner height */
-    background-color: #2a6df2; /* Primary blue background */
+    max-width: 1200px;
+    height: 350px;
     overflow: hidden;
-    border-radius: 15px; /* Rounded corners for the banner */
+    border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.background-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(to bottom right, #2a6df2, #1a4e8d),
+        url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 L 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(%23smallGrid)"/><path d="M 100 0 L 0 0 L 0 100" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>') top left / 100px 100px repeat;
+    background-blend-mode: overlay;
+    opacity: 1;
+    z-index: 0;
 }
 
 .background-overlay {
@@ -28,9 +41,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        radial-gradient(circle at 75% 25%, rgba(255,255,255,0.1) 0%, transparent 70%),
-        radial-gradient(circle at 25% 75%, rgba(0,0,0,0.1) 0%, transparent 70%);
+    background:
+        radial-gradient(circle at 75% 25%, rgba(255,255,255,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 25% 75%, rgba(0,0,0,0.1) 0%, transparent 60%);
     opacity: 1;
     z-index: 1;
 }
@@ -47,7 +60,7 @@ body {
 }
 
 .app-icon {
-    width: 150px; /* Size of the app icon */
+    width: 150px;
     height: 150px;
     flex-shrink: 0;
     margin-right: 50px;
@@ -86,7 +99,7 @@ body {
 }
 
 .download-button {
-    background-color: #00aaff; /* Button background color */
+    background-color: #00aaff;
     color: white;
     border: none;
     padding: 12px 25px;
@@ -107,7 +120,7 @@ body {
 }
 
 .app-store-badge {
-    height: 40px; /* Adjust badge size */
+    height: 40px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -116,7 +129,6 @@ body {
     transform: translateY(-3px);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .banner-container {
         height: auto;
