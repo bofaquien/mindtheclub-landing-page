@@ -54,8 +54,8 @@ body {
 
 
 .app-icon {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     flex-shrink: 0;
     margin-right: 50px;
     display: flex; 
