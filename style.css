@@ -1,24 +1,23 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    /* Removed the display: flex; justify-content: center; align-items: center; */
+    /* You can keep min-height: 100vh; if you want the body background to always cover the whole screen */
+    /* Or remove it if your content will eventually make the page tall enough */
+    min-height: 100vh; 
     background-color: #f0f2f5;
 }
 
 .banner-container {
     position: relative;
     width: 100%;
-    max-width: 1200px;
     height: 350px;
     overflow: hidden;
-    border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 
 .background-image-container {
@@ -46,21 +45,24 @@ body {
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 90%;
-    max-width: 1100px;
-    padding: 20px;
+    justify-content: center; /* CHANGE: This will center the combined icon + text block */
+    width: 100%;
+    max-width: 1200px; /* Keep this max-width for the internal content block */
+    padding: 0; /* REMOVE any horizontal padding from here, we'll use margin on the icon */
 }
-
 
 .app-icon {
     width: 200px;
     height: 200px;
     flex-shrink: 0;
     margin-right: 50px;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: -150px; /* CHANGE THIS. I've set it to -150px as a stronger example. */
+                 /* You can use -100px, -200px, or any other negative value */
+                 /* to push it further left. A larger negative number = further left. */
 }
 
 .app-icon-img {
@@ -73,6 +75,7 @@ body {
     color: white;
     text-align: left;
     max-width: 600px;
+    /* Removed flex-grow: 1; */
 }
 
 .intro {
