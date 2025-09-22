@@ -1,11 +1,11 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    /* Removed the display: flex; justify-content: center; align-items: center; */
-    /* You can keep min-height: 100vh; if you want the body background to always cover the whole screen */
-    /* Or remove it if your content will eventually make the page tall enough */
-    min-height: 100vh; 
+    min-height: 100vh;
     background-color: #f0f2f5;
+    /* This creates a stable, top-to-bottom layout for the whole page */
+    display: flex;
+    flex-direction: column;
 }
 
 .banner-container {
@@ -131,20 +131,23 @@ body {
 
 @media (max-width: 768px) {
     .banner-container {
-        display: block;
+        display: block; /* Turns off flex to allow correct height calculation */
         height: auto;
+        width: 100%;
     }
 
     .content {
         flex-direction: column;
         text-align: center;
-        padding: 30px 15px;
+        padding: 30px 15px; /* Provides proper internal spacing */
     }
 
     .app-icon {
-        margin-right: 0;
-        margin-bottom: 30px;
         position: static;
+        /* This margin ensures the icon is properly centered */
+        margin: 0 auto 30px auto;
+        width: 200px; /* Restoring explicit width */
+        height: 200px;/* Restoring explicit height */
     }
 
     .text-content {
