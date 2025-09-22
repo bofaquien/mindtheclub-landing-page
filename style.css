@@ -122,12 +122,20 @@ body {
 
 @media (max-width: 768px) {
     .banner-container {
-        position: relative;
-        display: flex;
-        height: auto;
-        width: 100%;
-        background-image: url('images/mtc_background_mobile.png');
-    }
+    position: relative;
+    display: flex;
+    /* Instead of height: auto, let's give it a min-height or specific height */
+    min-height: 250px; /* Adjust this value as needed based on content and desired look */
+    width: 100%;
+    background-image: url('images/mtc_background.png'); /* Use the same desktop image */
+    background-size: cover; /* This is crucial for filling */
+    background-position: center top; /* Try 'center top' or just 'center' to see what looks best */
+    background-repeat: no-repeat; /* Ensure it doesn't repeat */
+
+    /* Ensure content is positioned correctly within this container */
+    align-items: flex-start; /* Aligns content to the top */
+    justify-content: center; /* Centers content horizontally */
+}
 
     .content {
         flex-direction: column;
