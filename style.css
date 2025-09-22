@@ -122,6 +122,7 @@ body {
 
 @media (max-width: 768px) {
     .banner-container {
+        position: relative;
         display: flex;
         height: 100%;
         width: 100%;
