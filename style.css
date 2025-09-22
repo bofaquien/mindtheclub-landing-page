@@ -122,8 +122,8 @@ body {
 
 @media (max-width: 768px) {
     .banner-container {
-        display: block; /* Turns off flex to allow correct height calculation */
-        height: auto;
+        display: flex;
+        height: 100%;
         width: 100%;
     }
 
