@@ -121,6 +121,11 @@ body {
 }
 
 @media (max-width: 768px) {
+
+    .banner-container {
+        height: auto;
+    }
+
     .content {
         flex-direction: column;
         text-align: center;
