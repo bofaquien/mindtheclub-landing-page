@@ -18,18 +18,9 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    background: url('images/mtc_background.png') no-repeat center / cover;
 }
 
-.background-image-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* The line below is the main change */
-    background: url('images/mtc_background.png') no-repeat center / cover;
-    z-index: 0;
-}
 
 .background-overlay {
     position: absolute;
