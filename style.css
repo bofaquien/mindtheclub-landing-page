@@ -126,6 +126,7 @@ body {
         display: flex;
         height: auto;
         width: 100%;
+        background-image: url('images/mtc_background_mobile.png');
     }
 
     .content {
