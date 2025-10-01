@@ -121,15 +121,23 @@ body {
 }
 
 .coming-soon-section {
-    text-align: center; /* Horizontally center the content */
-    padding: 50px 20px; /* Add 50px of space above/below and 20px on the sides */
+    text-align: center;
+    /* Increased vertical padding to push it down from the banner and give it more space */
+    padding: 80px 20px;
 }
 
 .coming-soon-section p {
     margin: 0;
-    font-size: 2.5em; /* Make the font size larger */
-    font-weight: bold; /* Make the text bold */
-    color: #333; /* A dark grey color for the text */
+    /* Significantly larger font size for high visibility */
+    font-size: 4.5em;
+    font-weight: 700; /* Bolder font weight */
+    /* Changed to black for maximum contrast */
+    color: #000000;
+    /* Uppercase transform makes it look more like a heading */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    /* A subtle shadow to make the text lift off the page */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -138,8 +146,13 @@ body {
         height: auto;
     }
 
+     .coming-soon-section {
+        padding: 60px 20px;
+    }
+    
     .coming-soon-section p {
-        font-size: 2em;
+        font-size: 3.5em;
+        letter-spacing: 2px;
     }
 
     .content {
