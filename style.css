@@ -120,10 +120,26 @@ body {
     transform: translateY(-3px);
 }
 
+.coming-soon-section {
+    text-align: center; /* Horizontally center the content */
+    padding: 50px 20px; /* Add 50px of space above/below and 20px on the sides */
+}
+
+.coming-soon-section p {
+    margin: 0;
+    font-size: 2.5em; /* Make the font size larger */
+    font-weight: bold; /* Make the text bold */
+    color: #333; /* A dark grey color for the text */
+}
+
 @media (max-width: 768px) {
 
     .banner-container {
         height: auto;
+    }
+
+    .coming-soon-section p {
+        font-size: 2em;
     }
 
     .content {
