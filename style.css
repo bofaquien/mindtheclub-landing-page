@@ -120,27 +120,120 @@ body {
     transform: translateY(-3px);
 }
 
-.coming-soon-section {
-    text-align: center;
-    /* Increased vertical padding to push it down from the banner and give it more space */
-    padding: 80px 20px;
+/* ================================================= */
+/* NEW Features Section Styles                       */
+/* ================================================= */
+
+.features-section {
+    background-color: #ffffff;
+    padding: 100px 20px;
+    width: 100%;
 }
 
-.coming-soon-section p {
+.features-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.features-text {
+    flex: 1;
+    max-width: 550px;
+}
+
+.features-text h2 {
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #1c1c1e;
+    margin-bottom: 15px;
+}
+
+.features-subtitle {
+    font-size: 1.2em;
+    color: #6c6c70;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.feature-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #eef5ff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-icon img {
+    width: 28px;
+    height: 28px;
+}
+
+.feature-item-text h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #1c1c1e;
+    margin: 0 0 5px 0;
+}
+
+.feature-item-text p {
+    font-size: 1em;
+    color: #6c6c70;
+    line-height: 1.6;
     margin: 0;
-    /* Significantly larger font size for high visibility */
-    font-size: 4.5em;
-    font-weight: 700; /* Bolder font weight */
-    /* Changed to black for maximum contrast */
-    color: #000000;
-    /* Uppercase transform makes it look more like a heading */
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    /* A subtle shadow to make the text lift off the page */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.features-image {
+    flex: 1;
+    max-width: 500px;
+}
+
+.features-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Responsive Adjustments for Features Section --- */
+@media (max-width: 992px) {
+    .features-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .features-image {
+        margin-top: 50px;
+        order: -1; /* This makes the image appear on top on mobile */
+    }
+    
+    .feature-item {
+        text-align: left; /* Keep feature text left-aligned even if container is centered */
+    }
 }
 
 @media (max-width: 768px) {
+
+    .features-text h2 {
+        font-size: 2.2em;
+    }
 
     .banner-container {
         height: auto;
