@@ -3,9 +3,6 @@ body {
     font-family: Arial, sans-serif;
     min-height: 100vh;
     background-color: #f0f2f5;
-    /* This creates a stable, top-to-bottom layout for the whole page */
-    display: flex;
-    flex-direction: column;
 }
 
 .banner-container {
