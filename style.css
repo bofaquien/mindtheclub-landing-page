@@ -224,8 +224,7 @@ body {
     }
 
     .features-image {
-        margin-top: 50px;
-        order: -1; /* This makes the image appear on top on mobile */
+        display: none; /* <-- ADD THIS LINE to hide the image */
     }
     
     .feature-item {
