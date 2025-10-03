@@ -137,8 +137,8 @@ body {
 }
 
 .features-text {
-    flex: 1;
-    max-width: 550px;
+    flex: 2; /* Give the text block twice as much space */
+    max-width: 650px;
 }
 
 .features-text h2 {
@@ -198,8 +198,8 @@ body {
 }
 
 .features-image {
-    flex: 1;
-    max-width: 500px;
+    flex: 1; /* Let the image take up the remaining smaller portion */
+    max-width: 400px;
 }
 
 .features-image img {
