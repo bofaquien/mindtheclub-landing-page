@@ -251,6 +251,16 @@ body {
     .feature-item {
         text-align: left; /* Keep feature text left-aligned even if container is centered */
     }
+
+    .contact-container {
+        flex-direction: column-reverse; /* Puts the form first on mobile */
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    .contact-form-section {
+        text-align: left; /* Keep form text aligned left */
+    }
 }
 
 @media (max-width: 768px) {
@@ -321,4 +331,93 @@ body {
     .app-store-badge {
         height: 35px;
     }
+}
+
+/* ================================================= */
+/* NEW Contact Page Styles                           */
+/* ================================================= */
+
+.contact-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    min-height: 100vh;
+}
+
+.contact-form-section {
+    flex: 1;
+    max-width: 500px;
+}
+
+.contact-form-section h2 {
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #1c1c1e;
+    margin-bottom: 15px;
+}
+
+.contact-form-section p {
+    font-size: 1.1em;
+    color: #6c6c70;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.contact-image-section {
+    flex: 1;
+    max-width: 450px;
+}
+
+.contact-image-section img {
+    width: 100%;
+    height: auto;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #1c1c1e;
+    font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #007aff;
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+}
+
+.submit-button {
+    background-color: #007aff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
 }
