@@ -265,6 +265,11 @@ body {
 
 @media (max-width: 768px) {
 
+    .contact-button {
+        top: 15px;
+        right: 15px;
+    }
+
     .features-text h2 {
         font-size: 2.2em;
     }
