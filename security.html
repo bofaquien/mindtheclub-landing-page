@@ -7,9 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div style="text-align: center; padding: 100px 20px;">
-        <h1>App Security Details</h1>
-        <p>This page is under construction. More information coming soon!</p>
+
+    <div class="security-page-container">
+        <div class="security-header">
+            <h1>Our Commitment to Your Security & Independence</h1>
+            <p class="subtitle">At MindTheClub, we believe true privacy is paramount. Our application was built from the ground up with a singular focus: to create a secure and direct line of communication that you, and only you, control.</p>
+        </div>
+
+        <div class="security-points">
+            <div class="security-point-item">
+                <h3>Born from Passion, Built for Privacy</h3>
+                <p>MindTheClub is a grassroots project developed by a dedicated group of independent Android developers. We are not a corporation driven by data collection. We are creators passionate about crafting a communication tool that puts user privacy first.</p>
+            </div>
+
+            <div class="security-point-item">
+                <h3>Truly Serverless by Design</h3>
+                <p>Your data is yours, period. To make this promise absolute, <strong>we have not developed a backend application and do not own any physical server infrastructure</strong>. Unlike many messaging apps, MindTheClub operates without any central servers to store your conversations or data—<strong>not even temporarily</strong>. The app relies purely on the client on your Android device. This means your messages exist only on your phone and the phone of the person you're communicating with. If your contact is offline, a message cannot be delivered until you are both online again, ensuring nothing is ever stored in the cloud.</p>
+            </div>
+
+            <div class="security-point-item">
+                <h3>Advanced End-to-End Encryption</h3>
+                <p>
+                    Our security is built on the robust, open-source <a href="https://en.wikipedia.org/wiki/WebRTC" target="_blank" rel="noopener noreferrer">WebRTC</a> framework. Every communication is protected by the strong, industry-standard <strong>DTLS-SRTP end-to-end encryption</strong> protocol. This ensures that only you and the recipient can ever access your messages. To establish this secure connection, we use Google Firebase exclusively for the initial 'handshake' process (known as signaling). Once that connection is made, all of your data travels directly between the two of you, completely peer-to-peer.
+                </p>
+            </div>
+        </div>
+        
+        <div class="back-link-container">
+            <a href="index.html" class="back-link">&larr; Back to Home</a>
+        </div>
     </div>
+
 </body>
 </html>

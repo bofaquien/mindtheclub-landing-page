@@ -457,3 +457,89 @@ body {
 .read-more-button:hover .arrow {
     transform: translateX(5px); /* Moves the arrow 5px to the right on hover */
 }
+
+/* ================================================= */
+/* NEW Security Page Styles                          */
+/* ================================================= */
+
+.security-page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.security-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.security-header h1 {
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #1c1c1e;
+    margin-bottom: 15px;
+}
+
+.security-header .subtitle {
+    font-size: 1.2em;
+    color: #6c6c70;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.security-points {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.security-point-item h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #1c1c1e;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eef5ff;
+}
+
+.security-point-item p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #6c6c70;
+}
+
+.security-point-item a {
+    color: #007aff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.security-point-item a:hover {
+    text-decoration: underline;
+}
+
+.back-link-container {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.back-link {
+    color: #007aff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for the security page */
+@media (max-width: 768px) {
+    .security-header h1 {
+        font-size: 2.2em;
+    }
+}
