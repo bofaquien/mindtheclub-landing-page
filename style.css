@@ -543,3 +543,89 @@ body {
         font-size: 2.2em;
     }
 }
+
+/* ================================================= */
+/* Privacy Policy Page Styles                        */
+/* ================================================= */
+
+.privacy-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.7;
+}
+
+.privacy-container h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #1c1c1e;
+    margin-bottom: 10px;
+}
+
+.privacy-container h2 {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #1c1c1e;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.privacy-container h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #1c1c1e;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.privacy-container p, .privacy-container ul {
+    margin-bottom: 15px;
+}
+
+.privacy-container ul {
+    padding-left: 20px;
+}
+
+.privacy-container ul ul { /* Styles for the nested list */
+    margin-top: 10px;
+}
+
+.privacy-container a {
+    color: #007aff;
+    text-decoration: none;
+}
+
+.privacy-container a:hover {
+    text-decoration: underline;
+}
+
+/* ================================================= */
+/* Footer Styles                                     */
+/* ================================================= */
+
+.site-footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #f0f2f5;
+    color: #6c6c70;
+    font-size: 0.9em;
+}
+
+.site-footer a {
+    color: #1c1c1e;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.site-footer .trademark-notice {
+    margin-top: 10px;
+    font-size: 0.8em;
+}
