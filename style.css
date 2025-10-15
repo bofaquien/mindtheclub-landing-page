@@ -426,3 +426,31 @@ body {
 .submit-button:hover {
     background-color: #0056b3;
 }
+
+/* ================================================= */
+/* Read More Button Styles                           */
+/* ================================================= */
+
+.read-more-container {
+    text-align: center;
+    /* This adds space above the button, separating it from the feature list */
+    padding-top: 20px; 
+}
+
+.read-more-button {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 2px solid #007aff; /* Using a primary blue from your contact form */
+    border-radius: 30px;
+    color: #007aff;
+    background-color: transparent;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.read-more-button:hover {
+    background-color: #007aff;
+    color: white;
+}
