@@ -428,29 +428,32 @@ body {
 }
 
 /* ================================================= */
-/* Read More Button Styles                           */
+/* Read More Link Styles (Modern Version)            */
 /* ================================================= */
 
 .read-more-container {
     text-align: center;
-    /* This adds space above the button, separating it from the feature list */
     padding-top: 20px; 
 }
 
 .read-more-button {
-    display: inline-block;
-    padding: 12px 30px;
-    border: 2px solid #007aff; /* Using a primary blue from your contact form */
-    border-radius: 30px;
-    color: #007aff;
+    display: inline-flex; /* Aligns text and arrow */
+    align-items: center;
+    gap: 8px; /* Space between "Read More" and ">>" */
+    
+    color: #007aff; /* Primary blue link color */
     background-color: transparent;
+    border: none; /* No border */
+    
     text-decoration: none;
     font-weight: bold;
     font-size: 1em;
-    transition: all 0.3s ease;
 }
 
-.read-more-button:hover {
-    background-color: #007aff;
-    color: white;
+.read-more-button .arrow {
+    transition: transform 0.2s ease-in-out; /* Smooth transition for the arrow */
+}
+
+.read-more-button:hover .arrow {
+    transform: translateX(5px); /* Moves the arrow 5px to the right on hover */
 }
