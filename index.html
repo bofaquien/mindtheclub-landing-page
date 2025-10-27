@@ -183,38 +183,41 @@
 
 <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
 <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
 <df-messenger
-  project-id="mindtheclub-kt"
-  agent-id="6e3a84eb-a9de-4f14-b9ca-f6864bbbe0f2"
-  language-code="en"
-  max-query-length="-1"
-  chat-icon="images/chat-icon.png">    
-<df-messenger-chat-bubble
-    chat-title="💬 Ask me">
-  </df-messenger-chat-bubble>
+    project-id="mindtheclub-kt"
+    agent-id="6e3a84eb-a9de-4f14-b9ca-f6864bbbe0f2"
+    language-code="en"
+    max-query-length="-1"
+    chat-icon="images/chat-icon.png">    
+
+    <df-messenger-chat-bubble
+        chat-title="💬 Ask me">
+    </df-messenger-chat-bubble>
+
 </df-messenger>
+
 <style>
   df-messenger {
-    z-index: 999;
-    position: fixed;
-    --df-messenger-font-color: #000;
-    --df-messenger-font-family: Google Sans;
-    --df-messenger-chat-background: #f3f6fc;
-    --df-messenger-message-user-background: #d3e3fd;
-    --df-messenger-message-bot-background: #fff;
-    bottom: 16px;
-    right: 16px;
-  }
+        z-index: 999;
+        position: fixed;
+        --df-messenger-font-color: #000;
+        --df-messenger-font-family: Google Sans;
+        --df-messenger-chat-background: #f3f6fc;
+        --df-messenger-message-user-background: #d3e3fd;
+        --df-messenger-message-bot-background: #fff;
+        bottom: 16px;
+        right: 16px;
+    }
 
   df-messenger::part(chat-icon) {
-/* Use !important and force all properties */
-background-image: url("images/chat-icon.png") !important;
-background-size: 100% 100% !important; /* Ensures image fills completely */
-background-repeat: no-repeat !important;
-background-position: center !important;
-background-color: transparent !important; /* Eliminate any residual color */
-display: block !important; /* Ensure the element is visible */
-}
+        background-image: url("images/chat-icon.png") !important;
+        background-size: 100% 100% !important; /* Ensures image fills completely */
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-color: transparent !important; /* Eliminate any residual color */
+        display: block !important; /* Ensure the element is visible */
+    }
 
 </style>
 
