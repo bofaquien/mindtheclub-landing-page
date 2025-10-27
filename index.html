@@ -206,12 +206,14 @@
     right: 16px;
   }
 
-  ddf-messenger::part(chat-icon) {
-    background-image: url('images/chat-icon.png') !important;
-    background-size: cover !important;
-    background-color: transparent !important; 
-    height: 100% !important;
-    width: 100% !important;
+  df-messenger::part(chat-icon) {
+/* Use !important and force all properties */
+background-image: url("images/chat-icon.png") !important;
+background-size: 100% 100% !important; /* Ensures image fills completely */
+background-repeat: no-repeat !important;
+background-position: center !important;
+background-color: transparent !important; /* Eliminate any residual color */
+display: block !important; /* Ensure the element is visible */
 }
 
 </style>
