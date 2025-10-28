@@ -30,7 +30,30 @@
     <title>MindTheClub</title>
     <link rel="stylesheet" href="style.css">
 
-    
+    <style>
+        df-messenger {
+                z-index: 999;
+                position: fixed;
+                --df-messenger-font-color: #000;
+                --df-messenger-font-family: Google Sans;
+                --df-messenger-chat-background: #f3f6fc;
+                --df-messenger-message-user-background: #d3e3fd;
+                --df-messenger-message-bot-background: #fff;
+                bottom: 16px;
+                right: 16px;
+        }
+
+        df-messenger::part(chat-icon) {
+                background-image: url("images/chat_icon2.png") !important;
+                background-size: 100% 100% !important; /* Ensures image fills completely */
+                background-repeat: no-repeat !important;
+                background-position: center !important;
+                background-color: transparent !important; /* Eliminate any residual color */
+                display: block !important; /* Ensure the element is visible */
+        }
+
+</style>
+
 </head>
 
 <body>
