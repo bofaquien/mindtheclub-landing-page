@@ -29,38 +29,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindTheClub</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-      df-messenger {
-            z-index: 999;
-            position: fixed;
-            --df-messenger-font-color: #000;
-            --df-messenger-font-family: Google Sans;
-            --df-messenger-chat-background: #f3f6fc;
-            --df-messenger-message-user-background: #d3e3fd;
-            --df-messenger-message-bot-background: #fff;
-            bottom: 16px;
-            right: 16px;
-        }
-    
-      df-messenger::part(chat-icon) {
-            /* Use the full absolute URL */
-            background-image: url("https://www.mindtheclub.com/images/chat_icon2.png") !important;
-            background-size: 100% 100% !important; 
-            background-repeat: no-repeat !important;
-            background-position: center !important;
-            background-color: transparent !important; 
-            display: block !important; 
-        }
-    </style>
-
-    <style>
-      df-messenger-chat-bubble {
-        /* This increases the icon size *inside* the button (default is 36px) */
-        --df-messenger-chat-bubble-icon-size: 48px;
-      }
-    </style>
-    
+   
 </head>
 
 <body>
@@ -214,24 +183,6 @@
         </div>
     </div>
 </section>
-
-<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-
-<df-messenger
-    project-id="mindtheclub-kt"
-    agent-id="6e3a84eb-a9de-4f14-b9ca-f6864bbbe0f2"
-    language-code="en"
-    max-query-length="-1">
-    
-    <df-messenger-chat-bubble
-        chat-title="💬 Ask me"
-        chat-icon="https://www.mindtheclub.com/images/chat_icon2.png">
-    </df-messenger-chat-bubble>
-
-</df-messenger>
-
-
 
 <footer class="site-footer">
     <p><a href="privacy-policy.html">Terms of Service & Privacy Policy</a></p>
