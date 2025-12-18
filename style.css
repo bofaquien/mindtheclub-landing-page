@@ -545,6 +545,22 @@ body {
 }
 
 /* ================================================= */
+/* NEW Video Section Styles                          */
+/* ================================================= */
+
+.phone-video {
+    width: 100%;
+    max-width: 300px; /* Restricts width so it looks like a phone, not a giant tower */
+    height: auto;
+    border-radius: 30px; /* Smooth corners like a modern smartphone */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Deep shadow to make it 'pop' */
+    border: 8px solid #1c1c1e; /* Adds a dark 'bezel' frame around the video */
+    display: block;
+    margin: 0 auto; /* Centers the video in its column */
+    background-color: #000; /* Prevents white flashes while loading */
+}
+
+/* ================================================= */
 /* Privacy Policy Page Styles                        */
 /* ================================================= */
 
