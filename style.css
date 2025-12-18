@@ -342,6 +342,7 @@ body {
 /* NEW Video Section Styles                          */
 /* ================================================= */
 
+
 .phone-video {
     width: 100%;
     max-width: 300px; /* Restricts width so it looks like a phone, not a giant tower */
