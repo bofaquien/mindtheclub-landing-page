@@ -247,6 +247,21 @@ body {
     .features-image {
         display: none; /* <-- ADD THIS LINE to hide the image */
     }
+
+    /* 1. Unhide the video container on mobile */
+    .features-image.video-wrapper {
+        display: block;
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    /* 2. Adapt video style for mobile: Remove "Phone Bezel" & maximize width */
+    .features-image.video-wrapper .phone-video {
+        border: none;           /* Remove the dark bezel */
+        border-radius: 12px;    /* Softer, modern corners */
+        max-width: 100%;        /* Allow full width usage */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Lighter shadow for mobile */
+    }
     
     .feature-item {
         text-align: left; /* Keep feature text left-aligned even if container is centered */
