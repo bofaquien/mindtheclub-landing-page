@@ -245,14 +245,18 @@ body {
     }
 
     .features-image {
-        display: none; /* <-- ADD THIS LINE to hide the image */
+        display: block;       /* Unhide the images */
+        margin-top: 40px;     /* Override the large desktop margin (170px) */
+        width: 100%;          /* Use full container width */
+        text-align: center;   /* Center the content */
     }
 
-    /* 1. Unhide the video container on mobile */
-    .features-image.video-wrapper {
+    /* Ensure the images themselves look good on small screens */
+    .features-image img {
+        max-width: 80%;       /* Prevent edge-to-edge stretching for a cleaner look */
+        height: auto;         /* Maintain aspect ratio */
+        margin: 0 auto;       /* Ensure centering */
         display: block;
-        width: 100%;
-        margin-top: 40px;
     }
 
     /* 2. Adapt video style for mobile: Remove "Phone Bezel" & maximize width */
