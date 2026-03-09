@@ -34,11 +34,16 @@ body {
     z-index: 1;
 }
 
-.contact-button {
+.nav-buttons {
     position: absolute;
     top: 25px;
     right: 30px;
-    z-index: 3; /* Ensures it's above the overlay */
+    z-index: 3;
+    display: flex;
+    gap: 12px;
+}
+
+.contact-button {
     padding: 10px 20px;
     background-color: transparent;
     color: white;
@@ -52,7 +57,7 @@ body {
 
 .contact-button:hover {
     background-color: white;
-    color: #1c1c1e; /* A dark color for the text */
+    color: #1c1c1e;
 }
 
 .content {
@@ -329,9 +334,15 @@ body {
 
 @media (max-width: 768px) {
 
-    .contact-button {
+    .nav-buttons {
         top: 15px;
         right: 15px;
+        gap: 8px;
+    }
+
+    .contact-button {
+        padding: 8px 14px;
+        font-size: 0.8em;
     }
 
     .features-text h2 {
@@ -399,6 +410,98 @@ body {
 
     .app-store-badge {
         height: 35px;
+    }
+}
+
+/* ================================================= */
+/* White Paper Page Styles                           */
+/* ================================================= */
+
+.wp-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.wp-container header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.wp-container header h1 {
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #1c1c1e;
+    margin-bottom: 15px;
+}
+
+.wp-container header .subtitle {
+    font-size: 1.2em;
+    color: #6c6c70;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.wp-section {
+    margin-bottom: 50px;
+}
+
+.wp-section h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #1c1c1e;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eef5ff;
+}
+
+.wp-section p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #6c6c70;
+    margin-bottom: 15px;
+}
+
+.wp-section strong {
+    color: #1c1c1e;
+}
+
+.wp-summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.wp-summary-list li {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #6c6c70;
+    margin-bottom: 18px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.wp-summary-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    background-color: #007aff;
+    border-radius: 50%;
+}
+
+.wp-summary-list li strong {
+    color: #1c1c1e;
+}
+
+@media (max-width: 768px) {
+    .wp-container header h1 {
+        font-size: 2.2em;
     }
 }
 

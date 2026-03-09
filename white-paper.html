@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Paper | MindTheClub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>How MindTheClub Works</h1>
+            <p class="subtitle">A system you can reason about</p>
+        </header>
+
+        <div class="wp-section">
+            <p>Most messaging apps ask you to trust them. They say your messages are encrypted, your data is safe, your privacy matters — and then they route everything through their servers, where your content exists in a form you can't verify or control.</p>
+            <p>MindTheClub takes a different approach. Instead of asking for trust, we built a system that's simple enough to understand — so you can reason about what happens to your data yourself. We believe the most important quality a communication tool can have is <strong>predictability</strong>: when you send a message, you should know exactly where it goes, what path it takes, and where it ends up. No surprises.</p>
+            <p>Here's how it works.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Your messages travel directly between devices</h2>
+            <p>MindTheClub is a <strong>peer-to-peer</strong> messaging app. When you send a message, it travels directly from your phone to the recipient's phone. There is no MindTheClub server in between that stores, reads, processes, or relays your content.</p>
+            <p>This is made possible by <strong>WebRTC</strong>, the same open standard that powers video calls in your browser. WebRTC establishes a direct encrypted data channel between two devices. Your message enters this channel on one end and exits on the other. That's the entire journey.</p>
+            <p>When two devices are behind firewalls or on mobile networks that make direct connections difficult, the connection is relayed through a <strong>TURN server</strong> hosted on Cloudflare's global network. Even in this case, the relay simply passes encrypted packets — it cannot read the content. Think of it as a postal worker who carries a sealed envelope: they know the destination, but they never see what's inside.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Signalling: how devices find each other</h2>
+            <p>Before two devices can establish a direct connection, they need to agree on <em>how</em> to connect — exchanging network addresses, encryption keys, and connection parameters. This negotiation is called <strong>signalling</strong>, and it's the only step that touches a server.</p>
+            <p>MindTheClub uses <strong>Firebase Firestore</strong> as a lightweight signalling relay. The signalling data is ephemeral: it's used only to set up the connection and has no value afterwards. It contains no message content.</p>
+            <p>Once signalling completes and the WebRTC channel opens, the server's role is over. Everything that follows happens directly between the two devices.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Waking up a sleeping phone</h2>
+            <p>Mobile phones aggressively conserve battery. When a phone is idle, its network connections are suspended. So how do you send a message to someone whose phone is asleep?</p>
+            <p>MindTheClub uses <strong>Firebase Cloud Messaging (FCM)</strong> — the same push notification infrastructure used by virtually every Android app — to send a lightweight wake-up signal. This signal contains no message content; it simply tells the recipient's device: <em>"Someone wants to send you something. Wake up and connect."</em></p>
+            <p>The recipient's device wakes, establishes a WebRTC connection back to the sender, and the actual message is transmitted directly — peer to peer, as always.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Sending large content in chunks</h2>
+            <p>A photo, a video, a voice note — these can be megabytes in size, and mobile connections can be interrupted at any moment. Sending a large file as a single blob would mean starting over from scratch if anything goes wrong.</p>
+            <p>MindTheClub breaks large content into <strong>small chunks</strong> and sends them sequentially over the WebRTC data channel. The receiving device reassembles the chunks and verifies the result. If the connection drops mid-transfer, only the missing chunks need to be retransmitted — not the entire file.</p>
+            <p>This is the same principle used by every reliable file transfer protocol. It's not novel, but it's essential for a good experience on real-world mobile networks.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Guaranteed delivery</h2>
+            <p>What happens if your recipient is on a plane, or their phone is off, or they're in a tunnel? The message can't be delivered right now — but it must be delivered eventually.</p>
+            <p>MindTheClub uses Android's <strong>WorkManager</strong> to guarantee delivery. When a message can't be sent immediately, it's persisted locally and scheduled for retry. WorkManager survives app restarts, device reboots, and battery optimisation. It will keep retrying — with appropriate backoff — until the message is delivered.</p>
+            <p>Combined with FCM wake-up signals, this creates a reliable delivery pipeline: your message is stored safely on your device, a wake-up nudge is sent when the recipient is likely reachable, and the direct transfer completes as soon as both devices are online. At no point does the message content sit on a server waiting to be picked up.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Group messages: the gossip protocol</h2>
+            <p>Group messaging in a peer-to-peer system presents a unique challenge. In a traditional app, you send one copy to the server and the server distributes it to every group member. Without a server, the sender would have to connect to each member individually — which doesn't scale well and fails entirely if some members are unreachable.</p>
+            <p>MindTheClub solves this with a <strong>gossip protocol</strong>. The sender transmits the message to the group members it can reach. Those members, in turn, can relay the message to other members who weren't reachable by the sender. Like a rumour spreading through a room, the message propagates until everyone has a copy.</p>
+            <p>If a group member comes online later and discovers they're missing a message, they request it from <em>any</em> member who already has it — not just the original sender. This makes group delivery resilient: no single device is a bottleneck, and the group doesn't depend on any one member being online.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>What this means in practice</h2>
+            <p>When you use MindTheClub, the behaviour of the system is predictable:</p>
+            <ul class="wp-summary-list">
+                <li><strong>Your messages live on devices, not servers.</strong> There is no cloud copy, no backup you didn't ask for, no data sitting in a database you can't access. If you and your contact both delete a conversation, it's gone.</li>
+                <li><strong>The network path is transparent.</strong> Your message goes from your phone, through an encrypted WebRTC channel, to the recipient's phone. If a relay is needed, it handles sealed packets. If a wake-up signal is needed, it carries no content.</li>
+                <li><strong>Delivery is persistent, not fragile.</strong> If a message can't be delivered now, it will be delivered later — automatically, without your intervention, and without depending on a server to store it in the meantime.</li>
+                <li><strong>Groups don't have a single point of failure.</strong> No central server means no central point to fail, be compromised, or be compelled to hand over data.</li>
+            </ul>
+            <p>We didn't build MindTheClub this way because peer-to-peer is trendy. We built it this way because it produces a system whose behaviour you can predict and verify. And we believe that's a better foundation for trust than any privacy policy.</p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="index.html" class="back-link">&larr; Back to Home</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p><a href="privacy-policy.html">Terms of Service & Privacy Policy</a></p>
+        <p class="trademark-notice">Google Firebase™ is a trademark of Google LLC.</p>
+    </footer>
+
+</body>
+</html>
