@@ -209,7 +209,7 @@ body {
 
 .features-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 60px;
     max-width: 1200px;
@@ -278,9 +278,9 @@ body {
 }
 
 .features-image {
-    flex: 1; /* Let the image take up the remaining smaller portion */
+    flex: 1;
     max-width: 400px;
-    margin-top: 170px; /* Add this line */
+    margin-top: 20px;
 }
 
 .features-image img {
@@ -290,13 +290,6 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-.features-section--calls .features-container {
-    align-items: flex-start;
-}
-
-.features-section--calls .features-image {
-    margin-top: 60px !important;
-}
 
 /* --- Responsive Adjustments for Features Section --- */
 @media (max-width: 992px) {
