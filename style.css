@@ -290,6 +290,10 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
+.features-section--messenger .features-image {
+    margin-top: -10;
+}
+
 
 /* --- Responsive Adjustments for Features Section --- */
 @media (max-width: 992px) {
