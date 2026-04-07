@@ -290,8 +290,17 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
+/* FINE TUNING */
+.features-section--why .features-image {
+    margin-top: 20px;
+}
+
 .features-section--messenger .features-image {
-    margin-top: -10;
+    margin-top: -10px;
+}
+
+.features-section--calls .features-image {
+    margin-top: 20px;
 }
 
 
