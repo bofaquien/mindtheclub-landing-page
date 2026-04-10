@@ -887,7 +887,7 @@ body {
     left: 9.5%;
     width: 81%;
     height: 87.8%;
-    object-fit: cover;
+    object-fit: fill;
     border-radius: 22px;
     z-index: 1;
     background-color: #FFF8F0;
