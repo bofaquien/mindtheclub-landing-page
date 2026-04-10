@@ -195,10 +195,96 @@
     </div>
 </section>
 
+<section class="features-section features-section--join">
+    <div class="features-container">
+        <div class="features-text">
+            <h2>Join the Club</h2>
+            <p class="features-subtitle">Message freely. Stay safe.</p>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="images/icon-connection.svg" alt="Privacy Icon">
+                    </div>
+                    <div class="feature-item-text">
+                        <h3>Your Space, Your Rules</h3>
+                        <p>No servers storing your words. No algorithms reading your conversations. Just a warm, private space for you and the people you care about.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="images/icon-security.svg" alt="Safe Icon">
+                    </div>
+                    <div class="feature-item-text">
+                        <h3>Privacy Without Compromise</h3>
+                        <p>Full-featured messaging, crystal clear calls, and group chats — all peer-to-peer, all encrypted, all yours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="features-image">
+            <div class="phone-video-container">
+                <video id="promoVideo" class="phone-video" loop playsinline preload="metadata"
+                       poster="images/scene_1.png">
+                    <source src="videos/MindTheClub_Promo_Video.mp4" type="video/mp4">
+                </video>
+                <div id="promoPlayBtn" class="phone-play-btn" aria-label="Play video">
+                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="40" cy="40" r="38" fill="rgba(74, 55, 40, 0.6)" stroke="rgba(255,248,240,0.8)" stroke-width="3"/>
+                        <polygon points="32,24 60,40 32,56" fill="rgba(255,248,240,0.9)"/>
+                    </svg>
+                </div>
+                <img src="images/phone_frame.png" class="phone-frame-overlay" alt="Phone frame">
+            </div>
+        </div>
+    </div>
+</section>
+
 <footer class="site-footer">
     <p><a href="privacy-policy.html">Terms of Service & Privacy Policy</a></p>
     <p class="trademark-notice">Google Firebase™ is a trademark of Google LLC. Cloudflare® is a registered trademark of Cloudflare, Inc.</p>
 </footer>
+
+<script>
+(function() {
+    var video = document.getElementById('promoVideo');
+    var playBtn = document.getElementById('promoPlayBtn');
+    if (!video || !playBtn) return;
+
+    function isMobile() {
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    }
+
+    playBtn.addEventListener('click', function() {
+        if (isMobile()) {
+            video.removeAttribute('playsinline');
+            if (video.requestFullscreen) video.requestFullscreen();
+            else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+        }
+        video.muted = false;
+        video.play();
+        playBtn.style.opacity = '0';
+        playBtn.style.pointerEvents = 'none';
+    });
+
+    video.addEventListener('pause', function() {
+        playBtn.style.opacity = '1';
+        playBtn.style.pointerEvents = 'auto';
+    });
+
+    video.addEventListener('ended', function() {
+        playBtn.style.opacity = '1';
+        playBtn.style.pointerEvents = 'auto';
+        if (document.fullscreenElement) document.exitFullscreen();
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+        if (!document.fullscreenElement) {
+            video.setAttribute('playsinline', '');
+        }
+    });
+})();
+</script>
 
 </body>
 </html>
