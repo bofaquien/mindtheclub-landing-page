@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How To Guide | MindTheClub</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .guide-wrapper {
+            display: flex;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 50px 20px 80px;
+            gap: 48px;
+        }
+
+        .guide-sidebar {
+            width: 260px;
+            flex-shrink: 0;
+        }
+
+        .guide-sidebar-inner {
+            position: sticky;
+            top: 32px;
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .guide-sidebar-inner::-webkit-scrollbar { width: 4px; }
+        .guide-sidebar-inner::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        .guide-sidebar-inner h3 {
+            font-size: 0.7em;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #1c1c1e;
+            margin: 0 0 16px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eef5ff;
+        }
+
+        .guide-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .guide-nav li { margin-bottom: 2px; }
+
+        .guide-nav a {
+            display: block;
+            padding: 7px 12px;
+            font-size: 0.85em;
+            color: #6c6c70;
+            text-decoration: none;
+            border-radius: 6px;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+
+        .guide-nav a:hover {
+            color: #1c1c1e;
+            background: rgba(0, 122, 255, 0.06);
+            border-left-color: #007aff;
+        }
+
+        .guide-nav a.active {
+            color: #1c1c1e;
+            font-weight: 600;
+            background: rgba(0, 122, 255, 0.08);
+            border-left-color: #007aff;
+        }
+
+        .guide-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .guide-content h1 {
+            font-size: 2.5em;
+            color: #1c1c1e;
+            margin: 0 0 8px 0;
+            font-weight: bold;
+        }
+
+        .guide-lead {
+            font-size: 1.15em;
+            color: #6c6c70;
+            line-height: 1.6;
+            margin-bottom: 48px;
+            max-width: 640px;
+        }
+
+        .guide-section {
+            scroll-margin-top: 24px;
+            margin-bottom: 56px;
+        }
+
+        .guide-section h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #1c1c1e;
+            margin: 0 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eef5ff;
+        }
+
+        .guide-section h3 {
+            font-size: 1.15em;
+            color: #1c1c1e;
+            font-weight: 600;
+            margin: 28px 0 10px 0;
+        }
+
+        .guide-section p {
+            color: #6c6c70;
+            font-size: 1.05em;
+            line-height: 1.7;
+            margin: 0 0 14px 0;
+        }
+
+        .guide-section p strong { color: #1c1c1e; }
+
+        .guide-section ol {
+            padding-left: 20px;
+            margin: 0 0 14px 0;
+        }
+
+        .guide-section ol li {
+            color: #6c6c70;
+            font-size: 1.05em;
+            line-height: 1.7;
+            margin-bottom: 6px;
+            padding-left: 4px;
+        }
+
+        .guide-section ol li strong { color: #1c1c1e; }
+
+        .guide-section code {
+            background: #eef5ff;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.92em;
+            color: #1c1c1e;
+        }
+
+        .guide-tip {
+            background: #eef5ff;
+            border-left: 3px solid #007aff;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 0.95em;
+            color: #1c1c1e;
+            line-height: 1.6;
+        }
+        .guide-tip::before { content: "\01F4A1 "; }
+
+        .guide-note {
+            background: #f7f7f8;
+            border-left: 3px solid #6c6c70;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 0.95em;
+            color: #1c1c1e;
+            line-height: 1.6;
+        }
+        .guide-note::before { content: "\02139\0FE0F "; }
+
+        .guide-mobile-toggle {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #007aff;
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.35);
+            cursor: pointer;
+            font-size: 1.4em;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+        .guide-mobile-toggle:active { transform: scale(0.92); }
+
+        .guide-mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.35);
+            z-index: 200;
+        }
+        .guide-mobile-overlay.open { display: block; }
+
+        @media (max-width: 820px) {
+            .guide-wrapper {
+                flex-direction: column;
+                padding: 30px 16px 80px;
+                gap: 0;
+            }
+
+            .guide-sidebar {
+                position: fixed;
+                top: 0;
+                left: -300px;
+                width: 280px;
+                height: 100%;
+                background: #f0f2f5;
+                z-index: 300;
+                padding: 24px 20px;
+                box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+                transition: left 0.3s ease;
+                overflow-y: auto;
+            }
+
+            .guide-sidebar.open { left: 0; }
+
+            .guide-sidebar-inner {
+                position: static;
+                max-height: none;
+            }
+
+            .guide-mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .guide-content h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="guide-mobile-toggle" id="tocToggle" aria-label="Open table of contents">&#9776;</button>
+<div class="guide-mobile-overlay" id="tocOverlay"></div>
+
+<div class="guide-wrapper">
+
+    <aside class="guide-sidebar" id="tocSidebar">
+        <nav class="guide-sidebar-inner">
+            <h3>Guide Contents</h3>
+            <ul class="guide-nav" id="tocNav">
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#setting-up-profile">Setting Up Your Profile</a></li>
+                <li><a href="#understanding-privacy">Understanding Privacy</a></li>
+                <li><a href="#adding-contacts">Adding Contacts</a></li>
+                <li><a href="#qr-code">QR Code (In Person)</a></li>
+                <li><a href="#share-profile">Share Your Profile Link</a></li>
+                <li><a href="#scan-shared-qr">Scan a Shared QR Code</a></li>
+                <li><a href="#accepting-requests">Accepting Contact Requests</a></li>
+                <li><a href="#messaging">Messaging</a></li>
+                <li><a href="#send-text">Text Messages</a></li>
+                <li><a href="#send-images">Images</a></li>
+                <li><a href="#send-camera">In-Chat Camera</a></li>
+                <li><a href="#send-videos">Videos</a></li>
+                <li><a href="#send-voice">Voice Messages</a></li>
+                <li><a href="#send-files">Files</a></li>
+                <li><a href="#send-gifs">GIFs &amp; Stickers</a></li>
+                <li><a href="#send-links">Web Links</a></li>
+                <li><a href="#send-contacts">Sharing Contacts</a></li>
+                <li><a href="#chat-features">Chat Features</a></li>
+                <li><a href="#reply">Replying</a></li>
+                <li><a href="#forward">Forwarding</a></li>
+                <li><a href="#copy-delete-share">Copy, Delete &amp; Share</a></li>
+                <li><a href="#reactions">Emoji Reactions</a></li>
+                <li><a href="#search">Message Search</a></li>
+                <li><a href="#date-navigator">Date Navigator</a></li>
+                <li><a href="#delivery-status">Delivery Status</a></li>
+                <li><a href="#typing-indicators">Typing Indicators</a></li>
+                <li><a href="#sharing-to-app">Sharing to MindTheClub</a></li>
+                <li><a href="#calls">Voice &amp; Video Calls</a></li>
+                <li><a href="#groups">Group Chats</a></li>
+                <li><a href="#create-group">Creating a Group</a></li>
+                <li><a href="#group-features">Group Chat Features</a></li>
+                <li><a href="#manage-group">Managing a Group</a></li>
+                <li><a href="#leave-group">Leaving a Group</a></li>
+                <li><a href="#contact-management">Contact Management</a></li>
+                <li><a href="#backup-restore">Backup &amp; Restore</a></li>
+                <li><a href="#tips">Tips for Best Experience</a></li>
+            </ul>
+            <div class="back-link-container" style="margin-top: 24px;">
+                <a href="index.html" class="back-link">&larr; Back to Home</a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="guide-content">
+
+        <h1>How To Guide</h1>
+        <p class="guide-lead">Everything you need to know to get started and make the most of MindTheClub &mdash; the privacy-first messenger where your conversations never touch a server.</p>
+
+        <section class="guide-section" id="getting-started">
+            <h2>Getting Started</h2>
+            <h3 id="setting-up-profile">Setting Up Your Profile</h3>
+            <p>When you first open MindTheClub, you'll be taken to your profile screen. This is where you introduce yourself to your contacts.</p>
+            <ol>
+                <li><strong>Set your name</strong> &mdash; Tap the name field and type your display name. This is how your contacts will see you.</li>
+                <li><strong>Write a bio</strong> &mdash; Add a short bio to let people know a bit about you.</li>
+                <li><strong>Choose a profile picture</strong> &mdash; Tap your profile picture area to open the image picker. Select a photo from your gallery or take a new one with your camera.</li>
+            </ol>
+            <p>Your profile is automatically saved when you leave the screen. Any changes are broadcast to all your existing contacts so they always see your latest info.</p>
+            <h3 id="understanding-privacy">Understanding Privacy in MindTheClub</h3>
+            <p>MindTheClub is built from the ground up with privacy at its core. Your messages travel directly between devices using peer-to-peer connections &mdash; no central server ever reads, stores, or processes your message content. The only server involvement is a lightweight signalling step to help devices find each other and a push notification to wake up the recipient's phone.</p>
+        </section>
+
+        <section class="guide-section" id="adding-contacts">
+            <h2>Adding Contacts</h2>
+            <p>Because MindTheClub doesn't store your phone number or access your address book, adding contacts works differently from traditional messaging apps. There are three ways to connect with someone.</p>
+            <h3 id="qr-code">Method 1 &mdash; QR Code (In Person)</h3>
+            <p>The fastest way to add someone standing right next to you.</p>
+            <ol>
+                <li>Open your <strong>Profile</strong> screen (tap the profile icon in the top-right of the contact list).</li>
+                <li>Tap <strong>Show QR Code</strong> in the bottom navigation bar.</li>
+                <li>Ask your friend to open MindTheClub, go to their Profile, and tap <strong>Scan QR Code</strong>.</li>
+                <li>They point their camera at your QR code &mdash; the app recognises it automatically and sends a contact request.</li>
+                <li>You'll see the request appear in your <strong>New Contact Requests</strong> screen (the person icon with a badge in the top toolbar). Tap it to review and accept.</li>
+            </ol>
+            <h3 id="share-profile">Method 2 &mdash; Share Your Profile Link</h3>
+            <p>Perfect for adding someone remotely &mdash; over another messaging app, email, or social media.</p>
+            <ol>
+                <li>Open your <strong>Profile</strong> screen.</li>
+                <li>Tap the <strong>share button</strong> (floating action button at the bottom-right).</li>
+                <li>Choose any app to share through &mdash; WhatsApp, Telegram, email, or anything else on your device.</li>
+                <li>Your friend receives your MindTheClub profile card. When they tap it, MindTheClub opens and prompts them to send you a contact request.</li>
+            </ol>
+            <h3 id="scan-shared-qr">Method 3 &mdash; Scan a Shared QR Code Image</h3>
+            <p>If someone sends you their MindTheClub QR code as a picture through any app:</p>
+            <ol>
+                <li>Share the image to MindTheClub using your device's share sheet.</li>
+                <li>MindTheClub automatically detects the embedded profile data and prompts you to add them as a contact.</li>
+            </ol>
+            <h3 id="accepting-requests">Accepting Contact Requests</h3>
+            <p>When someone sends you a contact request:</p>
+            <ol>
+                <li>A badge appears on the <strong>New Contact Requests</strong> icon in the toolbar. You'll also receive a notification.</li>
+                <li>Tap the icon to see pending requests, showing each person's name, bio, and profile picture.</li>
+                <li>Tap <strong>Accept</strong> to add them, or <strong>Reject</strong> to decline.</li>
+            </ol>
+            <p>Once you accept, MindTheClub automatically exchanges profiles and establishes a secure peer-to-peer connection. Requests from users you have blocked are automatically hidden.</p>
+        </section>
+
+        <section class="guide-section" id="messaging">
+            <h2>Messaging</h2>
+            <h3 id="send-text">Sending a Text Message</h3>
+            <ol><li>Tap a contact in your contact list to open the chat.</li><li>Type your message in the text field at the bottom.</li><li>Tap the <strong>send button</strong> (appears when you start typing).</li></ol>
+            <h3 id="send-images">Sending Images</h3>
+            <ol><li>In a chat, tap the <strong>attach button</strong> (paperclip icon) to reveal the attachment toolbar.</li><li>Tap <strong>Image</strong> to open the image picker.</li><li>Choose from your <strong>Gallery</strong> or switch to the <strong>Camera</strong> tab to take a new photo.</li><li>You can select multiple images at once &mdash; the app supports sending them as a batch.</li><li>Add an optional caption before sending.</li><li>Tap <strong>Send</strong>.</li></ol>
+            <div class="guide-tip">If you type a message before attaching images, that text is automatically carried over as the image caption.</div>
+            <h3 id="send-camera">Taking and Sending a Photo Directly</h3>
+            <p>Tap the <strong>camera icon</strong> next to the text field to jump straight into the in-chat camera. Snap a photo and send it immediately.</p>
+            <h3 id="send-videos">Sending Videos</h3>
+            <ol><li>Tap the <strong>attach button</strong>, then <strong>Video</strong>.</li><li>Select a video from your gallery or record a new one.</li><li>Add an optional caption and tap <strong>Send</strong>.</li></ol>
+            <h3 id="send-voice">Sending Voice Messages</h3>
+            <p>MindTheClub supports voice messages with an intuitive press-and-hold interface:</p>
+            <ol><li><strong>Press and hold</strong> the microphone icon to start recording. A timer shows the duration.</li><li><strong>Release</strong> to send the voice message immediately.</li><li><strong>Slide up</strong> while holding to <strong>lock</strong> the recording &mdash; you can then stop and review before sending.</li><li><strong>Slide left</strong> while holding to <strong>cancel</strong> the recording.</li></ol>
+            <p>When locked, you'll see a stop button (to finish recording) and a send button (to dispatch the message).</p>
+            <h3 id="send-files">Sending Files</h3>
+            <ol><li>Tap the <strong>attach button</strong>, then <strong>File</strong>.</li><li>Browse and select any file &mdash; PDFs, documents, spreadsheets, archives, or anything else.</li><li>The app shows the file name, extension, and size for confirmation.</li><li>Add an optional caption and tap <strong>Send</strong>.</li></ol>
+            <div class="guide-note">Files larger than 50 MB cannot be sent in group chats.</div>
+            <h3 id="send-gifs">Sending GIFs and Stickers</h3>
+            <p>You can paste GIFs and stickers directly into the chat from your keyboard or clipboard. The app automatically detects the content type and handles it appropriately.</p>
+            <h3 id="send-links">Sharing Web Links</h3>
+            <p>When you type or paste a URL into the message field:</p>
+            <ol><li>MindTheClub automatically detects the link and fetches a <strong>rich preview</strong> showing the page title, description, and thumbnail.</li><li>The preview appears above the text field. You can dismiss it if you prefer to send the link as plain text.</li><li>Tap <strong>Send</strong> to share the link along with its preview.</li></ol>
+            <h3 id="send-contacts">Sharing Contacts</h3>
+            <p>You can share a MindTheClub contact with another person:</p>
+            <ol><li>Tap the <strong>attach button</strong>, then <strong>Contact</strong>.</li><li>Select the contact(s) you want to share.</li><li>The recipient will see the shared contact card with options to view the profile or add them as a new contact directly from the chat.</li></ol>
+        </section>
+
+        <section class="guide-section" id="chat-features">
+            <h2>Chat Features</h2>
+            <h3 id="reply">Replying to a Message</h3>
+            <p>There are two ways to reply:</p>
+            <ol><li><strong>Swipe right</strong> on any message to trigger a reply.</li><li><strong>Long-press</strong> a message, then tap <strong>Reply</strong> from the action menu.</li></ol>
+            <p>The original message appears as a preview above the text field. Type your reply and send. In the chat, replies show a linked preview of the original message &mdash; tap it to scroll to it.</p>
+            <h3 id="forward">Forwarding Messages</h3>
+            <ol><li><strong>Long-press</strong> a message and tap <strong>Forward</strong>.</li><li>Select up to 3 contacts or groups to forward to.</li><li>Tap <strong>Send</strong>.</li></ol>
+            <p>Forwarding works for all message types: text, images, videos, voice messages, files, web links, GIFs, and multi-image batches.</p>
+            <h3 id="copy-delete-share">Copy, Delete &amp; Share</h3>
+            <p><strong>Copy:</strong> Long-press a text or web link message, then tap <strong>Copy</strong> to copy the text content to your clipboard.</p>
+            <p><strong>Delete:</strong> Long-press one or more messages to select them, then tap the <strong>Delete</strong> icon in the toolbar. You can select multiple messages for bulk deletion.</p>
+            <p><strong>Share:</strong> Long-press a message and tap <strong>Share</strong> to send it to any app on your device using the system share sheet. Works with text, images, videos, audio, GIFs, files, and web links.</p>
+            <h3 id="reactions">Emoji Reactions</h3>
+            <p>React to any incoming message with an emoji:</p>
+            <ol><li><strong>Long-press</strong> a message. A reaction bar appears with quick-pick emojis.</li><li>Tap one of the quick emojis, or tap <strong>+</strong> to open the full emoji picker and choose any emoji.</li></ol>
+            <h3 id="search">Message Search</h3>
+            <p><strong>In-chat search:</strong> Tap the <strong>search icon</strong> in the chat toolbar. Type a keyword to filter messages in the current conversation.</p>
+            <p><strong>Global search:</strong> From the contact list screen, tap the <strong>search icon</strong> in the top toolbar. Search across all contacts and conversations.</p>
+            <h3 id="date-navigator">Date Navigator</h3>
+            <p>In a chat, tap the <strong>calendar icon</strong> in the toolbar to open the date navigator &mdash; a floating panel listing all dates with messages. Tap any date to jump directly to that day's messages. The navigator is draggable, so you can reposition it anywhere on screen.</p>
+            <h3 id="delivery-status">Delivery Status</h3>
+            <p>Messages show delivery indicators so you know their status:</p>
+            <ol><li><strong>Pending</strong> &mdash; The message is queued and waiting to be delivered.</li><li><strong>Sent</strong> &mdash; The message has been dispatched.</li><li><strong>Delivered</strong> &mdash; The recipient's device has received the message.</li><li><strong>Seen</strong> &mdash; The recipient has opened the chat and viewed the message.</li></ol>
+            <h3 id="typing-indicators">Typing Indicators</h3>
+            <p>When your contact is typing, you'll see a typing indicator at the bottom of the chat. This works in both one-on-one and group conversations.</p>
+        </section>
+
+        <section class="guide-section" id="sharing-to-app">
+            <h2>Sharing Content to MindTheClub</h2>
+            <p>You can share content from any app on your device directly into MindTheClub:</p>
+            <ol><li>In any app, tap <strong>Share</strong> and select <strong>MindTheClub</strong>.</li><li>Choose the contact(s) you want to send to.</li><li>The content is sent directly.</li></ol>
+            <p>Supported types: text, web links, images, videos, audio files, GIFs, and general files.</p>
+        </section>
+
+        <section class="guide-section" id="calls">
+            <h2>Voice &amp; Video Calls</h2>
+            <h3>Making a Call</h3>
+            <ol><li>Open a chat with the contact you want to call.</li><li>Tap the <strong>phone icon</strong> for an audio call or the <strong>video icon</strong> for a video call in the top toolbar.</li><li>The recipient sees an incoming call screen with your name and profile picture.</li></ol>
+            <h3>During an Audio Call</h3>
+            <ol><li><strong>Speaker toggle</strong> &mdash; Switch between earpiece and loudspeaker.</li><li><strong>Hold</strong> &mdash; Put the call on hold.</li><li><strong>Picture-in-Picture</strong> &mdash; Minimise to a small floating window so you can use other apps.</li><li><strong>Hang up</strong> &mdash; End the call.</li></ol>
+            <h3>During a Video Call</h3>
+            <ol><li><strong>Camera toggle</strong> &mdash; Switch between front and back cameras.</li><li><strong>Mute / Unmute</strong> &mdash; Toggle your microphone.</li><li><strong>Speaker toggle</strong> &mdash; Switch audio output.</li><li><strong>Picture-in-Picture</strong> &mdash; Minimise to a floating window.</li><li><strong>Hang up</strong> &mdash; End the call.</li></ol>
+            <h3>Receiving a Call</h3>
+            <p>When someone calls you, a full-screen incoming call screen appears with their name and picture. You can <strong>Accept</strong> or <strong>Decline</strong>. Calls time out after approximately 50 seconds if not answered.</p>
+            <div class="guide-note">Voice and video calls are available for one-on-one conversations only.</div>
+        </section>
+
+        <section class="guide-section" id="groups">
+            <h2>Group Chats</h2>
+            <h3 id="create-group">Creating a Group</h3>
+            <ol><li>From the contact list, <strong>long-press</strong> on contacts to select them (minimum 2, maximum 62 others plus yourself).</li><li>Tap the <strong>group icon</strong> that appears.</li><li>Enter a <strong>group name</strong> in the dialog.</li><li>Tap <strong>Create</strong>. All selected members are notified.</li></ol>
+            <h3 id="group-features">Group Chat Features</h3>
+            <p>Group chats support the same messaging capabilities as one-on-one chats: text, images, videos, voice messages, files, web links, GIFs, stickers, emoji reactions, replies, forwarding, and search. Each sender's name is displayed above their messages.</p>
+            <p><strong>Message Info:</strong> For messages you send in a group, long-press your own message and tap <strong>Info</strong> to see per-member delivery status (sent, delivered, or seen).</p>
+            <p><strong>Request Contact:</strong> When you receive a message from someone in a group who isn't in your contacts, long-press their message and tap <strong>Request Contact</strong> to send them a contact request.</p>
+            <h3 id="manage-group">Managing a Group (Admin)</h3>
+            <p>If you created the group, you're the admin. Tap the group name or picture at the top of the chat to access the group info screen:</p>
+            <ol><li><strong>Change group name</strong> &mdash; Tap the name field, type the new name, and press Done.</li><li><strong>Change group picture</strong> &mdash; Tap the camera icon on the group picture to select a new image.</li><li><strong>Add members</strong> &mdash; Tap <strong>Add Member</strong> to invite contacts.</li><li><strong>Remove members</strong> &mdash; Long-press to select members, then tap <strong>Remove Member</strong>.</li><li><strong>Delete group</strong> &mdash; Permanently remove the group for all members.</li></ol>
+            <h3 id="leave-group">Leaving a Group</h3>
+            <p>Non-admin members can leave at any time:</p>
+            <ol><li>Tap the group name or picture to open group info.</li><li>Tap <strong>Leave Group</strong>.</li><li>Confirm. You'll no longer receive new messages, but your existing messages remain on other members' devices.</li></ol>
+        </section>
+
+        <section class="guide-section" id="contact-management">
+            <h2>Contact Management</h2>
+            <h3>Viewing a Contact's Profile</h3>
+            <p>Tap a contact's profile picture in the chat header to see their name, bio, and full-size profile picture. Tap the picture to open it in a zoomable full-screen viewer &mdash; pinch to zoom, and tap to toggle the toolbar.</p>
+            <h3>Blocking a Contact</h3>
+            <ol><li>Open the contact's profile (from chat or contact list).</li><li>Tap <strong>Block</strong> in the bottom navigation.</li><li>Confirm the action.</li></ol>
+            <p>Blocked contacts cannot send you messages or contact requests.</p>
+            <h3>Unblocking a Contact</h3>
+            <ol><li>Open <strong>My Profile</strong> &rarr; tap <strong>Blocked Users</strong> in the bottom navigation bar.</li><li>Tap any blocked user to unblock them.</li></ol>
+            <h3>Deleting a Contact</h3>
+            <ol><li>Open the contact's profile.</li><li>Tap <strong>Delete</strong> in the bottom navigation.</li><li>Confirm. The contact and their messages are removed from your device.</li></ol>
+            <h3>Cancelling a Pending Request</h3>
+            <p>If you've sent a contact request that hasn't been accepted yet, the contact appears with a "Pending" status. Open their profile and tap <strong>Remove Pending</strong> to cancel the outgoing request.</p>
+        </section>
+
+        <section class="guide-section" id="backup-restore">
+            <h2>Backup &amp; Restore</h2>
+            <h3>Creating a Backup</h3>
+            <ol><li>Open <strong>My Profile</strong> &rarr; tap the three-dot menu &rarr; <strong>Backup &amp; Restore</strong>.</li><li>Tap <strong>Backup</strong>.</li><li>Choose where to save the <code>.mtcbackup</code> file (device storage, Google Drive, etc.).</li><li>Set and confirm a <strong>password</strong> &mdash; your backup is encrypted with AES-256-GCM.</li><li>Optionally check <strong>Include messages</strong> to back up your full message history (contacts are always included).</li><li>Wait for the backup to complete.</li></ol>
+            <h3>Restoring from a Backup</h3>
+            <ol><li>Open <strong>Backup &amp; Restore</strong>.</li><li>Tap <strong>Restore</strong>.</li><li>Select your <code>.mtcbackup</code> file.</li><li>Enter the password you set during backup.</li><li>Wait for restoration to complete. The app re-syncs your connection credentials automatically.</li></ol>
+            <h3>Auto Backup</h3>
+            <p>Toggle <strong>Auto Backup</strong> on the Backup &amp; Restore screen to include your app data in your device's regular Android backups.</p>
+        </section>
+
+        <section class="guide-section" id="tips">
+            <h2>Tips for the Best Experience</h2>
+            <h3>Keep the App Running</h3>
+            <p>MindTheClub uses direct device-to-device connections to deliver messages. For the most reliable experience:</p>
+            <ol><li><strong>Don't force-close the app</strong> &mdash; Let it run in the background so it can receive messages and calls.</li><li><strong>Disable battery optimisation</strong> for MindTheClub in your device settings. Some manufacturers (Samsung, Xiaomi, Huawei, etc.) aggressively kill background apps, which can delay message delivery.</li><li>After a phone restart, open MindTheClub once to ensure its background service restarts.</li></ol>
+            <h3>Notifications</h3>
+            <p>Make sure notifications are enabled for MindTheClub in your device settings. The app uses notifications to alert you about new messages, incoming calls, and contact requests.</p>
+            <h3>About &amp; Version Info</h3>
+            <p>From <strong>My Profile</strong>, tap the three-dot menu &rarr; <strong>About</strong> to see the app name, current version, and your unique User ID.</p>
+            <h3>Debug Log</h3>
+            <p>If you experience issues, open <strong>My Profile</strong> &rarr; three-dot menu &rarr; <strong>Send Debug Log</strong> to export a diagnostic file you can share with us.</p>
+        </section>
+
+        <div class="back-link-container">
+            <a href="index.html" class="back-link">&larr; Back to Home</a>
+        </div>
+    </main>
+</div>
+
+<footer class="site-footer">
+    <p><a href="privacy-policy.html">Terms of Service &amp; Privacy Policy</a></p>
+    <p class="trademark-notice">Google Firebase&trade; is a trademark of Google LLC. Cloudflare&reg; is a registered trademark of Cloudflare, Inc.</p>
+</footer>
+
+<script>
+(function () {
+    var toggle   = document.getElementById('tocToggle');
+    var sidebar  = document.getElementById('tocSidebar');
+    var overlay  = document.getElementById('tocOverlay');
+    var navLinks = document.querySelectorAll('.guide-nav a');
+
+    function openDrawer()  { sidebar.classList.add('open');  overlay.classList.add('open'); }
+    function closeDrawer() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+
+    toggle.addEventListener('click', function () {
+        sidebar.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+    overlay.addEventListener('click', closeDrawer);
+
+    navLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            if (window.innerWidth <= 820) closeDrawer();
+        });
+    });
+
+    document.querySelectorAll('.guide-nav a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.replaceState(null, '', this.getAttribute('href'));
+            }
+        });
+    });
+
+    var sections = [];
+    navLinks.forEach(function (link) {
+        var id = link.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ id: id, el: el, link: link });
+    });
+
+    function updateActive() {
+        var scrollY = window.scrollY + 80;
+        var current = null;
+        for (var i = 0; i < sections.length; i++) {
+            if (sections[i].el.offsetTop <= scrollY) current = sections[i];
+        }
+        navLinks.forEach(function (l) { l.classList.remove('active'); });
+        if (current) current.link.classList.add('active');
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(function () { updateActive(); ticking = false; });
+            ticking = true;
+        }
+    });
+    updateActive();
+})();
+</script>
+
+</body>
+</html>
