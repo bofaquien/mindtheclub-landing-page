@@ -4,7 +4,7 @@
     <link rel="icon" type="image/png" href="images/mtc_logo_icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join the Beta | MindTheClub</title>
+    <title>Become a Pioneer | MindTheClub</title>
     <link rel="stylesheet" href="style.css">
     
     <style>
@@ -13,14 +13,14 @@
             margin: 0 auto;
             padding: 80px 20px;
             text-align: center;
-            min-height: 80vh; /* Keeps footer at bottom visually */
+            min-height: 80vh;
         }
         
         .beta-icon {
             width: 80px;
             height: 80px;
             margin-bottom: 30px;
-            fill: #1c1c1e; /* Matches your dark theme color */
+            fill: #1c1c1e;
         }
 
         .beta-title {
@@ -31,13 +31,35 @@
         }
 
         .beta-text {
-            font-size: 1.2em;
+            font-size: 1.15em;
             color: #6c6c70;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .beta-text strong {
+            color: #1c1c1e;
+        }
+
+        .beta-section-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #1c1c1e;
+            margin-top: 50px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eef5ff;
+            text-align: left;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .beta-text--left {
+            text-align: left;
         }
 
         .step-box {
@@ -45,15 +67,22 @@
             border: 1px solid #eef5ff;
             border-radius: 16px;
             padding: 30px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             text-align: left;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .step-item {
             display: flex;
             align-items: flex-start;
             margin-bottom: 20px;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
         }
 
         .step-number {
@@ -78,7 +107,81 @@
 
         .step-desc {
             color: #6c6c70;
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+        .beta-cta {
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .beta-store-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.2s ease, background-color 0.2s;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .beta-store-badge:hover {
+            transform: translateY(-3px);
+            background-color: #1c1c1e;
+        }
+
+        .badge-text-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+
+        .badge-small-text {
+            font-size: 0.7em;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .badge-large-text {
+            font-size: 1.3em;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .beta-wp-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007aff;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.05em;
+        }
+
+        .beta-wp-link:hover {
+            text-decoration: underline;
+        }
+
+        .beta-note {
+            font-size: 0.95em;
+            color: #999;
+            margin-top: 15px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .beta-title {
+                font-size: 2em;
+            }
+            .beta-section-title {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -92,42 +195,77 @@
         <h1 class="beta-title">Become a Pioneer</h1>
         
         <p class="beta-text">
-            We are building the sovereign messenger of the future. Before we launch to the world, we need a dedicated group of pioneers to help us test the infrastructure.
+            I'm building MindTheClub — a messenger where your messages travel directly between devices, never through a server. No accounts, no phone numbers, no cloud storage. Just a direct, encrypted connection between you and the person you're talking to.
         </p>
 
         <p class="beta-text">
-            <strong>The Closed Beta is coming soon.</strong><br>
-            Secure your spot on the whitelist today.
+            I built every part of this app myself, from the peer-to-peer protocol to the group messaging system. Now I need real people, on real devices, in real network conditions, to help me find what I can't find alone.
         </p>
+
+        <h2 class="beta-section-title">What you're joining</h2>
+
+        <p class="beta-text beta-text--left">
+            MindTheClub is live on Google Play as an <strong>Open Testing</strong> release. This means you can install and use it right now — but you're joining as a tester, not a customer. Google limits Open Testing to <strong>1,000 testers</strong>, so every spot matters.
+        </p>
+
+        <h2 class="beta-section-title">What to expect</h2>
+
+        <p class="beta-text beta-text--left">
+            This is a beta. The app works — messaging, calls, file sharing, group chats — but you will encounter rough edges. A message might take longer to deliver when a device wakes from deep sleep. A connection might need a second attempt on a restrictive network. The UI might not feel polished in every corner. That's exactly why I need you.
+        </p>
+
+        <h2 class="beta-section-title">What I need from you</h2>
 
         <div class="step-box">
             <div class="step-item">
                 <div class="step-number">1</div>
                 <div class="step-desc">
-                    <strong>Request Access</strong>
-                    Click the button below to visit our Contact page.
+                    <strong>Use it with someone</strong>
+                    The app is peer-to-peer — you need at least one other person to test with. Add a friend, a partner, a family member. The more contacts you add, the more valuable your testing becomes.
                 </div>
             </div>
             <div class="step-item">
                 <div class="step-number">2</div>
                 <div class="step-desc">
-                    <strong>Send Your Details</strong>
-                    Send us a message with the subject <em>"Join Beta"</em>. Be sure to include the <strong>email address linked to your Google Play Store account</strong>.
+                    <strong>Test what matters</strong>
+                    Send messages when the other person's phone is locked. Try group chats with 3 or more people. Make a video call on Wi-Fi, then on mobile data. Send a large file. Use it the way you'd use any messenger — and notice when something doesn't feel right.
                 </div>
             </div>
             <div class="step-item">
                 <div class="step-number">3</div>
                 <div class="step-desc">
-                    <strong>Stand By</strong>
-                    We will add you to the official Google Play Closed Testing list and notify you when the download is live.
+                    <strong>Tell me what breaks</strong>
+                    If something goes wrong, open <em>My Profile → ⋮ menu → Send Debug Log</em>. This exports a diagnostic file you can send me through the <a href="contact.html" style="color: #007aff; font-weight: bold; text-decoration: none;">Contact Form</a>. The more detail you include — what you were doing, what you expected, what happened instead — the faster I can fix it.
                 </div>
             </div>
         </div>
 
-        <a href="contact.html" class="submit-button" style="display: inline-block; width: auto; text-decoration: none;">Go to Contact Form</a>
+        <p class="beta-text" style="font-size: 1.05em;">
+            Want to understand how the architecture works before you install?
+        </p>
+        <a href="white-paper.html" class="beta-wp-link">Read the White Paper →</a>
+
+        <div class="beta-cta">
+            <a href="https://play.google.com/store/apps/details?id=com.bolimot.mindtheclub" class="beta-store-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" style="margin-right: 12px;">
+                    <path fill="#2196F3" d="M4.6,2.2C4.1,2.7,3.9,3.5,3.9,4.4v23.2c0,0.9,0.2,1.7,0.7,2.2L4.9,30l12.8-12.8v-0.5L4.9,3.9L4.6,2.2z"/>
+                    <path fill="#F44336" d="M22,21.1L17.7,16.8L4.6,29.8c0.5,0.5,1.3,0.6,2.1,0.1L22,21.1z"/>
+                    <path fill="#FFC107" d="M21.9,21.1l-4.2-4.2v-0.5l4.2-4.2l0.1,0.1l5,2.8c1.4,0.8,1.4,2.1,0,2.9l-5,2.8L21.9,21.1z"/>
+                    <path fill="#4CAF50" d="M22,12.2l-15.3-8.7c-0.8-0.5-1.6-0.3-2.1,0.1l13.1,13.1L22,12.2z"/>
+                </svg>
+                <div class="badge-text-group">
+                    <span class="badge-small-text">Join Open Testing on</span>
+                    <span class="badge-large-text">Google Play</span>
+                </div>
+            </a>
+        </div>
+
+        <p class="beta-note">
+            Open Testing is managed through Google Play. You may see a note that the app is in testing — that's expected. Your feedback during this phase directly shapes what MindTheClub becomes.
+        </p>
         
         <div class="back-link-container">
-            <a href="index.html" class="back-link" style="display: block; margin-top: 30px;">&larr; Back to Home</a>
+            <a href="index.html" class="back-link" style="display: block; margin-top: 30px;">← Back to Home</a>
         </div>
     </div>
 
