@@ -382,7 +382,7 @@ body {
     .content {
         flex-direction: column;
         text-align: center;
-        padding: 30px 15px; /* Provides proper internal spacing */
+        padding: 90px 15px 30px; /* Top padding clears the absolute .nav-buttons (which can wrap to 2 rows on narrow screens) */
     }
 
     .app-icon {
