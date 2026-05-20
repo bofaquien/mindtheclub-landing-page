@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/png" href="images/mtc_logo_icon.png">
+    <title>Opening Google Play… | MindTheClub</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#FFF8F0; }
+        .redirect-box { text-align:center; padding:40px; max-width:500px; }
+        .redirect-box h1 { font-size:1.5em; color:#4A3728; margin-bottom:10px; }
+        .redirect-box p { color:#6c6c70; line-height:1.6; }
+        .redirect-box a { color:#007aff; font-weight:bold; text-decoration:none; }
+        .redirect-box a:hover { text-decoration:underline; }
+    </style>
+</head>
+<body>
+    <div class="redirect-box">
+        <h1>Opening Google Play…</h1>
+        <p>If you are not redirected automatically, <a id="manual-link" href="https://play.google.com/store/apps/details?id=com.bolimot.mindtheclub">tap here to continue</a>.</p>
+    </div>
+
+    <script>
+        (function() {
+            var BASE = 'https://play.google.com/store/apps/details?id=com.bolimot.mindtheclub';
+            var params = new URLSearchParams(window.location.search);
+            var utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+            var referrer = [];
+            utmKeys.forEach(function(k) {
+                if (params.has(k)) referrer.push(k + '=' + encodeURIComponent(params.get(k)));
+            });
+            var target = BASE;
+            if (referrer.length > 0) {
+                target += '&referrer=' + encodeURIComponent(referrer.join('&'));
+            }
+            document.getElementById('manual-link').setAttribute('href', target);
+            // Small delay so the Cloudflare beacon has time to fire before navigation
+            setTimeout(function() { window.location.replace(target); }, 400);
+        })();
+    </script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
