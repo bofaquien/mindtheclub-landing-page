@@ -888,7 +888,7 @@ body {
     width: 81%;
     height: 87.8%;
     max-width: none;
-    object-fit: cover;
+    object-fit: contain;
     border: none;
     border-radius: 22px;
     margin: 0;
