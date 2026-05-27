@@ -991,7 +991,8 @@ body {
 /* Hero secondary link — "Learn more about Open Testing" */
 /* ================================================= */
 
-.hero-learn-more {
+.hero-learn-more,
+.hero-learn-more:visited {
     color: #ffffff;
     font-size: 0.95em;
     font-weight: 600;
