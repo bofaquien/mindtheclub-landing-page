@@ -184,6 +184,8 @@ body {
 
 .app-stores {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 15px;
 }
 
@@ -983,4 +985,22 @@ body {
     body:has(.sticky-cta) .site-footer {
         padding-bottom: 90px;
     }
+}
+
+/* ================================================= */
+/* Hero secondary link — "Learn more about Open Testing" */
+/* ================================================= */
+
+.hero-learn-more {
+    color: #ffffff;
+    font-size: 0.95em;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+.hero-learn-more:hover {
+    opacity: 1;
 }
