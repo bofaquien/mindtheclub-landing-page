@@ -929,3 +929,58 @@ body {
         width: 220px;
     }
 }
+
+/* ================================================= */
+/* In-section CTA (e.g. Join the Club)               */
+/* ================================================= */
+
+.section-cta {
+    margin-top: 35px;
+    /* Alignment inherits from .features-container:
+       left on desktop, centered at <=992px */
+}
+
+/* ================================================= */
+/* Sticky Mobile CTA (index.html only)               */
+/* ================================================= */
+
+.sticky-cta {
+    display: none; /* hidden on desktop */
+}
+
+@media (max-width: 768px) {
+    .sticky-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        position: fixed;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        background-color: #000000;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-weight: bold;
+        font-size: 0.95em;
+        white-space: nowrap;
+    }
+
+    .sticky-cta .store-icon {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        margin-right: 0;
+    }
+
+    /* Keep the floating pill from covering the footer link,
+       scoped to pages that actually have the sticky button */
+    body:has(.sticky-cta) .site-footer {
+        padding-bottom: 90px;
+    }
+}
