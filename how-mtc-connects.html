@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How MTC Connects You | MindTheClub</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Subsection headings — the White Paper page has no h3, this page does */
+        .wp-section h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1c1c1e;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>How MindTheClub Connects You</h1>
+            <p class="subtitle">A precise look at what each part of the connection can — and cannot — see.</p>
+        </header>
+
+        <div class="wp-section">
+            <p>Message content in MindTheClub travels <strong>directly between two devices</strong> over an encrypted peer-to-peer channel. No MindTheClub server, and no third party, stores or relays the content of your messages.</p>
+            <p>To establish that direct connection, two devices need to exchange a small amount of setup information and, if one device is asleep, a signal to wake it. Those two supporting steps are the only places a server is involved, and below we describe precisely what each one can and cannot see.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Step 1 — The peer-to-peer channel (where your data goes)</h2>
+            <p>MindTheClub uses <strong>WebRTC data channels</strong> to carry messages. A WebRTC data channel is a direct, encrypted connection between two devices. Once it is established between two peers:</p>
+            <ul class="wp-summary-list">
+                <li>Message text, images, files, and everything else flow <strong>device-to-device</strong>.</li>
+                <li>The transport is encrypted in transit (DTLS, the standard WebRTC encryption).</li>
+                <li><strong>No MindTheClub server is in the path.</strong> There is no inbox on our side, no message database, hand over, or breach, because the content never reaches us.</li>
+            </ul>
+            <p>Large files are split into chunks and sent over the same direct channel, with retry logic on the sending device to guarantee eventual delivery. The chunks travel peer-to-peer like everything else.</p>
+
+            <h3>What about when peers can't connect directly?</h3>
+            <p>Sometimes two devices cannot open a direct path (restrictive NATs, mobile carrier firewalls). In that case WebRTC falls back to a <strong>TURN relay</strong> to pass the encrypted media through. MindTheClub uses Cloudflare's TURN service for this fallback. The relay forwards encrypted packets, it is a standard part of how WebRTC works when a direct connection isn't possible. This fallback affects the network path of the encrypted stream only; it does not change the fact that the content is end-to-end between the two devices.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Step 2 — Signalling (how the two devices find each other)</h2>
+            <p>Before a WebRTC channel can open, the two devices must exchange "signalling" information: connection descriptions and candidate network addresses (in WebRTC terms, the SDP offer/answer and ICE candidates). This is a universal requirement of WebRTC, every WebRTC application, including video-call sites, does this. The information is small and is only needed to <em>establish</em> the connection, it is not your message content.</p>
+            <p>The question is <strong>who carries that signalling, and what can they see.</strong> In MindTheClub:</p>
+            <ul class="wp-summary-list">
+                <li>Signalling is carried by a <strong>Cloudflare Worker</strong>, a small program running on Cloudflare's edge.</li>
+                <li>The connection between the two devices is a short-lived WebSocket to that Worker. It exists only for the few seconds needed to set up the call, then closes.</li>
+                <li>The Worker is <strong>ephemeral</strong>, it holds the two participants' signalling messages in memory only, for the duration of the exchange, and keeps <strong>nothing on disk</strong>. When the WebSocket closes, the rendezvous is gone.</li>
+            </ul>
+
+            <h3>What the signalling relay can see</h3>
+            <p>We designed the signalling, so the relay learns as little as possible:</p>
+            <ul class="wp-summary-list">
+                <li><strong>The signalling payload is encrypted.</strong> The SDP and ICE data (which includes device network addresses) is encrypted with the recipient's public key before it leaves the sender's device. The relay forwards <strong>ciphertext</strong>, it cannot read the connection details inside.</li>
+                <li><strong>Identities are not in the clear.</strong> The two participants are addressed by <strong>opaque per-session identifiers</strong>, derived by hashing a random per-session channel ID together with the user ID. Because the channel ID is random and different for every session, these identifiers do not repeat and cannot be linked back to a user or correlated across sessions by the relay.</li>
+                <li>If the recipient's public key is unavailable, MindTheClub <strong>refuses to send the signalling unencrypted</strong> and fails the attempt rather than leaking connection details in clear.</li>
+            </ul>
+
+            <h3>What the signalling relay can still see</h3>
+            <p>Being precise: the relay receives a network connection from the sender, so it sees the <strong>sender's IP address</strong> at connection time, like any server a device connects to. It does not see message content (that never goes through it), it does not see the decrypted connection details (those are encrypted), and it does not see user identities (those are opaque per-session hashes).</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Step 3 — Waking a sleeping phone (push)</h2>
+            <p>If Bob's phone is asleep or the app isn't running, Alice's device needs a way to wake it so it can join the connection. For this, MindTheClub uses <strong>Firebase Cloud Messaging (FCM)</strong>, Google's push service, because it is the mechanism Android provides to reliably wake an app from the background.</p>
+
+            <h3>How the wake-up is sent</h3>
+            <ul class="wp-summary-list">
+                <li>The wake-up is <strong>not sent from the device directly to Google.</strong> It is sent to a <strong>Cloudflare Worker</strong>, which forwards it to Google's push service. So, from Google's side, the request to send a push arrives from Cloudflare, not from the sender's device.</li>
+                <li>The wake-up notification is a <strong>wake-up signal only</strong>, it carries no message content. The actual message is delivered afterward over the peer-to-peer channel (Step 1).</li>
+            </ul>
+
+            <h3>Sealed sender</h3>
+            <p>The contents of the wake-up payload are <strong>encrypted with the recipient's public key</strong> before leaving the sender. Critically, the <strong>sender's identity is inside that encrypted payload</strong>, it is not visible to the push infrastructure. This is a "sealed sender" design, the party delivering the push cannot see <em>who</em> sent it.</p>
+            <p>To deliver a push, any push system must know <strong>who receives it</strong>, that's how delivery works, and it is true of every push-based messenger. So, the recipient's address is necessarily visible to the push layer. What is <em>not</em> visible is the sender's identity, which stays sealed inside the encrypted payload.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Step 4 — Connection credentials</h2>
+            <p>To establish the WebRTC connection, devices need short-lived credentials for the STUN/TURN service (the components that help two devices find a network path to each other). These credentials are generated using a secret key that must be kept off the device.</p>
+            <p>MindTheClub fetches these credentials from a <strong>Cloudflare Worker</strong> that holds the secret server-side. <strong>No Google service is involved</strong> in obtaining connection credentials. If this fetch fails, the connection falls back to public STUN servers, which only help a device discover its own public address and learn nothing about who it is contacting.</p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="white-paper.html" class="back-link" style="display: block; margin-bottom: 20px;">&larr; Back to the White Paper</a>
+            <a href="index.html" class="back-link">&larr; Back to Home</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p><a href="privacy-policy.html">Terms of Service & Privacy Policy</a></p>
+        <p class="trademark-notice">Google Firebase™ is a trademark of Google LLC. Cloudflare® is a registered trademark of Cloudflare, Inc.</p>
+    </footer>
+
+    <script src="utm-tracker.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>
