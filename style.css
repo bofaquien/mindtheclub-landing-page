@@ -1029,42 +1029,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin: 18px 0 4px;
-    padding: 8px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.9em;
-    font-weight: 600;
-    transition: background-color 0.3s, transform 0.2s ease;
-}
-
-.open-source-badge:hover {
-    background-color: rgba(255, 255, 255, 0.18);
-    transform: translateY(-2px);
-}
-
-.open-source-badge svg {
-    flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-    .open-source-badge {
-        font-size: 0.8em;
-        padding: 7px 14px;
-    }
-}
-
-/* ============================================
-   OPEN SOURCE — hero badge
-   ============================================ */
-.open-source-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin: 18px 0 4px;
+    margin: 0 0 25px;
     padding: 8px 16px;
     border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 25px;
