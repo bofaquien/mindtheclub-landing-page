@@ -31,7 +31,7 @@
         <div class="wp-section">
             <h2>Signalling: how devices find each other</h2>
             <p>Before two devices can establish a direct connection, they need to agree on <em>how</em> to connect, exchanging network addresses, encryption keys, and connection parameters. This negotiation is called <strong>signalling</strong>, and it's the only step that touches a server.</p>
-            <p>MindTheClub uses <strong>Firebase Firestore</strong> as a lightweight signalling relay. The signalling data is ephemeral: it's used only to set up the connection and has no value afterwards. It contains no message content.</p>
+            <p>MindTheClub uses a <strong>Cloudflare Worker</strong> as a lightweight signalling relay. The signalling data is ephemeral: it's used only to set up the connection and has no value afterwards. It contains no message content.</p>
             <p>Once signalling completes and the WebRTC channel opens, the server's role is over. Everything that follows happens directly between the two devices.</p>
         </div>
 
