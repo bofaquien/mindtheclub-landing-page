@@ -78,10 +78,11 @@
                 <li><strong>The signalling payload is encrypted.</strong> The SDP and ICE data (which includes device network addresses) is encrypted with the recipient's public key before it leaves the sender's device. The relay forwards <strong>ciphertext</strong>, it cannot read the connection details inside.</li>
                 <li><strong>Identities are not in the clear.</strong> The two participants are addressed by <strong>opaque per-session identifiers</strong>, derived by hashing a random per-session channel ID together with the user ID. Because the channel ID is random and different for every session, these identifiers do not repeat and cannot be linked back to a user or correlated across sessions by the relay.</li>
                 <li>MindTheClub will only send signalling encrypted to a <strong>verified</strong> recipient key (see Step 0). If no verified key is available, the attempt is refused rather than falling back to anything weaker.</li>
+                <li><strong>The initiating device connects over Tor.</strong> When your device starts a connection, its signalling is routed through the Tor network, so the relay sees the address of a Tor exit node rather than your device's real IP. If Tor cannot be reached, the attempt is refused rather than connecting directly.</li>
             </ul>
 
             <h3>What the signalling relay can still see</h3>
-            <p>Being precise: the relay receives a network connection from the sender, so it sees the <strong>sender's IP address</strong> at connection time, like any server a device connects to. It does not see message content (that never goes through it), it does not see the decrypted connection details (those are encrypted), and it does not see user identities (those are opaque per-session hashes).</p>
+            <p>Being precise: the relay accepts a network connection, so it sees an IP address at connection time, like any server a device connects to. For the device that <strong>starts</strong> the connection, that address belongs to a Tor exit node, not the device itself. The device being contacted connects directly for the few seconds of setup, so its own address is visible to the relay during that window. In every case the relay does not see message content (that never passes through it), it does not see the decrypted connection details (those are encrypted), and it does not see user identities (those are opaque per-session hashes).</p>
         </div>
 
         <div class="wp-section">
@@ -91,6 +92,7 @@
             <h3>How the wake-up is sent</h3>
             <ul class="wp-summary-list">
                 <li>The wake-up is <strong>not sent from the device directly to Google.</strong> It is sent to a <strong>Cloudflare Worker</strong>, which forwards it to Google's push service. So, from Google's side, the request to send a push arrives from Cloudflare, not from the sender's device.</li>
+                <li>That request to the Cloudflare Worker is itself <strong>routed through the Tor network</strong>, so even the Worker sees a Tor exit node's address, not the sender's IP.</li>
                 <li>The wake-up notification is a <strong>wake-up signal only</strong>, it carries no message content. The actual message is delivered afterward over the peer-to-peer channel (Step 1).</li>
             </ul>
 
