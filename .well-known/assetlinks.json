@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bolimot.mindtheclub",
+      "sha256_cert_fingerprints": [
+        "22:22:AC:F0:3B:07:90:01:29:41:C7:68:4F:D3:EF:01:62:5B:20:9D:19:8E:3A:88:53:77:86:E2:AD:38:6B:9B"
+      ]
+    }
+  }
+]
