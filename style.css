@@ -70,9 +70,9 @@ body {
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
-    max-width: 1200px; /* Keep this max-width for the internal content block */
+    max-width: 980px; /* Keep this max-width for the internal content block */
     padding: 0; /* REMOVE any horizontal padding from here, we'll use margin on the icon */
 }
 
