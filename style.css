@@ -990,22 +990,15 @@ body {
 }
 
 /* ================================================= */
-/* Hero secondary link — "Learn more about Open Testing" */
+/* Hero secondary text — "Try it now with your friends, for free!" */
 /* ================================================= */
 
-.hero-learn-more,
-.hero-learn-more:visited {
+.hero-learn-more {
+    display: inline-block;
     color: #ffffff;
     font-size: 0.95em;
     font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 3px;
     opacity: 0.9;
-    transition: opacity 0.2s ease;
-}
-
-.hero-learn-more:hover {
-    opacity: 1;
 }
 
 /* ============================================
