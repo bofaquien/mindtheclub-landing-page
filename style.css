@@ -72,7 +72,7 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 980px; /* Keep this max-width for the internal content block */
+    max-width: 980px;
     padding: 0; /* REMOVE any horizontal padding from here, we'll use margin on the icon */
 }
 
