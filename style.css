@@ -73,7 +73,7 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 980px;
-    padding: 0; /* REMOVE any horizontal padding from here, we'll use margin on the icon */
+    padding: 0 8% 0 0; 
 }
 
 .app-icon {
@@ -1066,7 +1066,7 @@ body {
     position: relative;
     flex-shrink: 0;
     width: 220px;
-    margin-right: 120px;
+    margin-right: 150px;
     padding: 9px;
     background: #1c1c1e;
     border-radius: 34px;
