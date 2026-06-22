@@ -995,10 +995,31 @@ body {
 
 .hero-learn-more {
     display: inline-block;
+    margin-top: 14px;
     color: #ffffff;
-    font-size: 1.1em;
+    font-size: 1.25em;
     font-weight: 600;
-    opacity: 0.95;
+    opacity: 1;
+    letter-spacing: 0.2px;
+    transform-origin: left center;
+}
+
+.hero-learn-more .cta-free {
+    color: #2ee6a6;            /* bright mint — pops against the dark hero */
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* Subtle attention pulse — disabled for users who prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+    .hero-learn-more {
+        animation: ctaPulse 2.8s ease-in-out infinite;
+    }
+
+    @keyframes ctaPulse {
+        0%, 100% { transform: scale(1); }
+        50%      { transform: scale(1.04); }
+    }
 }
 
 /* ============================================
