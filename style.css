@@ -14,7 +14,8 @@ body {
 .banner-container {
     position: relative;
     width: 100%;
-    height: 350px;
+    min-height: 350px;
+    padding: 40px 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -1056,4 +1057,69 @@ body {
         font-size: 0.8em;
         padding: 7px 14px;
     }
+}
+
+/* ================================================= */
+/* Hero phone slideshow (index.html)                 */
+/* ================================================= */
+.hero-phone {
+    position: relative;
+    flex-shrink: 0;
+    width: 220px;
+    margin-right: 50px;
+    padding: 9px;
+    background: #1c1c1e;
+    border-radius: 34px;
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.35);
+}
+
+.hero-screen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 720 / 1501;   /* matches the exported screenshots — no distortion */
+    border-radius: 26px;
+    overflow: hidden;
+    background: #000;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: heroSlide 24s infinite;
+}
+
+.hero-slide:nth-child(1) { animation-delay: 0s; }
+.hero-slide:nth-child(2) { animation-delay: 6s; }
+.hero-slide:nth-child(3) { animation-delay: 12s; }
+.hero-slide:nth-child(4) { animation-delay: 18s; }
+
+@keyframes heroSlide {
+    0%     { opacity: 0; }
+    6.25%  { opacity: 1; }
+    25%    { opacity: 1; }
+    31.25% { opacity: 0; }
+    100%   { opacity: 0; }
+}
+
+/* Pause the rotation while the visitor hovers the phone */
+.hero-phone:hover .hero-slide { animation-play-state: paused; }
+
+/* Reduced-motion users: show only the first screen, no animation */
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide { animation: none; opacity: 0; }
+    .hero-slide:nth-child(1) { opacity: 1; }
+}
+
+/* Phone sizing on smaller screens */
+@media (max-width: 768px) {
+    .banner-container { padding: 0; }
+    .hero-phone { width: 175px; margin: 0 auto 30px auto; }
+}
+
+@media (max-width: 480px) {
+    .hero-phone { width: 150px; }
 }
