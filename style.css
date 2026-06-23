@@ -1145,9 +1145,11 @@ body {
 /* Phone sizing on smaller screens */
 @media (max-width: 768px) {
     .banner-container { padding: 0; }
-    .hero-phone { width: 175px; margin: 0 auto 30px auto; }
+    .hero-phone { width: 140px; margin: 0 auto 18px auto; }
+    /* Hide the open-source badge on mobile so the hero fits the first screen (desktop keeps it) */
+    .open-source-badge { display: none; }
 }
 
 @media (max-width: 480px) {
-    .hero-phone { width: 150px; }
+    .hero-phone { width: 120px; }
 }
