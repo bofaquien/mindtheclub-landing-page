@@ -26,30 +26,30 @@
         </header>
 
         <div class="wp-section">
-            <p>Message content in MindTheClub travels <strong>directly between two devices</strong> over an encrypted peer-to-peer channel. No MindTheClub server, and no third party, stores or relays the content of your messages.</p>
+            <p>Message content in MindTheClub travels <strong>directly between two devices</strong> over an encrypted peer-to-peer channel. No MindTheClub server, and no third party, stores the content of your messages.</p>
             <p>To establish that direct connection, two devices need to exchange a small amount of setup information and, if one device is asleep, a signal to wake it. Those two supporting steps are the only places a server is involved, and below we describe precisely what each one can and cannot see.</p>
             <p>Before any of that happens, the two devices need to know each other's identity. We describe that first, because every later step in this page builds on it.</p>
         </div>
 
         <div class="wp-section">
-            <h2>Step 0 — How two peers verify each other</h2>
-            <p>Every encrypted step that follows on this page relies on the same assumption: each peer is using the <em>real</em> public key of the other peer, not one substituted by a provider in between. We achieve this with one out-of-band exchange and one sealed reply, so both sides are verified after a single QR scan.</p>
+            <h2>Step 0: How two peers verify each other</h2>
+            <p>Every encrypted step that follows relies on one assumption: each peer is using the <em>real</em> public key of the other, not one substituted by a provider in between. We achieve this with a single out-of-band exchange and a sealed reply, so both sides are verified after one QR scan or one tap on an invite link.</p>
 
-            <h3>The QR code carries a fingerprint</h3>
-            <p>When you generate your QR code in MindTheClub, the code contains your user identifier and a <strong>fingerprint</strong> of your public key. The fingerprint is a short cryptographic hash that uniquely identifies your key. You share this QR with someone the way you'd share any other code, by showing the screen, sending it through another channel, or any means you trust.</p>
+            <h3>The QR code or invite link carries a fingerprint</h3>
+            <p>Your QR code contains your user identifier and a <strong>fingerprint</strong> of your public key, a short cryptographic hash that uniquely identifies it. Your invite link carries the same two things, embedded in the link itself. So, whether someone scans your code or taps your link, their device receives the same fingerprint to check against. Showing the QR face-to-face is the strongest channel, but in both cases the guarantee below holds: the directory provider can never substitute your key undetected.</p>
 
-            <h3>The scanner verifies your key</h3>
-            <p>When the other person scans your QR, their device fetches your public key from the directory and computes its fingerprint locally. If that computed fingerprint matches the one in the QR, the key is accepted. If it does not match, the key is <strong>rejected and not stored</strong>. A provider substituting a different key for you would produce a mismatch and the scanner's device would refuse it.</p>
+            <h3>The recipient verifies your key</h3>
+            <p>When the other person scans or taps, their device fetches your public key from the directory and computes its fingerprint locally. If it matches the one in the QR or link, the key is accepted; if not, it's <strong>rejected and not stored</strong>. A substituted key produces a mismatch, and the device refuses it.</p>
 
-            <h3>The scanned peer is verified in return</h3>
-            <p>After the scanner has verified your key, their device sends you a contact request. Inside that request, the scanner's own fingerprint is included <strong>encrypted with your verified public key</strong>. Only you can decrypt it, because only you hold the private key that matches. Your device then performs the same check in the other direction: it fetches the scanner's public key from the directory, computes its fingerprint, and compares it to the fingerprint they sealed inside the request. If they match, the contact is accepted. If they do not, the connection is refused.</p>
+            <h3>You are verified in return</h3>
+            <p>Their device then sends you a contact request with their own fingerprint sealed inside, <strong>encrypted with your verified key</strong>. Only you can decrypt it. Your device runs the same check in reverse, accepting the contact only if the fingerprints match.</p>
 
             <h3>What this gives us</h3>
-            <p>After one QR scan, both peers have independently verified each other's public key. From this point on, every "encrypted with the recipient's public key" sentence in the steps below refers to a key that <em>both</em> peers know is correct. A provider that holds the directory cannot substitute either key without breaking a fingerprint check or a decryption, neither of which it has the private material to do.</p>
+            <p>After one scan or tap, both peers have independently verified each other's key, and a provider holding the directory cannot substitute either one without breaking a check it has no power to fake.</p>
         </div>
 
         <div class="wp-section">
-            <h2>Step 1 — The peer-to-peer channel (where your data goes)</h2>
+            <h2>Step 1: The peer-to-peer channel (where your data goes)</h2>
             <p>MindTheClub uses <strong>WebRTC data channels</strong> to carry messages. A WebRTC data channel is a direct, encrypted connection between two devices. Once it is established between two peers:</p>
             <ul class="wp-summary-list">
                 <li>Message text, images, files, and everything else flow <strong>device-to-device</strong>.</li>
@@ -63,7 +63,7 @@
         </div>
 
         <div class="wp-section">
-            <h2>Step 2 — Signalling (how the two devices find each other)</h2>
+            <h2>Step 2: Signalling (how the two devices find each other)</h2>
             <p>Before a WebRTC channel can open, the two devices must exchange "signalling" information: connection descriptions and candidate network addresses (in WebRTC terms, the SDP offer/answer and ICE candidates). This is a universal requirement of WebRTC, every WebRTC application, including video-call sites, does this. The information is small and is only needed to <em>establish</em> the connection, it is not your message content.</p>
             <p>The question is <strong>who carries that signalling, and what can they see.</strong> In MindTheClub:</p>
             <ul class="wp-summary-list">
@@ -78,15 +78,12 @@
                 <li><strong>The signalling payload is encrypted.</strong> The SDP and ICE data (which includes device network addresses) is encrypted with the recipient's public key before it leaves the sender's device. The relay forwards <strong>ciphertext</strong>, it cannot read the connection details inside.</li>
                 <li><strong>Identities are not in the clear.</strong> The two participants are addressed by <strong>opaque per-session identifiers</strong>, derived by hashing a random per-session channel ID together with the user ID. Because the channel ID is random and different for every session, these identifiers do not repeat and cannot be linked back to a user or correlated across sessions by the relay.</li>
                 <li>MindTheClub will only send signalling encrypted to a <strong>verified</strong> recipient key (see Step 0). If no verified key is available, the attempt is refused rather than falling back to anything weaker.</li>
-                <li><strong>The initiating device connects over Tor.</strong> When your device starts a connection, its signalling is routed through the Tor network, so the relay sees the address of a Tor exit node rather than your device's real IP. If Tor cannot be reached, the attempt is refused rather than connecting directly.</li>
+                <li><strong>The initiating device connects over Tor.</strong> When your device starts a connection, its signalling is routed through the Tor network, so the relay sees the address of a Tor exit node rather than your device's real IP.</li>
             </ul>
-
-            <h3>What the signalling relay can still see</h3>
-            <p>Being precise: the relay accepts a network connection, so it sees an IP address at connection time, like any server a device connects to. For the device that <strong>starts</strong> the connection, that address belongs to a Tor exit node, not the device itself. The device being contacted connects directly for the few seconds of setup, so its own address is visible to the relay during that window. In every case the relay does not see message content (that never passes through it), it does not see the decrypted connection details (those are encrypted), and it does not see user identities (those are opaque per-session hashes).</p>
         </div>
 
         <div class="wp-section">
-            <h2>Step 3 — Waking a sleeping phone (push)</h2>
+            <h2>Step 3: Waking a sleeping phone (push)</h2>
             <p>If Bob's phone is asleep or the app isn't running, Alice's device needs a way to wake it so it can join the connection. For this, MindTheClub uses <strong>Firebase Cloud Messaging (FCM)</strong>, Google's push service, because it is the mechanism Android provides to reliably wake an app from the background.</p>
 
             <h3>How the wake-up is sent</h3>
@@ -102,14 +99,14 @@
         </div>
 
         <div class="wp-section">
-            <h2>Step 4 — Connection credentials</h2>
+            <h2>Step 4: Connection credentials</h2>
             <p>To establish the WebRTC connection, devices need short-lived credentials for the STUN/TURN service (the components that help two devices find a network path to each other). These credentials are generated using a secret key that must be kept off the device.</p>
             <p>MindTheClub fetches these credentials from a <strong>Cloudflare Worker</strong> that holds the secret server-side. <strong>No Google service is involved</strong> in obtaining connection credentials. If this fetch fails, the connection falls back to public STUN servers, which only help a device discover its own public address and learn nothing about who it is contacting.</p>
         </div>
 
         <div class="wp-section">
             <h2>The shape of the design, in one paragraph</h2>
-            <p>Putting it all together: peers verify each other's keys with one QR scan, then exchange small amounts of encrypted setup information through a stateless relay and a sealed wake-up push. Once the direct channel is open, message content flows device-to-device only. The infrastructure that helps the connection happen sees a connection arriving from an IP address, an opaque session identifier, and a payload it cannot read. It does not see who is talking to whom by identity, and it does not see what is said. That separation between "what the network sees" and "what the conversation contains" is the property MindTheClub is built to give you.</p>
+            <p>Putting it all together: peers verify each other's keys with one QR scan or link, then exchange small amounts of encrypted setup information through a stateless relay and a sealed wake-up push. Once the direct channel is open, message content flows device-to-device only.</p>
         </div>
 
         <div class="back-link-container">
