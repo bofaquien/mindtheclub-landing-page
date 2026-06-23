@@ -374,9 +374,7 @@ body {
 @media (max-width: 768px) {
 
     .nav-buttons {
-        top: 15px;
-        right: 15px;
-        gap: 8px;
+        display: none; /* header menu moves to the footer on mobile */
     }
 
     .contact-button {
@@ -404,7 +402,26 @@ body {
     .content {
         flex-direction: column;
         text-align: center;
-        padding: 90px 15px 30px; /* Top padding clears the absolute .nav-buttons (which can wrap to 2 rows on narrow screens) */
+        padding: 40px 15px 30px; /* Nav moved to footer on mobile, so less top padding is needed */
+    }
+
+    /* The sticky button already provides the Play CTA, so drop the duplicate hero badge (the "for free" line stays) */
+    .app-stores .gp-badge { display: none; }
+
+    /* Header menu, relocated from the top into the footer on mobile */
+    .footer-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 18px;
+        margin-bottom: 14px;
+    }
+
+    .footer-nav a {
+        color: #1c1c1e;
+        font-weight: 600;
+        font-size: 0.95em;
+        text-decoration: none;
     }
 
     .app-icon {
@@ -880,6 +897,9 @@ body {
     font-size: 0.8em;
 }
 
+/* Relocated header menu — hidden on desktop, shown in the footer on mobile */
+.footer-nav { display: none; }
+
 /* ============================================
    JOIN THE CLUB - Video Phone Section
    ============================================ */
@@ -1145,11 +1165,11 @@ body {
 /* Phone sizing on smaller screens */
 @media (max-width: 768px) {
     .banner-container { padding: 0; }
-    .hero-phone { width: 140px; margin: 0 auto 18px auto; }
+    .hero-phone { width: 175px; margin: 0 auto 30px auto; }
     /* Hide the open-source badge on mobile so the hero fits the first screen (desktop keeps it) */
     .open-source-badge { display: none; }
 }
 
 @media (max-width: 480px) {
-    .hero-phone { width: 120px; }
+    .hero-phone { width: 150px; }
 }
