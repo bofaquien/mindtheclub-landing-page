@@ -408,8 +408,10 @@ body {
     /* The sticky button already provides the Play CTA, so drop the duplicate hero badge (the "for free" line stays) */
     .app-stores .gp-badge { display: none; }
 
-    /* Header menu, relocated from the top into the footer on mobile */
-    .footer-nav {
+    /* Header menu, relocated from the top into the footer on mobile.
+       Scoped to .site-footer so it outranks the base ".footer-nav { display:none }"
+       rule that appears later in the stylesheet. */
+    .site-footer .footer-nav {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -417,7 +419,7 @@ body {
         margin-bottom: 14px;
     }
 
-    .footer-nav a {
+    .site-footer .footer-nav a {
         color: #1c1c1e;
         font-weight: 600;
         font-size: 0.95em;
@@ -1133,8 +1135,8 @@ body {
     animation: heroSlide 24s infinite;
 }
 
-/* hero-4 (video call) has no header bar — keep it full-bleed, no top strip */
-.hero-slide:nth-child(4) {
+/* hero-4 (video call, now the first slide) has no header bar — keep it full-bleed, no top strip */
+.hero-slide:nth-child(1) {
     inset: 0;
     height: 100%;
     object-position: center;
