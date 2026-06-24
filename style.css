@@ -1033,7 +1033,7 @@ body {
 }
 
 .hero-learn-more .cta-free {
-    color: #39ff14;            /* neon green — pops against the dark hero */
+    color: inherit;            /* same white as the rest of the line */
     font-weight: 800;
     white-space: nowrap;
 }
