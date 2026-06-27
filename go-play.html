@@ -26,9 +26,12 @@
         (function() {
             var BASE = 'https://play.google.com/store/apps/details?id=com.bolimot.mindtheclub';
             var params = new URLSearchParams(window.location.search);
-            var utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+            // n/u/b/f carry an MindTheClub invite (inviter's profile) for deferred
+            // contact acquisition; the utm_* keys are for install attribution. Both are
+            // bundled into the Play Install Referrer.
+            var referrerKeys = ['n','u','b','f','utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
             var referrer = [];
-            utmKeys.forEach(function(k) {
+            referrerKeys.forEach(function(k) {
                 if (params.has(k)) referrer.push(k + '=' + encodeURIComponent(params.get(k)));
             });
             var target = BASE;

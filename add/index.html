@@ -78,6 +78,21 @@
         })();
     </script>
 
+    <script>
+        (function () {
+            // Carry the inviter's profile params (n/u/b/f) through to the Play
+            // redirect, so for a visitor who doesn't have the app yet they ride along
+            // as the Play Install Referrer and the app can auto-start the
+            // "add this contact?" flow on first run. (Visitors who already have the
+            // app never reach this page — Android App Links opens the app directly.)
+            var search = location.search;
+            if (search && search.length > 1) {
+                var badge = document.querySelector('.add-cta a.gp-badge');
+                if (badge) badge.setAttribute('href', '../go-play.html' + search);
+            }
+        })();
+    </script>
+
     <script src="../utm-tracker.js" defer></script>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
 
