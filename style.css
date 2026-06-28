@@ -449,6 +449,11 @@ body {
     .app-stores {
         justify-content: center;
     }
+
+    .hero-cta-text {
+        align-items: center;
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1036,6 +1041,30 @@ body {
     color: inherit;            /* same white as the rest of the line */
     font-weight: 800;
     white-space: nowrap;
+}
+
+/* Wrapper so the "Why free?" link sits under the "for free!" line,
+   and only that first line carries the pulse animation below. */
+.hero-cta-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+/* Subtle, secondary disclosure link — must not compete with the Play button */
+.hero-why-free {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.92em;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 0.2s ease;
+}
+
+.hero-why-free:hover {
+    color: #ffffff;
 }
 
 /* Subtle attention pulse — disabled for users who prefer reduced motion */
