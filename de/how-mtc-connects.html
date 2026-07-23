@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="icon" type="image/png" href="../images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wie MTC dich verbindet | MindTheClub</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/how-mtc-connects.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/how-mtc-connects.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/how-mtc-connects.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/how-mtc-connects.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/how-mtc-connects.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/how-mtc-connects.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/how-mtc-connects.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/how-mtc-connects.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/how-mtc-connects.html">
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>Wie MindTheClub dich verbindet</h1>
+        </header>
+
+        <div class="wp-section">
+            <p>Nachrichteninhalte reisen bei MindTheClub <strong>direkt zwischen zwei Geräten</strong> über einen verschlüsselten Peer-to-Peer-Kanal. Kein MindTheClub-Server und kein Dritter speichert den Inhalt deiner Nachrichten.</p>
+            <p>Um diese direkte Verbindung aufzubauen, müssen zwei Geräte eine kleine Menge an Einrichtungsinformationen austauschen – und, falls ein Gerät schläft, ein Signal zum Aufwecken. Diese zwei unterstützenden Schritte sind die einzigen Stellen, an denen ein Server beteiligt ist, und im Folgenden beschreiben wir präzise, was jeder davon sehen kann und was nicht.</p>
+            <p>Bevor all das passiert, müssen die beiden Geräte die Identität des jeweils anderen kennen. Das beschreiben wir zuerst, denn jeder spätere Schritt auf dieser Seite baut darauf auf.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Schritt 0: Wie sich zwei Peers gegenseitig verifizieren</h2>
+            <p>Jeder verschlüsselte Schritt danach beruht auf einer Annahme: Jeder Peer verwendet den <em>echten</em> öffentlichen Schlüssel des anderen – nicht einen, den ein Anbieter dazwischen untergeschoben hat. Wir erreichen das mit einem einzigen Austausch außerhalb des Systems und einer versiegelten Antwort, sodass beide Seiten nach einem QR-Scan oder einem Tipp auf einen Einladungslink verifiziert sind.</p>
+
+            <h3>Der QR-Code oder Einladungslink trägt einen Fingerabdruck</h3>
+            <p>Dein QR-Code enthält deine Nutzerkennung und einen <strong>Fingerabdruck</strong> deines öffentlichen Schlüssels – einen kurzen kryptografischen Hash, der ihn eindeutig identifiziert. Dein Einladungslink trägt dieselben zwei Dinge, eingebettet im Link selbst. Ob also jemand deinen Code scannt oder deinen Link antippt: Sein Gerät erhält denselben Fingerabdruck zum Abgleich. Den QR-Code persönlich zu zeigen ist der stärkste Kanal, aber in beiden Fällen gilt die Garantie unten: Der Verzeichnisanbieter kann deinen Schlüssel niemals unbemerkt austauschen.</p>
+
+            <h3>Der Empfänger verifiziert deinen Schlüssel</h3>
+            <p>Wenn die andere Person scannt oder tippt, holt ihr Gerät deinen öffentlichen Schlüssel aus dem Verzeichnis und berechnet dessen Fingerabdruck lokal. Stimmt er mit dem im QR-Code oder Link überein, wird der Schlüssel akzeptiert; wenn nicht, wird er <strong>abgelehnt und nicht gespeichert</strong>. Ein untergeschobener Schlüssel erzeugt eine Abweichung, und das Gerät verweigert ihn.</p>
+
+            <h3>Du wirst im Gegenzug verifiziert</h3>
+            <p>Ihr Gerät sendet dir dann eine Kontaktanfrage mit ihrem eigenen Fingerabdruck darin versiegelt – <strong>verschlüsselt mit deinem verifizierten Schlüssel</strong>. Nur du kannst sie entschlüsseln. Dein Gerät führt dieselbe Prüfung in umgekehrter Richtung durch und akzeptiert den Kontakt nur, wenn die Fingerabdrücke übereinstimmen.</p>
+
+            <h3>Was uns das gibt</h3>
+            <p>Nach einem Scan oder Tipp haben beide Peers den Schlüssel des jeweils anderen unabhängig verifiziert, und ein Anbieter, der das Verzeichnis hält, kann keinen von beiden austauschen, ohne eine Prüfung zu brechen, die er nicht fälschen kann.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Schritt 1: Der Peer-to-Peer-Kanal (wohin deine Daten gehen)</h2>
+            <p>MindTheClub nutzt <strong>WebRTC-Datenkanäle</strong>, um Nachrichten zu transportieren. Ein WebRTC-Datenkanal ist eine direkte, verschlüsselte Verbindung zwischen zwei Geräten. Sobald er zwischen zwei Peers steht:</p>
+            <ul class="wp-summary-list">
+                <li>Nachrichtentext, Bilder, Dateien und alles andere fließen <strong>von Gerät zu Gerät</strong>.</li>
+                <li>Der Transport ist während der Übertragung verschlüsselt (DTLS, die Standard-WebRTC-Verschlüsselung).</li>
+                <li><strong>Kein MindTheClub-Server liegt auf dem Weg.</strong> Es gibt kein Postfach auf unserer Seite, keine Nachrichtendatenbank, nichts zum Herausgeben oder Erbeuten – denn die Inhalte erreichen uns nie.</li>
+            </ul>
+            <p>Große Dateien werden in Blöcke zerlegt und über denselben direkten Kanal gesendet, mit Wiederholungslogik auf dem sendenden Gerät, um die letztliche Zustellung zu garantieren. Die Blöcke reisen Peer-to-Peer wie alles andere.</p>
+
+            <h3>Und wenn sich Peers nicht direkt verbinden können?</h3>
+            <p>Manchmal können zwei Geräte keinen direkten Pfad öffnen (restriktive NATs, Firewalls von Mobilfunkanbietern). In diesem Fall greift WebRTC auf ein <strong>TURN-Relay</strong> zurück, um den verschlüsselten Datenstrom durchzureichen. MindTheClub nutzt dafür den TURN-Dienst von Cloudflare. Das Relay leitet verschlüsselte Pakete weiter – es ist ein Standardbestandteil von WebRTC, wenn keine direkte Verbindung möglich ist. Dieser Rückfall betrifft nur den Netzwerkpfad des verschlüsselten Stroms; er ändert nichts daran, dass die Inhalte Ende-zu-Ende zwischen den beiden Geräten bleiben.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Schritt 2: Signalisierung (wie sich die beiden Geräte finden)</h2>
+            <p>Bevor sich ein WebRTC-Kanal öffnen kann, müssen die beiden Geräte „Signalisierungs“-Informationen austauschen: Verbindungsbeschreibungen und mögliche Netzwerkadressen (in WebRTC-Begriffen das SDP-Offer/Answer und die ICE-Kandidaten). Das ist eine universelle Anforderung von WebRTC – jede WebRTC-Anwendung, auch Videocall-Websites, macht das. Die Informationen sind klein und werden nur gebraucht, um die Verbindung <em>aufzubauen</em> – sie sind nicht dein Nachrichteninhalt.</p>
+            <p>Die Frage ist: <strong>Wer transportiert diese Signalisierung, und was kann er sehen?</strong> Bei MindTheClub:</p>
+            <ul class="wp-summary-list">
+                <li>Die Signalisierung übernimmt ein <strong>Cloudflare Worker</strong>, ein kleines Programm am Netzwerkrand von Cloudflare.</li>
+                <li>Die Verbindung der beiden Geräte ist ein kurzlebiger WebSocket zu diesem Worker. Er existiert nur für die wenigen Sekunden, die der Verbindungsaufbau braucht, und schließt sich dann.</li>
+                <li>Der Worker ist <strong>flüchtig</strong>: Er hält die Signalisierungsnachrichten der beiden Teilnehmer nur im Arbeitsspeicher, nur für die Dauer des Austauschs, und schreibt <strong>nichts auf Festplatte</strong>. Schließt der WebSocket, ist der Treffpunkt verschwunden.</li>
+            </ul>
+
+            <h3>Was das Signalisierungs-Relay sehen kann</h3>
+            <p>Wir haben die Signalisierung so entworfen, dass das Relay so wenig wie möglich erfährt:</p>
+            <ul class="wp-summary-list">
+                <li><strong>Die Signalisierungsdaten sind verschlüsselt.</strong> Die SDP- und ICE-Daten (die Netzwerkadressen der Geräte enthalten) werden mit dem öffentlichen Schlüssel des Empfängers verschlüsselt, bevor sie das Gerät des Absenders verlassen. Das Relay leitet <strong>Geheimtext</strong> weiter – die Verbindungsdetails darin kann es nicht lesen.</li>
+                <li><strong>Identitäten stehen nicht im Klartext.</strong> Die beiden Teilnehmer werden über <strong>opake Sitzungskennungen</strong> adressiert, die durch Hashen einer zufälligen Kanal-ID pro Sitzung zusammen mit der Nutzer-ID abgeleitet werden. Weil die Kanal-ID zufällig und für jede Sitzung anders ist, wiederholen sich diese Kennungen nicht und können vom Relay weder einem Nutzer zugeordnet noch über Sitzungen hinweg verknüpft werden.</li>
+                <li>MindTheClub sendet Signalisierung nur verschlüsselt an einen <strong>verifizierten</strong> Empfängerschlüssel (siehe Schritt 0). Ist kein verifizierter Schlüssel verfügbar, wird der Versuch abgelehnt, statt auf etwas Schwächeres zurückzufallen.</li>
+            </ul>
+        </div>
+
+        <div class="wp-section">
+            <h2>Schritt 3: Ein schlafendes Telefon aufwecken (Push)</h2>
+            <p>Wenn Bobs Telefon schläft oder die App nicht läuft, braucht Alices Gerät einen Weg, es zu wecken, damit es der Verbindung beitreten kann. Dafür nutzt MindTheClub <strong>Firebase Cloud Messaging (FCM)</strong>, Googles Push-Dienst – denn das ist der Mechanismus, den Android bereitstellt, um eine App zuverlässig aus dem Hintergrund zu wecken.</p>
+
+            <h3>Wie das Wecksignal gesendet wird</h3>
+            <ul class="wp-summary-list">
+                <li>Das Wecksignal wird <strong>nicht direkt vom Gerät an Google gesendet.</strong> Es geht an einen <strong>Cloudflare Worker</strong>, der es an Googles Push-Dienst weiterleitet. Aus Googles Sicht kommt die Anfrage, einen Push zu senden, also von Cloudflare – nicht vom Gerät des Absenders.</li>
+                <li>Die Weckbenachrichtigung ist <strong>ausschließlich ein Wecksignal</strong> – sie enthält keinerlei Nachrichteninhalte. Die eigentliche Nachricht wird danach über den Peer-to-Peer-Kanal zugestellt (Schritt 1).</li>
+            </ul>
+
+            <h3>Versiegelter Absender („Sealed Sender“)</h3>
+            <p>Der Inhalt der Wecknachricht wird <strong>mit dem öffentlichen Schlüssel des Empfängers verschlüsselt</strong>, bevor er den Absender verlässt. Entscheidend: Die <strong>Identität des Absenders steckt in dieser verschlüsselten Nutzlast</strong> – sie ist für die Push-Infrastruktur nicht sichtbar. Das ist ein „Sealed Sender“-Design: Die Partei, die den Push zustellt, kann nicht sehen, <em>wer</em> ihn gesendet hat.</p>
+            <p>Um einen Push zuzustellen, muss jedes Push-System wissen, <strong>wer ihn empfängt</strong> – so funktioniert Zustellung, und das gilt für jeden Push-basierten Messenger. Die Adresse des Empfängers ist für die Push-Ebene also zwangsläufig sichtbar. Was <em>nicht</em> sichtbar ist, ist die Identität des Absenders – sie bleibt in der verschlüsselten Nutzlast versiegelt.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Schritt 4: Verbindungszugangsdaten</h2>
+            <p>Um die WebRTC-Verbindung aufzubauen, brauchen Geräte kurzlebige Zugangsdaten für den STUN/TURN-Dienst (die Komponenten, die zwei Geräten helfen, einen Netzwerkpfad zueinander zu finden). Diese Zugangsdaten werden mit einem geheimen Schlüssel erzeugt, der nicht auf dem Gerät liegen darf.</p>
+            <p>MindTheClub holt diese Zugangsdaten von einem <strong>Cloudflare Worker</strong>, der das Geheimnis serverseitig verwahrt. <strong>Kein Google-Dienst ist</strong> am Bezug der Verbindungszugangsdaten <strong>beteiligt</strong>. Schlägt dieser Abruf fehl, fällt die Verbindung auf öffentliche STUN-Server zurück, die einem Gerät nur helfen, die eigene öffentliche Adresse zu ermitteln – und nichts darüber erfahren, wen es kontaktiert.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Die Form des Designs, in einem Absatz</h2>
+            <p>Alles zusammengenommen: Peers verifizieren die Schlüssel des jeweils anderen mit einem QR-Scan oder Link, tauschen dann kleine Mengen verschlüsselter Einrichtungsinformationen über ein zustandsloses Relay und einen versiegelten Weck-Push aus. Sobald der direkte Kanal offen ist, fließen Nachrichteninhalte ausschließlich von Gerät zu Gerät.</p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="white-paper.html" class="back-link" style="display: block; margin-bottom: 20px;">&larr; Zurück zum White Paper</a>
+            <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Sprache">
+            <a href="../how-mtc-connects.html" data-lang="en" lang="en" hreflang="en">English</a>
+            <a href="how-mtc-connects.html" data-lang="de" lang="de" hreflang="de" class="active">Deutsch</a>
+            <a href="../es/how-mtc-connects.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="../fr/how-mtc-connects.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="../id/how-mtc-connects.html" data-lang="id" lang="id" hreflang="id">Bahasa Indonesia</a>
+            <a href="../it/how-mtc-connects.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="../pl/how-mtc-connects.html" data-lang="pl" lang="pl" hreflang="pl">Polski</a>
+            <a href="../pt/how-mtc-connects.html" data-lang="pt" lang="pt" hreflang="pt">Português</a>
+        </nav>
+        <p><a href="../privacy-policy.html">Nutzungsbedingungen & Datenschutzerklärung (Englisch)</a></p>
+        <p class="trademark-notice">Google Firebase™ ist eine Marke von Google LLC. Cloudflare® ist eine eingetragene Marke von Cloudflare, Inc.</p>
+    </footer>
+
+    <script src="../utm-tracker.js" defer></script>
+    <script src="../i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

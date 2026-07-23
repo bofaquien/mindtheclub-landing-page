@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <link rel="icon" type="image/png" href="../images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Paper | MindTheClub</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/white-paper.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/white-paper.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/white-paper.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/white-paper.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/white-paper.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/white-paper.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/white-paper.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/white-paper.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/white-paper.html">
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>Cara Kerja MindTheClub</h1>
+            <p class="subtitle">Sistem yang bisa kamu pahami dengan nalar</p>
+        </header>
+
+        <div class="wp-section">
+            <p>Kebanyakan aplikasi pesan memintamu untuk memercayai mereka. Mereka bilang pesanmu terenkripsi, datamu aman, privasimu penting — lalu mengalirkan semuanya lewat server mereka, tempat kontenmu berada dalam bentuk yang tidak bisa kamu verifikasi atau kendalikan.</p>
+            <p>MindTheClub mengambil pendekatan berbeda. Alih-alih meminta kepercayaan, kami membangun sistem yang cukup sederhana untuk dipahami, sehingga kamu bisa menalar sendiri apa yang terjadi pada datamu. Kami percaya kualitas terpenting sebuah alat komunikasi adalah <strong>prediktabilitas</strong>: saat mengirim pesan, kamu seharusnya tahu persis ke mana pesan itu pergi, jalur apa yang dilaluinya, dan di mana ia berakhir. Tanpa kejutan.</p>
+            <p>Begini cara kerjanya.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Pesanmu berjalan langsung antar perangkat</h2>
+            <p>MindTheClub adalah aplikasi pesan <strong>peer-to-peer</strong>. Saat kamu mengirim pesan, pesan itu berjalan langsung dari ponselmu ke ponsel penerima. Tidak ada server MindTheClub di tengah yang menyimpan, membaca, memproses, atau meneruskan kontenmu.</p>
+            <p>Ini dimungkinkan oleh <strong>WebRTC</strong>, standar terbuka yang sama yang menggerakkan panggilan video di browsermu. WebRTC membangun saluran data langsung yang terenkripsi antara dua perangkat. Pesanmu masuk ke saluran ini di satu ujung dan keluar di ujung lainnya. Itulah seluruh perjalanannya.</p>
+            <p>Saat dua perangkat berada di balik firewall atau di jaringan seluler yang menyulitkan koneksi langsung, koneksi diteruskan melalui <strong>server TURN</strong> yang dihosting di jaringan global Cloudflare. Bahkan dalam kasus ini, relay hanya meneruskan paket terenkripsi — ia tidak bisa membaca isinya. Bayangkan seperti tukang pos yang membawa amplop tersegel: ia tahu tujuannya, tapi tidak pernah melihat isinya.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Signalling: cara perangkat saling menemukan</h2>
+            <p>Sebelum dua perangkat bisa membangun koneksi langsung, mereka harus menyepakati <em>cara</em> terhubung — bertukar alamat jaringan, kunci enkripsi, dan parameter koneksi. Negosiasi ini disebut <strong>signalling</strong>, dan inilah satu-satunya langkah yang menyentuh server.</p>
+            <p>MindTheClub menggunakan <strong>Cloudflare Worker</strong> sebagai relay signalling yang ringan. Data signalling bersifat sementara: hanya dipakai untuk membangun koneksi dan tidak bernilai setelahnya. Ia tidak berisi konten pesan sama sekali.</p>
+            <p>Begitu signalling selesai dan saluran WebRTC terbuka, peran server berakhir. Semua yang terjadi selanjutnya berlangsung langsung antara kedua perangkat.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Membangunkan ponsel yang tertidur</h2>
+            <p>Ponsel menghemat baterai secara agresif. Saat ponsel tidak aktif, koneksi jaringannya ditangguhkan. Lalu bagaimana kamu mengirim pesan ke seseorang yang ponselnya sedang tidur?</p>
+            <p>MindTheClub menggunakan <strong>Firebase Cloud Messaging (FCM)</strong>, infrastruktur notifikasi push yang sama yang dipakai hampir semua aplikasi Android, untuk mengirim sinyal bangun yang ringan. Sinyal ini tidak berisi konten pesan; ia hanya memberi tahu perangkat penerima: <em>"Seseorang ingin mengirimkan sesuatu. Bangun dan sambungkan."</em></p>
+            <p>Perangkat penerima bangun, membangun koneksi WebRTC kembali ke pengirim, dan pesan sebenarnya dikirim langsung, peer-to-peer, seperti biasa.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Mengirim konten besar dalam potongan</h2>
+            <p>Foto, video, pesan suara — ukurannya bisa bermegabyte, dan koneksi seluler bisa terputus kapan saja. Mengirim file besar sebagai satu bongkahan berarti harus mengulang dari awal jika ada yang salah.</p>
+            <p>MindTheClub memecah konten besar menjadi <strong>potongan-potongan kecil</strong> dan mengirimkannya secara berurutan lewat saluran data WebRTC. Perangkat penerima menyusun ulang potongan-potongan itu dan memverifikasi hasilnya. Jika koneksi terputus di tengah transfer, hanya potongan yang hilang yang perlu dikirim ulang, bukan seluruh file.</p>
+            <p>Ini prinsip yang sama yang dipakai setiap protokol transfer file yang andal. Bukan hal baru, tapi penting untuk pengalaman yang baik di jaringan seluler dunia nyata.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Pengiriman terjamin</h2>
+            <p>Bagaimana jika penerimamu sedang di pesawat, ponselnya mati, atau sedang di terowongan? Pesan tidak bisa dikirim sekarang, tapi harus terkirim pada akhirnya.</p>
+            <p>MindTheClub menggunakan <strong>WorkManager</strong> Android untuk menjamin pengiriman. Saat pesan tidak bisa dikirim segera, pesan disimpan secara lokal dan dijadwalkan untuk dicoba lagi. WorkManager bertahan dari restart aplikasi, reboot perangkat, dan optimasi baterai. Ia akan terus mencoba, dengan jeda yang sesuai, sampai pesan terkirim.</p>
+            <p>Dikombinasikan dengan sinyal bangun FCM, ini menciptakan jalur pengiriman yang andal: pesanmu tersimpan aman di perangkatmu, dorongan bangun dikirim saat penerima kemungkinan bisa dijangkau, dan transfer langsung selesai begitu kedua perangkat online. Tidak pernah ada saat di mana konten pesan berada di server menunggu diambil.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Pesan grup: protokol gosip</h2>
+            <p>Pesan grup dalam sistem peer-to-peer menghadirkan tantangan unik. Di aplikasi tradisional, kamu mengirim satu salinan ke server dan server mendistribusikannya ke setiap anggota grup. Tanpa server, pengirim harus terhubung ke setiap anggota satu per satu, yang tidak efisien dalam skala besar dan gagal total jika sebagian anggota tidak terjangkau.</p>
+            <p>MindTheClub menyelesaikannya dengan <strong>protokol gosip</strong>. Pengirim mengirimkan pesan ke anggota grup yang bisa dijangkaunya. Anggota-anggota itu, pada gilirannya, bisa meneruskan pesan ke anggota lain yang tidak terjangkau oleh pengirim. Seperti kabar yang menyebar di sebuah ruangan, pesan merambat sampai semua orang punya salinannya.</p>
+            <p>Jika seorang anggota grup online belakangan dan menyadari ada pesan yang hilang, ia memintanya dari anggota <em>mana pun</em> yang sudah memilikinya, bukan hanya dari pengirim asli. Ini membuat pengiriman grup tangguh: tidak ada satu perangkat pun yang menjadi hambatan, dan grup tidak bergantung pada satu anggota tertentu yang online.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Apa artinya ini dalam praktik</h2>
+            <p>Saat kamu memakai MindTheClub, perilaku sistemnya dapat diprediksi:</p>
+            <ul class="wp-summary-list">
+                <li><strong>Pesanmu hidup di perangkat, bukan di server.</strong> Tidak ada salinan cloud, tidak ada cadangan yang tidak kamu minta, tidak ada data di basis data yang tidak bisa kamu akses. Jika kamu dan kontakmu sama-sama menghapus percakapan, percakapan itu hilang.</li>
+                <li><strong>Jalur jaringannya transparan.</strong> Pesanmu pergi dari ponselmu, lewat saluran WebRTC terenkripsi, ke ponsel penerima. Jika relay dibutuhkan, ia menangani paket tersegel. Jika sinyal bangun dibutuhkan, ia tidak membawa konten.</li>
+                <li><strong>Pengiriman itu gigih, bukan rapuh.</strong> Jika pesan tidak bisa dikirim sekarang, ia akan dikirim nanti, otomatis, tanpa campur tanganmu, dan tanpa bergantung pada server untuk menyimpannya sementara.</li>
+            </ul>
+            <p>Kami tidak membangun MindTheClub seperti ini karena peer-to-peer sedang tren. Kami membangunnya seperti ini karena hasilnya adalah sistem yang perilakunya bisa kamu prediksi dan verifikasi. Dan kami percaya itu fondasi kepercayaan yang lebih baik daripada kebijakan privasi mana pun.</p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="how-mtc-connects.html" class="back-link" style="display: block; margin-bottom: 20px;">Pelajari lebih lanjut cara MTC menghubungkanmu &rarr;</a>
+            <a href="index.html" class="back-link">&larr; Kembali ke Beranda</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Bahasa">
+            <a href="../white-paper.html" data-lang="en" lang="en" hreflang="en">English</a>
+            <a href="../de/white-paper.html" data-lang="de" lang="de" hreflang="de">Deutsch</a>
+            <a href="../es/white-paper.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="../fr/white-paper.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="white-paper.html" data-lang="id" lang="id" hreflang="id" class="active">Bahasa Indonesia</a>
+            <a href="../it/white-paper.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="../pl/white-paper.html" data-lang="pl" lang="pl" hreflang="pl">Polski</a>
+            <a href="../pt/white-paper.html" data-lang="pt" lang="pt" hreflang="pt">Português</a>
+        </nav>
+        <p><a href="../privacy-policy.html">Ketentuan Layanan &amp; Kebijakan Privasi (bahasa Inggris)</a></p>
+        <p class="trademark-notice">Google Firebase™ adalah merek dagang Google LLC. Cloudflare® adalah merek dagang terdaftar Cloudflare, Inc.</p>
+    </footer>
+
+    <script src="../utm-tracker.js" defer></script>
+    <script src="../i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

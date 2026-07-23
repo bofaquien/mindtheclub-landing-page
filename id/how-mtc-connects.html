@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <link rel="icon" type="image/png" href="../images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara MTC Menghubungkanmu | MindTheClub</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/how-mtc-connects.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/how-mtc-connects.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/how-mtc-connects.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/how-mtc-connects.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/how-mtc-connects.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/how-mtc-connects.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/how-mtc-connects.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/how-mtc-connects.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/how-mtc-connects.html">
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>Cara MindTheClub Menghubungkanmu</h1>
+        </header>
+
+        <div class="wp-section">
+            <p>Di MindTheClub, konten pesan berjalan <strong>langsung antara dua perangkat</strong> lewat saluran peer-to-peer terenkripsi. Tidak ada server MindTheClub, dan tidak ada pihak ketiga, yang menyimpan konten pesanmu.</p>
+            <p>Untuk membangun koneksi langsung itu, dua perangkat perlu bertukar sedikit informasi penyiapan dan, jika salah satu perangkat tertidur, sebuah sinyal untuk membangunkannya. Dua langkah pendukung itu adalah satu-satunya tempat server terlibat, dan di bawah ini kami jelaskan dengan tepat apa yang bisa dan tidak bisa dilihat masing-masing.</p>
+            <p>Sebelum semua itu terjadi, kedua perangkat perlu mengetahui identitas satu sama lain. Kami jelaskan itu lebih dulu, karena setiap langkah berikutnya di halaman ini dibangun di atasnya.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Langkah 0: Cara dua peer saling memverifikasi</h2>
+            <p>Setiap langkah terenkripsi berikutnya bergantung pada satu asumsi: setiap peer memakai kunci publik <em>asli</em> milik peer lainnya, bukan kunci yang ditukar oleh penyedia di tengah jalan. Kami mencapainya dengan satu pertukaran di luar jalur dan balasan tersegel, sehingga kedua pihak terverifikasi setelah satu pemindaian QR atau satu ketukan pada tautan undangan.</p>
+
+            <h3>Kode QR atau tautan undangan membawa sidik jari</h3>
+            <p>Kode QR-mu berisi identitas penggunamu dan <strong>sidik jari</strong> kunci publikmu — hash kriptografis pendek yang mengidentifikasinya secara unik. Tautan undanganmu membawa dua hal yang sama, tertanam di dalam tautan itu sendiri. Jadi, entah seseorang memindai kodemu atau mengetuk tautanmu, perangkatnya menerima sidik jari yang sama untuk diperiksa. Menunjukkan QR secara tatap muka adalah jalur paling kuat, tapi dalam kedua kasus jaminan di bawah ini berlaku: penyedia direktori tidak pernah bisa menukar kuncimu tanpa terdeteksi.</p>
+
+            <h3>Penerima memverifikasi kuncimu</h3>
+            <p>Saat orang lain memindai atau mengetuk, perangkatnya mengambil kunci publikmu dari direktori dan menghitung sidik jarinya secara lokal. Jika cocok dengan yang ada di QR atau tautan, kunci diterima; jika tidak, kunci <strong>ditolak dan tidak disimpan</strong>. Kunci yang ditukar menghasilkan ketidakcocokan, dan perangkat menolaknya.</p>
+
+            <h3>Kamu terverifikasi sebagai balasannya</h3>
+            <p>Perangkat mereka lalu mengirimimu permintaan kontak dengan sidik jari mereka sendiri tersegel di dalamnya, <strong>dienkripsi dengan kuncimu yang sudah terverifikasi</strong>. Hanya kamu yang bisa mendekripsinya. Perangkatmu menjalankan pemeriksaan yang sama secara terbalik, menerima kontak hanya jika sidik jarinya cocok.</p>
+
+            <h3>Apa yang kita dapatkan dari ini</h3>
+            <p>Setelah satu pemindaian atau ketukan, kedua peer telah memverifikasi kunci satu sama lain secara independen, dan penyedia yang memegang direktori tidak bisa menukar salah satunya tanpa merusak pemeriksaan yang tidak mampu ia palsukan.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Langkah 1: Saluran peer-to-peer (ke mana datamu pergi)</h2>
+            <p>MindTheClub menggunakan <strong>saluran data WebRTC</strong> untuk membawa pesan. Saluran data WebRTC adalah koneksi langsung terenkripsi antara dua perangkat. Begitu terbangun antara dua peer:</p>
+            <ul class="wp-summary-list">
+                <li>Teks pesan, gambar, file, dan semua lainnya mengalir <strong>dari perangkat ke perangkat</strong>.</li>
+                <li>Transportasinya terenkripsi saat transit (DTLS, enkripsi standar WebRTC).</li>
+                <li><strong>Tidak ada server MindTheClub di jalurnya.</strong> Tidak ada kotak masuk di pihak kami, tidak ada basis data pesan untuk diserahkan atau dibobol, karena kontennya tidak pernah sampai ke kami.</li>
+            </ul>
+            <p>File besar dipecah menjadi potongan dan dikirim lewat saluran langsung yang sama, dengan logika pengiriman ulang di perangkat pengirim untuk menjamin pengiriman pada akhirnya. Potongan-potongan itu berjalan peer-to-peer seperti segalanya.</p>
+
+            <h3>Bagaimana jika peer tidak bisa terhubung langsung?</h3>
+            <p>Terkadang dua perangkat tidak bisa membuka jalur langsung (NAT ketat, firewall operator seluler). Dalam kasus itu, WebRTC beralih ke <strong>relay TURN</strong> untuk meneruskan aliran terenkripsi. MindTheClub memakai layanan TURN Cloudflare untuk cadangan ini. Relay hanya meneruskan paket terenkripsi; ini bagian standar dari cara kerja WebRTC saat koneksi langsung tidak memungkinkan. Cadangan ini hanya memengaruhi jalur jaringan aliran terenkripsi; ia tidak mengubah fakta bahwa konten tetap ujung ke ujung antara kedua perangkat.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Langkah 2: Signalling (cara kedua perangkat saling menemukan)</h2>
+            <p>Sebelum saluran WebRTC bisa terbuka, kedua perangkat harus bertukar informasi "signalling": deskripsi koneksi dan kandidat alamat jaringan (dalam istilah WebRTC, offer/answer SDP dan kandidat ICE). Ini kebutuhan universal WebRTC — setiap aplikasi WebRTC, termasuk situs panggilan video, melakukannya. Informasinya kecil dan hanya dibutuhkan untuk <em>membangun</em> koneksi; ini bukan konten pesanmu.</p>
+            <p>Pertanyaannya adalah <strong>siapa yang membawa signalling itu, dan apa yang bisa mereka lihat.</strong> Di MindTheClub:</p>
+            <ul class="wp-summary-list">
+                <li>Signalling dibawa oleh <strong>Cloudflare Worker</strong>, program kecil yang berjalan di tepi jaringan Cloudflare.</li>
+                <li>Koneksi antara kedua perangkat adalah WebSocket berumur pendek ke Worker itu. Ia hanya ada selama beberapa detik yang dibutuhkan untuk menyiapkan panggilan, lalu tertutup.</li>
+                <li>Worker itu <strong>bersifat sementara</strong>: ia menyimpan pesan signalling kedua peserta hanya di memori, selama pertukaran berlangsung, dan tidak menyimpan <strong>apa pun di disk</strong>. Saat WebSocket tertutup, titik temunya hilang.</li>
+            </ul>
+
+            <h3>Apa yang bisa dilihat relay signalling</h3>
+            <p>Kami merancang signalling agar relay mengetahui sesedikit mungkin:</p>
+            <ul class="wp-summary-list">
+                <li><strong>Muatan signalling dienkripsi.</strong> Data SDP dan ICE (yang mencakup alamat jaringan perangkat) dienkripsi dengan kunci publik penerima sebelum meninggalkan perangkat pengirim. Relay meneruskan <strong>teks tersandi</strong>; ia tidak bisa membaca detail koneksi di dalamnya.</li>
+                <li><strong>Identitas tidak terlihat jelas.</strong> Kedua peserta dialamatkan dengan <strong>pengenal per sesi yang buram</strong>, diturunkan dengan meng-hash ID kanal acak per sesi bersama ID pengguna. Karena ID kanal acak dan berbeda di setiap sesi, pengenal ini tidak berulang dan tidak bisa dikaitkan kembali ke pengguna atau dikorelasikan antar sesi oleh relay.</li>
+                <li>MindTheClub hanya mengirim signalling yang dienkripsi ke kunci penerima yang <strong>terverifikasi</strong> (lihat Langkah 0). Jika tidak ada kunci terverifikasi, upaya itu ditolak alih-alih beralih ke sesuatu yang lebih lemah.</li>
+            </ul>
+        </div>
+
+        <div class="wp-section">
+            <h2>Langkah 3: Membangunkan ponsel yang tertidur (push)</h2>
+            <p>Jika ponsel Bob tertidur atau aplikasinya tidak berjalan, perangkat Alice butuh cara untuk membangunkannya agar bisa bergabung ke koneksi. Untuk ini, MindTheClub memakai <strong>Firebase Cloud Messaging (FCM)</strong>, layanan push Google, karena itulah mekanisme yang disediakan Android untuk membangunkan aplikasi secara andal dari latar belakang.</p>
+
+            <h3>Cara sinyal bangun dikirim</h3>
+            <ul class="wp-summary-list">
+                <li>Sinyal bangun <strong>tidak dikirim dari perangkat langsung ke Google.</strong> Ia dikirim ke <strong>Cloudflare Worker</strong>, yang meneruskannya ke layanan push Google. Jadi, dari sisi Google, permintaan mengirim push datang dari Cloudflare, bukan dari perangkat pengirim.</li>
+                <li>Notifikasi bangun itu <strong>hanya sinyal bangun</strong> — ia tidak membawa konten pesan. Pesan sebenarnya dikirim setelahnya lewat saluran peer-to-peer (Langkah 1).</li>
+            </ul>
+
+            <h3>Pengirim tersegel ("sealed sender")</h3>
+            <p>Isi muatan bangun <strong>dienkripsi dengan kunci publik penerima</strong> sebelum meninggalkan pengirim. Yang terpenting, <strong>identitas pengirim berada di dalam muatan terenkripsi itu</strong> — tidak terlihat oleh infrastruktur push. Ini desain "sealed sender": pihak yang mengantarkan push tidak bisa melihat <em>siapa</em> yang mengirimnya.</p>
+            <p>Untuk mengantarkan push, sistem push mana pun harus tahu <strong>siapa penerimanya</strong> — begitulah cara pengiriman bekerja, dan itu berlaku untuk setiap aplikasi pesan berbasis push. Jadi alamat penerima mau tidak mau terlihat oleh lapisan push. Yang <em>tidak</em> terlihat adalah identitas pengirim, yang tetap tersegel di dalam muatan terenkripsi.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Langkah 4: Kredensial koneksi</h2>
+            <p>Untuk membangun koneksi WebRTC, perangkat butuh kredensial berumur pendek untuk layanan STUN/TURN (komponen yang membantu dua perangkat menemukan jalur jaringan satu sama lain). Kredensial ini dibuat dengan kunci rahasia yang harus disimpan di luar perangkat.</p>
+            <p>MindTheClub mengambil kredensial ini dari <strong>Cloudflare Worker</strong> yang memegang rahasia itu di sisi server. <strong>Tidak ada layanan Google yang terlibat</strong> dalam memperoleh kredensial koneksi. Jika pengambilan ini gagal, koneksi beralih ke server STUN publik, yang hanya membantu perangkat menemukan alamat publiknya sendiri dan tidak mengetahui apa pun tentang siapa yang dihubunginya.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Bentuk desainnya, dalam satu paragraf</h2>
+            <p>Menggabungkan semuanya: peer memverifikasi kunci satu sama lain dengan satu pemindaian QR atau tautan, lalu bertukar sedikit informasi penyiapan terenkripsi melalui relay tanpa status dan push bangun tersegel. Begitu saluran langsung terbuka, konten pesan mengalir hanya dari perangkat ke perangkat.</p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="white-paper.html" class="back-link" style="display: block; margin-bottom: 20px;">&larr; Kembali ke White Paper</a>
+            <a href="index.html" class="back-link">&larr; Kembali ke Beranda</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Bahasa">
+            <a href="../how-mtc-connects.html" data-lang="en" lang="en" hreflang="en">English</a>
+            <a href="../de/how-mtc-connects.html" data-lang="de" lang="de" hreflang="de">Deutsch</a>
+            <a href="../es/how-mtc-connects.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="../fr/how-mtc-connects.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="how-mtc-connects.html" data-lang="id" lang="id" hreflang="id" class="active">Bahasa Indonesia</a>
+            <a href="../it/how-mtc-connects.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="../pl/how-mtc-connects.html" data-lang="pl" lang="pl" hreflang="pl">Polski</a>
+            <a href="../pt/how-mtc-connects.html" data-lang="pt" lang="pt" hreflang="pt">Português</a>
+        </nav>
+        <p><a href="../privacy-policy.html">Ketentuan Layanan &amp; Kebijakan Privasi (bahasa Inggris)</a></p>
+        <p class="trademark-notice">Google Firebase™ adalah merek dagang Google LLC. Cloudflare® adalah merek dagang terdaftar Cloudflare, Inc.</p>
+    </footer>
+
+    <script src="../utm-tracker.js" defer></script>
+    <script src="../i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

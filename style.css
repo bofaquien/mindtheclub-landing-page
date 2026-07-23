@@ -1204,3 +1204,72 @@ body {
 @media (max-width: 480px) {
     .hero-phone { width: 150px; }
 }
+
+/* ============================================
+   WP-STYLE PAGES — shared subsection headings
+   (how-mtc-connects, founding-members)
+   ============================================ */
+
+.wp-section h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #1c1c1e;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* ============================================
+   FOUNDING MEMBERS — pledge box + bottom CTA
+   ============================================ */
+
+.pledge-box {
+    background: #f3f7ff;
+    border: 1px solid #d6e4ff;
+    border-left: 4px solid #2196F3;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin: 26px 0;
+}
+
+.pledge-box p {
+    margin: 0;
+}
+
+.fm-cta {
+    text-align: center;
+    margin: 40px 0 10px;
+}
+
+.fm-cta .gp-badge img {
+    height: 64px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   LANGUAGE SWITCHER (site footer)
+   ============================================ */
+
+.lang-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 16px;
+    margin-bottom: 16px;
+}
+
+.lang-switcher a {
+    color: #6c6c70;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-decoration: none;
+}
+
+.lang-switcher a:hover {
+    color: #1c1c1e;
+    text-decoration: underline;
+}
+
+.lang-switcher a.active {
+    color: #1c1c1e;
+    text-decoration: underline;
+}

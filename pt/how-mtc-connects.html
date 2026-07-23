@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="icon" type="image/png" href="../images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como o MTC conecta você | MindTheClub</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/how-mtc-connects.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/how-mtc-connects.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/how-mtc-connects.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/how-mtc-connects.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/how-mtc-connects.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/how-mtc-connects.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/how-mtc-connects.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/how-mtc-connects.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/how-mtc-connects.html">
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>Como o MindTheClub conecta você</h1>
+        </header>
+
+        <div class="wp-section">
+            <p>No MindTheClub, o conteúdo das mensagens viaja <strong>diretamente entre dois dispositivos</strong> por um canal peer-to-peer criptografado. Nenhum servidor do MindTheClub, nem terceiros, armazena o conteúdo das suas mensagens.</p>
+            <p>Para estabelecer essa conexão direta, dois dispositivos precisam trocar uma pequena quantidade de informações de configuração e, se um deles estiver dormindo, um sinal para acordá-lo. Essas duas etapas de apoio são os únicos pontos em que um servidor participa, e abaixo descrevemos com precisão o que cada um pode e não pode ver.</p>
+            <p>Antes de tudo isso acontecer, os dois dispositivos precisam conhecer a identidade um do outro. Descrevemos isso primeiro, porque cada etapa posterior desta página se apoia nela.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Etapa 0: como dois pares se verificam mutuamente</h2>
+            <p>Cada etapa criptografada a seguir depende de uma premissa: cada par usa a chave pública <em>verdadeira</em> do outro, não uma substituída por um provedor no meio do caminho. Conseguimos isso com uma única troca fora de banda e uma resposta lacrada, de modo que os dois lados ficam verificados após uma leitura de QR ou um toque num link de convite.</p>
+
+            <h3>O código QR ou link de convite carrega uma impressão digital</h3>
+            <p>Seu código QR contém seu identificador de usuário e uma <strong>impressão digital</strong> da sua chave pública, um hash criptográfico curto que a identifica de forma única. Seu link de convite carrega as mesmas duas coisas, embutidas no próprio link. Assim, quer alguém escaneie seu código ou toque no seu link, o dispositivo dessa pessoa recebe a mesma impressão digital para conferir. Mostrar o QR cara a cara é o canal mais forte, mas em ambos os casos a garantia abaixo vale: o provedor do diretório nunca consegue substituir sua chave sem ser detectado.</p>
+
+            <h3>O destinatário verifica sua chave</h3>
+            <p>Quando a outra pessoa escaneia ou toca, o dispositivo dela busca sua chave pública no diretório e calcula a impressão digital localmente. Se coincidir com a do QR ou do link, a chave é aceita; caso contrário, é <strong>rejeitada e não é armazenada</strong>. Uma chave substituída produz uma divergência, e o dispositivo a recusa.</p>
+
+            <h3>Você é verificado em troca</h3>
+            <p>O dispositivo dela então envia a você um pedido de contato com a própria impressão digital lacrada dentro, <strong>criptografada com a sua chave verificada</strong>. Só você pode decifrá-la. Seu dispositivo executa a mesma verificação no sentido inverso, aceitando o contato apenas se as impressões digitais coincidirem.</p>
+
+            <h3>O que isso nos dá</h3>
+            <p>Após uma leitura ou um toque, os dois pares verificaram de forma independente a chave um do outro, e um provedor que detenha o diretório não pode substituir nenhuma delas sem quebrar uma verificação que ele não tem poder de falsificar.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Etapa 1: o canal peer-to-peer (para onde vão seus dados)</h2>
+            <p>O MindTheClub usa <strong>canais de dados WebRTC</strong> para transportar as mensagens. Um canal de dados WebRTC é uma conexão direta e criptografada entre dois dispositivos. Uma vez estabelecido entre dois pares:</p>
+            <ul class="wp-summary-list">
+                <li>Texto das mensagens, imagens, arquivos e tudo o mais fluem <strong>de dispositivo a dispositivo</strong>.</li>
+                <li>O transporte é criptografado em trânsito (DTLS, a criptografia padrão do WebRTC).</li>
+                <li><strong>Nenhum servidor do MindTheClub está no caminho.</strong> Não há caixa de entrada do nosso lado, nem banco de dados de mensagens para entregar ou invadir, porque o conteúdo nunca chega até nós.</li>
+            </ul>
+            <p>Arquivos grandes são divididos em blocos e enviados pelo mesmo canal direto, com lógica de reenvio no dispositivo remetente para garantir a entrega final. Os blocos viajam peer-to-peer como tudo o mais.</p>
+
+            <h3>E quando os pares não conseguem se conectar diretamente?</h3>
+            <p>Às vezes dois dispositivos não conseguem abrir um caminho direto (NATs restritivos, firewalls de operadoras móveis). Nesse caso o WebRTC recorre a um <strong>relay TURN</strong> para fazer passar o fluxo criptografado. O MindTheClub usa o serviço TURN da Cloudflare para esse recurso. O relay encaminha pacotes criptografados; é uma parte padrão do funcionamento do WebRTC quando uma conexão direta não é possível. Esse recurso afeta apenas o caminho de rede do fluxo criptografado; não muda o fato de que o conteúdo permanece de ponta a ponta entre os dois dispositivos.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Etapa 2: sinalização (como os dois dispositivos se encontram)</h2>
+            <p>Antes que um canal WebRTC possa abrir, os dois dispositivos precisam trocar informações de "sinalização": descrições de conexão e endereços de rede candidatos (em termos de WebRTC, a oferta/resposta SDP e os candidatos ICE). É um requisito universal do WebRTC — todo aplicativo WebRTC, incluindo sites de videochamada, faz isso. As informações são pequenas e servem apenas para <em>estabelecer</em> a conexão; não são o conteúdo das suas mensagens.</p>
+            <p>A questão é: <strong>quem transporta essa sinalização e o que consegue ver.</strong> No MindTheClub:</p>
+            <ul class="wp-summary-list">
+                <li>A sinalização é transportada por um <strong>Cloudflare Worker</strong>, um pequeno programa executado na borda da rede da Cloudflare.</li>
+                <li>A conexão entre os dois dispositivos é um WebSocket de curta duração até esse Worker. Ele existe apenas pelos poucos segundos necessários para montar a chamada, e depois se fecha.</li>
+                <li>O Worker é <strong>efêmero</strong>: mantém as mensagens de sinalização dos dois participantes apenas em memória, durante a troca, e não guarda <strong>nada em disco</strong>. Quando o WebSocket se fecha, o ponto de encontro desaparece.</li>
+            </ul>
+
+            <h3>O que o relay de sinalização pode ver</h3>
+            <p>Projetamos a sinalização para que o relay aprenda o mínimo possível:</p>
+            <ul class="wp-summary-list">
+                <li><strong>A carga de sinalização é criptografada.</strong> Os dados SDP e ICE (que incluem endereços de rede dos dispositivos) são criptografados com a chave pública do destinatário antes de sair do dispositivo remetente. O relay encaminha <strong>texto cifrado</strong>: não consegue ler os detalhes de conexão que ele contém.</li>
+                <li><strong>As identidades não ficam às claras.</strong> Os dois participantes são endereçados por <strong>identificadores opacos por sessão</strong>, derivados do hash de um ID de canal aleatório por sessão junto com o ID de usuário. Como o ID de canal é aleatório e diferente a cada sessão, esses identificadores não se repetem e o relay não consegue vinculá-los a um usuário nem correlacioná-los entre sessões.</li>
+                <li>O MindTheClub só envia sinalização criptografada para uma chave de destinatário <strong>verificada</strong> (veja a Etapa 0). Se não houver chave verificada disponível, a tentativa é recusada em vez de recorrer a algo mais fraco.</li>
+            </ul>
+        </div>
+
+        <div class="wp-section">
+            <h2>Etapa 3: acordando um telefone adormecido (push)</h2>
+            <p>Se o telefone do Bob está dormindo ou o app não está rodando, o dispositivo da Alice precisa de um jeito de acordá-lo para que ele entre na conexão. Para isso, o MindTheClub usa o <strong>Firebase Cloud Messaging (FCM)</strong>, o serviço de push do Google, porque é o mecanismo que o Android fornece para acordar um app de forma confiável em segundo plano.</p>
+
+            <h3>Como o sinal de despertar é enviado</h3>
+            <ul class="wp-summary-list">
+                <li>O sinal de despertar <strong>não é enviado do dispositivo diretamente ao Google.</strong> Ele é enviado a um <strong>Cloudflare Worker</strong>, que o encaminha ao serviço de push do Google. Assim, do lado do Google, o pedido de envio de um push chega da Cloudflare, não do dispositivo do remetente.</li>
+                <li>A notificação de despertar é <strong>apenas um sinal de despertar</strong>: não carrega conteúdo de mensagens. A mensagem real é entregue em seguida pelo canal peer-to-peer (Etapa 1).</li>
+            </ul>
+
+            <h3>Remetente lacrado ("sealed sender")</h3>
+            <p>O conteúdo da carga de despertar é <strong>criptografado com a chave pública do destinatário</strong> antes de sair do remetente. Ponto crucial: a <strong>identidade do remetente está dentro dessa carga criptografada</strong>; ela não é visível para a infraestrutura de push. É um design de "remetente lacrado": quem entrega o push não consegue ver <em>quem</em> o enviou.</p>
+            <p>Para entregar um push, qualquer sistema de push precisa saber <strong>quem o recebe</strong>; é assim que a entrega funciona, e isso vale para todo mensageiro baseado em push. Então o endereço do destinatário é necessariamente visível à camada de push. O que <em>não</em> é visível é a identidade do remetente, que permanece lacrada dentro da carga criptografada.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Etapa 4: credenciais de conexão</h2>
+            <p>Para estabelecer a conexão WebRTC, os dispositivos precisam de credenciais de curta duração para o serviço STUN/TURN (os componentes que ajudam dois dispositivos a encontrar um caminho de rede entre si). Essas credenciais são geradas usando uma chave secreta que deve ficar fora do dispositivo.</p>
+            <p>O MindTheClub busca essas credenciais num <strong>Cloudflare Worker</strong> que guarda o segredo do lado do servidor. <strong>Nenhum serviço do Google participa</strong> da obtenção das credenciais de conexão. Se essa busca falhar, a conexão recorre a servidores STUN públicos, que apenas ajudam um dispositivo a descobrir o próprio endereço público e não aprendem nada sobre quem ele vai contatar.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>A forma do projeto, em um parágrafo</h2>
+            <p>Juntando tudo: os pares verificam as chaves um do outro com uma leitura de QR ou um link, depois trocam pequenas quantidades de informações de configuração criptografadas por meio de um relay sem estado e um push de despertar lacrado. Uma vez aberto o canal direto, o conteúdo das mensagens flui apenas de dispositivo a dispositivo.</p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="white-paper.html" class="back-link" style="display: block; margin-bottom: 20px;">&larr; Voltar ao White Paper</a>
+            <a href="index.html" class="back-link">&larr; Voltar à página inicial</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Idioma">
+            <a href="../how-mtc-connects.html" data-lang="en" lang="en" hreflang="en">English</a>
+            <a href="../de/how-mtc-connects.html" data-lang="de" lang="de" hreflang="de">Deutsch</a>
+            <a href="../es/how-mtc-connects.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="../fr/how-mtc-connects.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="../id/how-mtc-connects.html" data-lang="id" lang="id" hreflang="id">Bahasa Indonesia</a>
+            <a href="../it/how-mtc-connects.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="../pl/how-mtc-connects.html" data-lang="pl" lang="pl" hreflang="pl">Polski</a>
+            <a href="how-mtc-connects.html" data-lang="pt" lang="pt" hreflang="pt" class="active">Português</a>
+        </nav>
+        <p><a href="../privacy-policy.html">Termos de serviço e política de privacidade (em inglês)</a></p>
+        <p class="trademark-notice">Google Firebase™ é uma marca registrada da Google LLC. Cloudflare® é uma marca registrada da Cloudflare, Inc.</p>
+    </footer>
+
+    <script src="../utm-tracker.js" defer></script>
+    <script src="../i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

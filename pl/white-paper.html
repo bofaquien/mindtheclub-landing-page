@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <link rel="icon" type="image/png" href="../images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Paper | MindTheClub</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/white-paper.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/white-paper.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/white-paper.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/white-paper.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/white-paper.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/white-paper.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/white-paper.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/white-paper.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/white-paper.html">
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>Jak działa MindTheClub</h1>
+            <p class="subtitle">System, który możesz zrozumieć</p>
+        </header>
+
+        <div class="wp-section">
+            <p>Większość komunikatorów prosi Cię o zaufanie. Mówią, że Twoje wiadomości są szyfrowane, dane bezpieczne, a prywatność ważna — a potem przepuszczają wszystko przez swoje serwery, gdzie Twoje treści istnieją w formie, której nie możesz zweryfikować ani kontrolować.</p>
+            <p>MindTheClub podchodzi do tego inaczej. Zamiast prosić o zaufanie, zbudowaliśmy system na tyle prosty do zrozumienia, że sam możesz przeanalizować, co dzieje się z Twoimi danymi. Wierzymy, że najważniejszą cechą narzędzia komunikacji jest <strong>przewidywalność</strong>: wysyłając wiadomość, powinieneś dokładnie wiedzieć, dokąd trafia, jaką drogą podróżuje i gdzie kończy. Bez niespodzianek.</p>
+            <p>Oto jak to działa.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Twoje wiadomości podróżują bezpośrednio między urządzeniami</h2>
+            <p>MindTheClub to komunikator <strong>peer-to-peer</strong>. Gdy wysyłasz wiadomość, podróżuje ona bezpośrednio z Twojego telefonu na telefon odbiorcy. Nie ma pośrodku żadnego serwera MindTheClub, który przechowuje, czyta, przetwarza czy przekazuje Twoje treści.</p>
+            <p>Umożliwia to <strong>WebRTC</strong>, ten sam otwarty standard, który napędza rozmowy wideo w przeglądarce. WebRTC ustanawia bezpośredni, szyfrowany kanał danych między dwoma urządzeniami. Twoja wiadomość wchodzi do tego kanału z jednej strony i wychodzi z drugiej. To cała jej podróż.</p>
+            <p>Gdy dwa urządzenia znajdują się za zaporami sieciowymi lub w sieciach komórkowych utrudniających bezpośrednie połączenia, połączenie jest przekazywane przez <strong>serwer TURN</strong> hostowany w globalnej sieci Cloudflare. Nawet w tym przypadku przekaźnik jedynie przekazuje zaszyfrowane pakiety — nie może odczytać treści. Pomyśl o nim jak o listonoszu niosącym zapieczętowaną kopertę: zna adres, ale nigdy nie widzi, co jest w środku.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Sygnalizacja: jak urządzenia się znajdują</h2>
+            <p>Zanim dwa urządzenia zdołają nawiązać bezpośrednie połączenie, muszą uzgodnić, <em>jak</em> się połączyć — wymieniając adresy sieciowe, klucze szyfrujące i parametry połączenia. Ta negocjacja nazywa się <strong>sygnalizacją</strong> i jest jedynym krokiem, który dotyka serwera.</p>
+            <p>MindTheClub używa <strong>Cloudflare Workera</strong> jako lekkiego przekaźnika sygnalizacji. Dane sygnalizacyjne są ulotne: służą tylko do zestawienia połączenia i potem nie mają żadnej wartości. Nie zawierają żadnej treści wiadomości.</p>
+            <p>Gdy sygnalizacja się kończy i kanał WebRTC zostaje otwarty, rola serwera dobiega końca. Wszystko, co następuje później, dzieje się bezpośrednio między dwoma urządzeniami.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Budzenie śpiącego telefonu</h2>
+            <p>Telefony agresywnie oszczędzają baterię. Gdy telefon jest bezczynny, jego połączenia sieciowe są zawieszane. Jak więc wysłać wiadomość do kogoś, czyj telefon śpi?</p>
+            <p>MindTheClub używa <strong>Firebase Cloud Messaging (FCM)</strong> — tej samej infrastruktury powiadomień push, z której korzysta praktycznie każda aplikacja na Androida — do wysłania lekkiego sygnału budzenia. Ten sygnał nie zawiera treści wiadomości; mówi po prostu urządzeniu odbiorcy: <em>„Ktoś chce Ci coś wysłać. Obudź się i połącz”.</em></p>
+            <p>Urządzenie odbiorcy budzi się, nawiązuje połączenie WebRTC z nadawcą, a właściwa wiadomość jest przesyłana bezpośrednio, peer-to-peer, jak zawsze.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Wysyłanie dużych treści w blokach</h2>
+            <p>Zdjęcie, film, notatka głosowa — to mogą być megabajty, a połączenia mobilne mogą zostać przerwane w każdej chwili. Wysyłanie dużego pliku jako jednej całości oznaczałoby zaczynanie od zera, gdy coś pójdzie nie tak.</p>
+            <p>MindTheClub dzieli duże treści na <strong>małe bloki</strong> i wysyła je kolejno kanałem danych WebRTC. Urządzenie odbierające składa bloki z powrotem i weryfikuje wynik. Jeśli połączenie zerwie się w trakcie transferu, ponownie przesłane muszą być tylko brakujące bloki, a nie cały plik.</p>
+            <p>To ta sama zasada, z której korzysta każdy niezawodny protokół przesyłania plików. Nie jest nowatorska, ale jest niezbędna dla dobrego doświadczenia w prawdziwych sieciach komórkowych.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Gwarantowane dostarczenie</h2>
+            <p>Co się stanie, jeśli odbiorca jest w samolocie, ma wyłączony telefon albo jedzie tunelem? Wiadomości nie da się dostarczyć teraz, ale w końcu musi dotrzeć.</p>
+            <p>MindTheClub używa <strong>WorkManagera</strong> Androida, by zagwarantować dostarczenie. Gdy wiadomości nie można wysłać od razu, jest zapisywana lokalnie i planowana do ponownej próby. WorkManager przeżywa restarty aplikacji, ponowne uruchomienia urządzenia i optymalizację baterii. Będzie próbował ponownie, z odpowiednimi odstępami, aż wiadomość zostanie dostarczona.</p>
+            <p>W połączeniu z sygnałami budzenia FCM tworzy to niezawodny łańcuch dostarczania: Twoja wiadomość jest bezpiecznie przechowywana na Twoim urządzeniu, impuls budzenia wychodzi, gdy odbiorca jest prawdopodobnie osiągalny, a bezpośredni transfer kończy się, gdy tylko oba urządzenia są online. W żadnym momencie treść wiadomości nie leży na serwerze, czekając na odbiór.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Wiadomości grupowe: protokół plotkowy (gossip)</h2>
+            <p>Wiadomości grupowe w systemie peer-to-peer to wyjątkowe wyzwanie. W tradycyjnej aplikacji wysyłasz jedną kopię na serwer, a serwer rozprowadza ją do każdego członka grupy. Bez serwera nadawca musiałby łączyć się z każdym członkiem z osobna, co źle się skaluje i całkowicie zawodzi, gdy część członków jest nieosiągalna.</p>
+            <p>MindTheClub rozwiązuje to <strong>protokołem gossip</strong>. Nadawca przekazuje wiadomość tym członkom grupy, do których może dotrzeć. Ci członkowie z kolei mogą przekazać wiadomość innym, do których nadawca nie dotarł. Jak plotka rozchodząca się po pokoju, wiadomość rozprzestrzenia się, aż każdy ma kopię.</p>
+            <p>Jeśli członek grupy pojawi się online później i odkryje, że brakuje mu wiadomości, prosi o nią <em>dowolnego</em> członka, który już ją ma — nie tylko pierwotnego nadawcę. To czyni dostarczanie grupowe odpornym: żadne pojedyncze urządzenie nie jest wąskim gardłem, a grupa nie zależy od tego, czy konkretny członek jest online.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Co to oznacza w praktyce</h2>
+            <p>Gdy używasz MindTheClub, zachowanie systemu jest przewidywalne:</p>
+            <ul class="wp-summary-list">
+                <li><strong>Twoje wiadomości żyją na urządzeniach, nie na serwerach.</strong> Nie ma kopii w chmurze, kopii zapasowej, o którą nie prosiłeś, ani danych w bazie, do której nie masz dostępu. Jeśli Ty i Twój kontakt oboje usuniecie rozmowę — znika.</li>
+                <li><strong>Ścieżka sieciowa jest przejrzysta.</strong> Twoja wiadomość idzie z Twojego telefonu, szyfrowanym kanałem WebRTC, na telefon odbiorcy. Jeśli potrzebny jest przekaźnik, obsługuje zapieczętowane pakiety. Jeśli potrzebny jest sygnał budzenia, nie niesie żadnej treści.</li>
+                <li><strong>Dostarczanie jest wytrwałe, nie kruche.</strong> Jeśli wiadomości nie da się dostarczyć teraz, zostanie dostarczona później — automatycznie, bez Twojego udziału i bez polegania na serwerze, który miałby ją w międzyczasie przechowywać.</li>
+            </ul>
+            <p>Nie zbudowaliśmy MindTheClub w ten sposób dlatego, że peer-to-peer jest modny. Zbudowaliśmy go tak, bo powstaje z tego system, którego zachowanie możesz przewidzieć i zweryfikować. I wierzymy, że to lepszy fundament zaufania niż jakakolwiek polityka prywatności.</p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="how-mtc-connects.html" class="back-link" style="display: block; margin-bottom: 20px;">Dowiedz się więcej o tym, jak MTC Cię łączy &rarr;</a>
+            <a href="index.html" class="back-link">&larr; Powrót do strony głównej</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Język">
+            <a href="../white-paper.html" data-lang="en" lang="en" hreflang="en">English</a>
+            <a href="../de/white-paper.html" data-lang="de" lang="de" hreflang="de">Deutsch</a>
+            <a href="../es/white-paper.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="../fr/white-paper.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="../id/white-paper.html" data-lang="id" lang="id" hreflang="id">Bahasa Indonesia</a>
+            <a href="../it/white-paper.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="white-paper.html" data-lang="pl" lang="pl" hreflang="pl" class="active">Polski</a>
+            <a href="../pt/white-paper.html" data-lang="pt" lang="pt" hreflang="pt">Português</a>
+        </nav>
+        <p><a href="../privacy-policy.html">Warunki korzystania i polityka prywatności (po angielsku)</a></p>
+        <p class="trademark-notice">Google Firebase™ jest znakiem towarowym Google LLC. Cloudflare® jest zastrzeżonym znakiem towarowym Cloudflare, Inc.</p>
+    </footer>
+
+    <script src="../utm-tracker.js" defer></script>
+    <script src="../i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>
