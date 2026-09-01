@@ -6,7 +6,7 @@
     var LANGS = ['de', 'es', 'fr', 'id', 'it', 'pl', 'pt'];
     var TRANSLATED_PAGES = [
         'index.html', 'how-mtc-connects.html', 'white-paper.html',
-        'how-to-guide.html', 'beta-signup.html', 'founding-members.html',
+        'how-to-guide.html', 'pricing.html',
         'contact.html'
     ];
 
