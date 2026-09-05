@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <link rel="icon" type="image/png" href="../images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertanyaan Umum | MindTheClub</title>
+
+    <meta name="description" content="Jawaban langsung tentang MindTheClub, aplikasi pesan terenkripsi peer-to-peer untuk Android: cara kerjanya tanpa server, data apa yang disimpan, berapa biayanya, dan apa yang belum bisa dilakukannya.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/faq.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/faq.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/faq.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/faq.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/faq.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/faq.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/faq.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/faq.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/faq.html">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "id",
+  "url": "https://www.mindtheclub.com/id/faq.html",
+  "name": "Pertanyaan Umum",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "MindTheClub",
+    "url": "https://www.mindtheclub.com/"
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Adakah aplikasi pesan yang tidak memerlukan nomor telepon?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ya. MindTheClub bekerja tanpa nomor telepon, tanpa alamat email, tanpa nama pengguna, dan tanpa kata sandi. Kamu menambahkan kontak dengan memindai kode QR-nya secara langsung atau dengan mengetuk tautan undangan yang dia kirim. Tidak ada bagian dari identitas aslimu yang dibutuhkan untuk mendaftar, dan tidak ada yang diverifikasi lewat jaringan telepon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa itu MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub adalah aplikasi pesan terenkripsi peer-to-peer untuk Android. Teks, foto, berkas, pesan suara, serta panggilan audio dan video berjalan langsung dari satu perangkat ke perangkat lain, tanpa server perusahaan di tengah yang menyimpan isinya. Kodenya terbuka dengan lisensi GPLv3 dan biayanya 1,20 EUR per bulan setelah masa coba gratis 30 hari."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa itu aplikasi pesan peer-to-peer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aplikasi pesan peer-to-peer mengirim pesanmu langsung dari perangkatmu ke perangkat kontakmu, bukan mengunggahnya ke server perusahaan yang kemudian meneruskannya. Perbedaan praktisnya, tidak ada pihak ketiga yang pernah menyimpan salinan percakapanmu, bahkan salinan terenkripsi yang menunggu untuk diambil."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah MindTheClub punya server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub tidak menjalankan server yang menyimpan atau meneruskan isi pesan. Ada tiga layanan pendukung kecil: Cloudflare Worker yang membantu dua perangkat saling menemukan, direktori Firebase berisi ID pengguna acak, token notifikasi, dan kunci publik, serta Firebase Cloud Messaging untuk membangunkan ponsel yang tertidur. Tidak satu pun bisa melihat apa yang kamu tulis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bisakah MindTheClub membaca pesan saya?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tidak, dan bukan karena sebuah janji. Isi pesan tidak pernah sampai ke infrastruktur MindTheClub, jadi di sisi perusahaan tidak ada kotak masuk, tidak ada basis data, dan tidak ada arsip terenkripsi untuk dibaca, diserahkan, atau bocor. Pesan hanya ada di perangkatmu dan perangkat kontakmu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah MindTheClub open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ya. MindTheClub dirilis dengan lisensi GPLv3 dan kode sumber lengkapnya diterbitkan di GitHub pada github.com/AndreaVagheggi/mindtheclub. Kamu bisa membaca kodenya, mencocokkan klaim di halaman ini dengannya, dan membangun sendiri aplikasinya jika lebih suka tidak memercayai versi di Google Play."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Siapa yang membuat MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub dikembangkan oleh MindTheClub LTD, perusahaan yang terdaftar di Inggris dan Wales dengan nomor 17184156. Pendanaannya sepenuhnya dari langganan. Tidak ada pengiklan, tidak ada investor yang membeli akses ke data pengguna, dan tidak ada pihak ketiga yang membayar apa pun di dalam aplikasi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana MindTheClub mengirim pesan tanpa server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub membuka kanal terenkripsi langsung antara dua ponsel memakai WebRTC, standar terbuka yang sama yang membawa panggilan video di peramban. Pesanmu masuk ke kanal itu di perangkatmu dan keluar di perangkat kontakmu. Server hanya terlibat saat membuka kanal, bukan saat membawa apa yang kamu kirim."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa itu WebRTC dan mengapa MindTheClub memakainya?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WebRTC adalah standar terbuka, tertanam di peramban dan ponsel, yang memungkinkan dua perangkat membuka koneksi terenkripsi langsung. MindTheClub memakainya karena itu cara yang matang dan banyak ditelaah untuk memindahkan data antarperangkat. Enkripsi saat transit memakai DTLS, enkripsi standar WebRTC, bukan sesuatu yang diciptakan khusus untuk aplikasi ini."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mengapa MindTheClub memakai Firebase Cloud Messaging kalau tidak punya server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Karena Android menangguhkan koneksi jaringan pada ponsel yang tertidur, dan Firebase Cloud Messaging adalah mekanisme yang disediakan Android untuk membangunkan aplikasi. Sinyal pembangun tidak membawa isi pesan, hanya perintah untuk terhubung. Identitas pengirim terenkripsi di dalam payload, jadi layanan push tidak bisa melihat siapa yang menghubungimu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa itu relay TURN dan bisakah ia melihat pesan saya?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Relay TURN adalah cadangan yang dipakai ketika dua perangkat tidak bisa saling menjangkau secara langsung, biasanya karena jaringan seluler atau firewall yang ketat. MindTheClub memakai layanan TURN milik Cloudflare. Relay meneruskan paket terenkripsi dan tidak bisa membacanya. Mirip kurir yang membawa amplop tersegel: tujuannya terlihat, isinya tidak."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa itu signalling dan apa yang bisa dilihat server signalling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Signalling adalah pertukaran singkat yang dibutuhkan dua perangkat sebelum koneksi langsung bisa terbuka, mencakup alamat jaringan dan parameter koneksi. MindTheClub menyalurkannya lewat Cloudflare Worker yang tidak menyimpan apa pun ke disk. Payload-nya dienkripsi dengan kunci publik penerima, dan kedua pihak muncul sebagai pengenal buram yang berganti setiap sesi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana MindTheClub memastikan saya bicara dengan orang yang benar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kode QR dan tautan undanganmu sama-sama membawa sidik jari kunci publikmu. Saat seseorang memindai atau mengetuk, perangkatnya mengambil kuncimu, menghitung sidik jarinya sendiri, dan menolak kunci itu bila tidak cocok. Sidik jari miliknya lalu kembali tersegel dengan kuncimu yang sudah terverifikasi, sehingga kedua sisi terperiksa hanya dengan satu pemindaian."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa yang terjadi kalau ponsel lawan bicara mati atau offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pesan menunggu di perangkatmu sendiri dan dikirim kemudian, secara otomatis. MindTheClub memakai WorkManager milik Android untuk terus mencoba melewati aplikasi yang dimulai ulang, ponsel yang di-boot ulang, dan optimasi baterai. Sementara itu tidak ada yang diparkir di server, itulah sebabnya pengiriman tidak instan saat penerima tak terjangkau, tetapi tetap sampai."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana pesan grup bekerja tanpa server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub memakai protokol gossip. Pengirim menyampaikan pesan kepada anggota grup yang sedang terjangkau, lalu anggota itu meneruskannya kepada yang tidak terjangkau oleh pengirim. Anggota yang online belakangan dan menyadari ada yang hilang meminta pesan itu kepada siapa pun yang memilikinya, bukan hanya kepada pengirim aslinya."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah obrolan grup di MindTheClub kurang aman dibanding obrolan satu lawan satu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tidak, dengan satu pengecualian yang layak disebut terang-terangan. Pesan, foto, dan berkas grup memakai enkripsi ujung ke ujung dan pengiriman langsung antarperangkat yang sama seperti obrolan satu lawan satu, tanpa tingkat yang lebih lemah dan tanpa kotak grup di server. Panggilan video grup tetap terenkripsi ujung ke ujung tetapi melewati server media, bukan langsung antarperangkat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa bedanya MindTheClub dengan Signal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Signal terenkripsi ujung ke ujung tetapi mengarahkan pesan lewat servernya sendiri dan, di sebagian besar negara, masih meminta nomor telepon. MindTheClub tidak meminta nomor telepon dan tidak mengarahkan isi pesan ke mana pun: pesan berjalan antarperangkat. Signal jauh lebih besar, lebih matang, dan sudah diaudit secara independen, yang belum dimiliki MindTheClub."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa bedanya MindTheClub dengan WhatsApp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WhatsApp mengenkripsi isi pesan tetapi mewajibkan nomor telepon, menyimpan metadata akun dan koneksi, serta dimiliki perusahaan periklanan. MindTheClub tidak mewajibkan nomor telepon, hanya menyimpan ID acak, token notifikasi, dan kunci publik, serta dibiayai penggunanya. WhatsApp gratis dengan miliaran pengguna; MindTheClub berbayar dengan basis pengguna kecil."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa bedanya MindTheClub dengan Session, SimpleX, atau Briar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keempatnya menghindari nomor telepon, tetapi jalurnya berbeda. Session melewatkan pesan melalui jaringan service node, SimpleX lewat server relay, dan Briar terhubung lewat Tor atau Bluetooth lokal tanpa layanan push. MindTheClub membuka kanal WebRTC langsung antara dua ponsel dan memakai sinyal pembangun push, sehingga pesan tiba tanpa aplikasi harus berjalan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apa saja keterbatasan MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub saat ini hanya untuk Android. Versi desktop sedang dikembangkan, dan belum ada versi iPhone maupun versi web. Aplikasi ini belum pernah menjalani audit keamanan independen. Basis penggunanya kecil, jadi sebagian besar kontakmu belum ada di dalamnya. Panggilan video grup melewati server media, bukan langsung antarperangkat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Data apa yang dikumpulkan MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Untuk setiap pengguna, MindTheClub menyimpan tiga hal di direktori peroutingannya: pengenal pengguna yang dibuat acak, token notifikasi push, dan kunci publik. Tidak ada nama, alamat email, nomor telepon, daftar kontak, maupun isi pesan. Alamat IP lewat sementara melalui Cloudflare saat koneksi disiapkan dan tidak disimpan oleh MindTheClub."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah MindTheClub tahu dengan siapa saya bicara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tidak. Tidak ada catatan di sisi server tentang siapa mengirim pesan kepada siapa. Pengenal signalling diturunkan dari ID kanal acak per sesi, jadi berganti setiap kali dan tidak bisa dikaitkan antarsesi. Sinyal pembangun push memakai desain sealed sender, artinya identitas pengirim tetap terenkripsi dan tidak terlihat oleh layanan push."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah MindTheClub butuh akses ke kontak, email, atau nama saya?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tidak. MindTheClub tidak pernah meminta nama atau alamat emailmu, dan bekerja tanpa menyentuh daftar kontakmu. Satu fitur opsional memang meminta izin membaca kontak: fungsinya memilih seseorang dan mengirimkan profil MindTheClub milikmu lewat MMS. Daftar itu tetap di ponselmu dan tidak diunggah ke mana pun."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bisakah orang lain melihat alamat IP saya saat memakai MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alamat IP-mu terlihat oleh Cloudflare selama koneksi disiapkan, dan oleh orang yang kamu hubungi, karena koneksi langsung mengharuskan setiap sisi tahu ke mana mengirim paket. Ini melekat pada peer-to-peer. Menjalankan VPN pihak ketiga di ponsel menyembunyikannya dari keduanya. MindTheClub tidak menyertakan VPN sendiri."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Di mana pesan saya disimpan, dan apa yang terjadi kalau ponsel saya hilang?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pesanmu hanya tersimpan di perangkatmu dan perangkat kontakmu. Tidak ada salinan di cloud, jadi kalau ponsel hilang dan kamu tidak punya cadangan, percakapan itu hilang. MindTheClub menyediakan cadangan terenkripsi, memakai AES-256-GCM, yang kamu buat dan kendalikan sendiri."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah MindTheClub menampilkan iklan atau memakai pelacak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tidak. MindTheClub tidak memuat iklan, tidak mengumpulkan analitik atas perilakumu, dan tidak memuat kode pelacak pihak ketiga. Langganan adalah seluruh model bisnisnya, dan itu bisa dikatakan terus terang karena desain peer-to-peer tidak menghasilkan data untuk dijual sekalipun perusahaan menginginkannya."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah MindTheClub bisa dipakai tanpa koneksi internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bisa, lewat Bluetooth. Ketika dua orang berada dalam jangkauan Bluetooth, MindTheClub menghubungkan perangkat mereka secara langsung, tanpa internet dan tanpa Wi-Fi. Di luar jangkauan Bluetooth, koneksi internet dibutuhkan di kedua perangkat, karena pesan berjalan langsung antara dua ponsel dan bukan menunggu di server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bisakah saya melakukan panggilan video di MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bisa. Panggilan audio dan video satu lawan satu terenkripsi ujung ke ujung dan memakai koneksi peer-to-peer langsung yang sama seperti pesanmu. Panggilan video grup dialirkan lewat server media, sebuah SFU yang dihosting di Cloudflare, karena menghubungkan semua orang dengan semua orang tidak terskala. Frame-nya tetap terenkripsi ujung ke ujung, jadi server meneruskannya tanpa bisa melihatnya."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bisakah saya mengirim foto, video, dan berkas besar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bisa. Foto, video, pesan suara, dokumen, GIF, dan stiker semuanya berjalan lewat kanal peer-to-peer terenkripsi yang sama dengan teks. Berkas besar dipecah menjadi potongan dan dikirim berurutan, jadi transfer yang terputus melanjutkan dari potongan yang hilang, bukan mengulang dari awal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bisakah saya mencadangkan obrolan di MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bisa. MindTheClub membuat cadangan terenkripsi, dilindungi AES-256-GCM, yang bisa kamu pulihkan ke sebuah perangkat. Cadangan otomatis juga tersedia. Cadangan tetap dalam kendalimu alih-alih diunggah ke cloud perusahaan, yang juga berarti kehilangan ponsel dan cadangan sekaligus berarti kehilangan percakapan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana cara menambahkan kontak di MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ada empat cara. Pindai kode QR orang lain secara tatap muka, ketuk tautan undangan yang dia kirim, pindai tangkapan layar kode QR-nya yang dibagikan lewat aplikasi lain, atau pilih seseorang dari kontak ponselmu dan kirimkan profilmu lewat MMS. Setiap cara membawa sidik jari kunci publik yang diverifikasi perangkatmu sebelum kontak diterima."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Berapa biaya MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub berbiaya 1,20 EUR per bulan setelah masa coba gratis 30 hari. Itu harga dasarnya. Google Play menetapkan jumlah akhir untuk tiap negara, mengonversi mata uang dan menambahkan pajak setempat bila berlaku, lalu menunjukkan jumlah persisnya sebelum kamu mengonfirmasi. Hanya ada satu tingkatan dan semua fitur termasuk di dalamnya."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah ada masa coba gratis MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ada, 30 hari. Masa coba dimulai saat kamu mengaktifkan aplikasi, bukan saat mengunduhnya, jadi kamu tidak kehilangan hari karena pemasangan yang belum kamu buka. Tidak ada metode pembayaran yang diminta untuk memulai, dan jika kamu tidak melakukan apa pun di akhir masa coba, aplikasi berhenti begitu saja."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bagaimana cara membatalkan langganan MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Langganan ditagih oleh Google Play, jadi kamu membatalkannya di pengaturan langganan Play pada ponselmu, kapan saja. Setelah itu langganan berjalan sampai akhir periode yang sudah dibayar dan tidak diperpanjang. MindTheClub tidak terlibat dalam penagihan dan tidak bisa menagihmu secara terpisah."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah MindTheClub tersedia untuk iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tidak. MindTheClub hanya untuk Android. Versi desktop sedang dikembangkan, tetapi belum ada aplikasi iOS maupun versi web, jadi saat ini kedua orang dalam sebuah percakapan membutuhkan perangkat Android. Ini keterbatasan aplikasi yang paling jelas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Versi Android apa saja yang didukung MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub berjalan di Android 8.0, API level 26, dan yang lebih baru. Android 8.0 dirilis pada 2017, jadi hampir semua ponsel yang masih dipakai sehari-hari tercakup. Aplikasi ini didistribusikan lewat Google Play, dan halaman toko memastikan kecocokan dengan perangkatmu sebelum kamu memasangnya."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>Pertanyaan Umum</h1>
+            <p class="subtitle">Jawaban singkat dan langsung tentang cara kerja MindTheClub, apa yang disimpan, berapa biayanya, dan apa yang belum bisa dilakukannya.</p>
+        </header>
+
+        <nav class="faq-toc" aria-label="Bagian">
+            <ul>
+                <li><a href="#s1">Dasar-dasar</a></li>
+                <li><a href="#s2">Cara kerjanya</a></li>
+                <li><a href="#s3">Perbandingan</a></li>
+                <li><a href="#s4">Privasi dan data</a></li>
+                <li><a href="#s5">Fitur</a></li>
+                <li><a href="#s6">Harga dan pertanyaan praktis</a></li>
+            </ul>
+        </nav>
+
+        <div class="wp-section faq-section" id="s1">
+            <h2>Dasar-dasar</h2>
+
+            <h3 class="faq-q" id="q01">Adakah aplikasi pesan yang tidak memerlukan nomor telepon?</h3>
+            <p class="faq-a">Ya. MindTheClub bekerja tanpa nomor telepon, tanpa alamat email, tanpa nama pengguna, dan tanpa kata sandi. Kamu menambahkan kontak dengan memindai kode QR-nya secara langsung atau dengan mengetuk tautan undangan yang dia kirim. Tidak ada bagian dari identitas aslimu yang dibutuhkan untuk mendaftar, dan tidak ada yang diverifikasi lewat jaringan telepon.</p>
+
+            <h3 class="faq-q" id="q02">Apa itu MindTheClub?</h3>
+            <p class="faq-a">MindTheClub adalah aplikasi pesan terenkripsi peer-to-peer untuk Android. Teks, foto, berkas, pesan suara, serta panggilan audio dan video berjalan langsung dari satu perangkat ke perangkat lain, tanpa server perusahaan di tengah yang menyimpan isinya. Kodenya terbuka dengan lisensi GPLv3 dan biayanya 1,20 EUR per bulan setelah masa coba gratis 30 hari.</p>
+
+            <h3 class="faq-q" id="q03">Apa itu aplikasi pesan peer-to-peer?</h3>
+            <p class="faq-a">Aplikasi pesan peer-to-peer mengirim pesanmu langsung dari perangkatmu ke perangkat kontakmu, bukan mengunggahnya ke server perusahaan yang kemudian meneruskannya. Perbedaan praktisnya, tidak ada pihak ketiga yang pernah menyimpan salinan percakapanmu, bahkan salinan terenkripsi yang menunggu untuk diambil.</p>
+
+            <h3 class="faq-q" id="q04">Apakah MindTheClub punya server?</h3>
+            <p class="faq-a">MindTheClub tidak menjalankan server yang menyimpan atau meneruskan isi pesan. Ada tiga layanan pendukung kecil: Cloudflare Worker yang membantu dua perangkat saling menemukan, direktori Firebase berisi ID pengguna acak, token notifikasi, dan kunci publik, serta Firebase Cloud Messaging untuk membangunkan ponsel yang tertidur. Tidak satu pun bisa melihat apa yang kamu tulis.</p>
+
+            <h3 class="faq-q" id="q05">Bisakah MindTheClub membaca pesan saya?</h3>
+            <p class="faq-a">Tidak, dan bukan karena sebuah janji. Isi pesan tidak pernah sampai ke infrastruktur MindTheClub, jadi di sisi perusahaan tidak ada kotak masuk, tidak ada basis data, dan tidak ada arsip terenkripsi untuk dibaca, diserahkan, atau bocor. Pesan hanya ada di perangkatmu dan perangkat kontakmu.</p>
+
+            <h3 class="faq-q" id="q06">Apakah MindTheClub open source?</h3>
+            <p class="faq-a">Ya. MindTheClub dirilis dengan lisensi GPLv3 dan kode sumber lengkapnya diterbitkan di GitHub pada github.com/AndreaVagheggi/mindtheclub. Kamu bisa membaca kodenya, mencocokkan klaim di halaman ini dengannya, dan membangun sendiri aplikasinya jika lebih suka tidak memercayai versi di Google Play.</p>
+
+            <h3 class="faq-q" id="q07">Siapa yang membuat MindTheClub?</h3>
+            <p class="faq-a">MindTheClub dikembangkan oleh MindTheClub LTD, perusahaan yang terdaftar di Inggris dan Wales dengan nomor 17184156. Pendanaannya sepenuhnya dari langganan. Tidak ada pengiklan, tidak ada investor yang membeli akses ke data pengguna, dan tidak ada pihak ketiga yang membayar apa pun di dalam aplikasi.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s2">
+            <h2>Cara kerjanya</h2>
+
+            <h3 class="faq-q" id="q08">Bagaimana MindTheClub mengirim pesan tanpa server?</h3>
+            <p class="faq-a">MindTheClub membuka kanal terenkripsi langsung antara dua ponsel memakai WebRTC, standar terbuka yang sama yang membawa panggilan video di peramban. Pesanmu masuk ke kanal itu di perangkatmu dan keluar di perangkat kontakmu. Server hanya terlibat saat membuka kanal, bukan saat membawa apa yang kamu kirim.</p>
+
+            <h3 class="faq-q" id="q09">Apa itu WebRTC dan mengapa MindTheClub memakainya?</h3>
+            <p class="faq-a">WebRTC adalah standar terbuka, tertanam di peramban dan ponsel, yang memungkinkan dua perangkat membuka koneksi terenkripsi langsung. MindTheClub memakainya karena itu cara yang matang dan banyak ditelaah untuk memindahkan data antarperangkat. Enkripsi saat transit memakai DTLS, enkripsi standar WebRTC, bukan sesuatu yang diciptakan khusus untuk aplikasi ini.</p>
+
+            <h3 class="faq-q" id="q10">Mengapa MindTheClub memakai Firebase Cloud Messaging kalau tidak punya server?</h3>
+            <p class="faq-a">Karena Android menangguhkan koneksi jaringan pada ponsel yang tertidur, dan Firebase Cloud Messaging adalah mekanisme yang disediakan Android untuk membangunkan aplikasi. Sinyal pembangun tidak membawa isi pesan, hanya perintah untuk terhubung. Identitas pengirim terenkripsi di dalam payload, jadi layanan push tidak bisa melihat siapa yang menghubungimu.</p>
+
+            <h3 class="faq-q" id="q11">Apa itu relay TURN dan bisakah ia melihat pesan saya?</h3>
+            <p class="faq-a">Relay TURN adalah cadangan yang dipakai ketika dua perangkat tidak bisa saling menjangkau secara langsung, biasanya karena jaringan seluler atau firewall yang ketat. MindTheClub memakai layanan TURN milik Cloudflare. Relay meneruskan paket terenkripsi dan tidak bisa membacanya. Mirip kurir yang membawa amplop tersegel: tujuannya terlihat, isinya tidak.</p>
+
+            <h3 class="faq-q" id="q12">Apa itu signalling dan apa yang bisa dilihat server signalling?</h3>
+            <p class="faq-a">Signalling adalah pertukaran singkat yang dibutuhkan dua perangkat sebelum koneksi langsung bisa terbuka, mencakup alamat jaringan dan parameter koneksi. MindTheClub menyalurkannya lewat Cloudflare Worker yang tidak menyimpan apa pun ke disk. Payload-nya dienkripsi dengan kunci publik penerima, dan kedua pihak muncul sebagai pengenal buram yang berganti setiap sesi.</p>
+
+            <h3 class="faq-q" id="q13">Bagaimana MindTheClub memastikan saya bicara dengan orang yang benar?</h3>
+            <p class="faq-a">Kode QR dan tautan undanganmu sama-sama membawa sidik jari kunci publikmu. Saat seseorang memindai atau mengetuk, perangkatnya mengambil kuncimu, menghitung sidik jarinya sendiri, dan menolak kunci itu bila tidak cocok. Sidik jari miliknya lalu kembali tersegel dengan kuncimu yang sudah terverifikasi, sehingga kedua sisi terperiksa hanya dengan satu pemindaian.</p>
+
+            <h3 class="faq-q" id="q14">Apa yang terjadi kalau ponsel lawan bicara mati atau offline?</h3>
+            <p class="faq-a">Pesan menunggu di perangkatmu sendiri dan dikirim kemudian, secara otomatis. MindTheClub memakai WorkManager milik Android untuk terus mencoba melewati aplikasi yang dimulai ulang, ponsel yang di-boot ulang, dan optimasi baterai. Sementara itu tidak ada yang diparkir di server, itulah sebabnya pengiriman tidak instan saat penerima tak terjangkau, tetapi tetap sampai.</p>
+
+            <h3 class="faq-q" id="q15">Bagaimana pesan grup bekerja tanpa server?</h3>
+            <p class="faq-a">MindTheClub memakai protokol gossip. Pengirim menyampaikan pesan kepada anggota grup yang sedang terjangkau, lalu anggota itu meneruskannya kepada yang tidak terjangkau oleh pengirim. Anggota yang online belakangan dan menyadari ada yang hilang meminta pesan itu kepada siapa pun yang memilikinya, bukan hanya kepada pengirim aslinya.</p>
+
+            <h3 class="faq-q" id="q16">Apakah obrolan grup di MindTheClub kurang aman dibanding obrolan satu lawan satu?</h3>
+            <p class="faq-a">Tidak, dengan satu pengecualian yang layak disebut terang-terangan. Pesan, foto, dan berkas grup memakai enkripsi ujung ke ujung dan pengiriman langsung antarperangkat yang sama seperti obrolan satu lawan satu, tanpa tingkat yang lebih lemah dan tanpa kotak grup di server. Panggilan video grup tetap terenkripsi ujung ke ujung tetapi melewati server media, bukan langsung antarperangkat.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s3">
+            <h2>Perbandingan</h2>
+
+            <h3 class="faq-q" id="q17">Apa bedanya MindTheClub dengan Signal?</h3>
+            <p class="faq-a">Signal terenkripsi ujung ke ujung tetapi mengarahkan pesan lewat servernya sendiri dan, di sebagian besar negara, masih meminta nomor telepon. MindTheClub tidak meminta nomor telepon dan tidak mengarahkan isi pesan ke mana pun: pesan berjalan antarperangkat. Signal jauh lebih besar, lebih matang, dan sudah diaudit secara independen, yang belum dimiliki MindTheClub.</p>
+
+            <h3 class="faq-q" id="q18">Apa bedanya MindTheClub dengan WhatsApp?</h3>
+            <p class="faq-a">WhatsApp mengenkripsi isi pesan tetapi mewajibkan nomor telepon, menyimpan metadata akun dan koneksi, serta dimiliki perusahaan periklanan. MindTheClub tidak mewajibkan nomor telepon, hanya menyimpan ID acak, token notifikasi, dan kunci publik, serta dibiayai penggunanya. WhatsApp gratis dengan miliaran pengguna; MindTheClub berbayar dengan basis pengguna kecil.</p>
+
+            <h3 class="faq-q" id="q19">Apa bedanya MindTheClub dengan Session, SimpleX, atau Briar?</h3>
+            <p class="faq-a">Keempatnya menghindari nomor telepon, tetapi jalurnya berbeda. Session melewatkan pesan melalui jaringan service node, SimpleX lewat server relay, dan Briar terhubung lewat Tor atau Bluetooth lokal tanpa layanan push. MindTheClub membuka kanal WebRTC langsung antara dua ponsel dan memakai sinyal pembangun push, sehingga pesan tiba tanpa aplikasi harus berjalan.</p>
+
+            <h3 class="faq-q" id="q20">Apa saja keterbatasan MindTheClub?</h3>
+            <p class="faq-a">MindTheClub saat ini hanya untuk Android. Versi desktop sedang dikembangkan, dan belum ada versi iPhone maupun versi web. Aplikasi ini belum pernah menjalani audit keamanan independen. Basis penggunanya kecil, jadi sebagian besar kontakmu belum ada di dalamnya. Panggilan video grup melewati server media, bukan langsung antarperangkat.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s4">
+            <h2>Privasi dan data</h2>
+
+            <h3 class="faq-q" id="q21">Data apa yang dikumpulkan MindTheClub?</h3>
+            <p class="faq-a">Untuk setiap pengguna, MindTheClub menyimpan tiga hal di direktori peroutingannya: pengenal pengguna yang dibuat acak, token notifikasi push, dan kunci publik. Tidak ada nama, alamat email, nomor telepon, daftar kontak, maupun isi pesan. Alamat IP lewat sementara melalui Cloudflare saat koneksi disiapkan dan tidak disimpan oleh MindTheClub.</p>
+
+            <h3 class="faq-q" id="q22">Apakah MindTheClub tahu dengan siapa saya bicara?</h3>
+            <p class="faq-a">Tidak. Tidak ada catatan di sisi server tentang siapa mengirim pesan kepada siapa. Pengenal signalling diturunkan dari ID kanal acak per sesi, jadi berganti setiap kali dan tidak bisa dikaitkan antarsesi. Sinyal pembangun push memakai desain sealed sender, artinya identitas pengirim tetap terenkripsi dan tidak terlihat oleh layanan push.</p>
+
+            <h3 class="faq-q" id="q23">Apakah MindTheClub butuh akses ke kontak, email, atau nama saya?</h3>
+            <p class="faq-a">Tidak. MindTheClub tidak pernah meminta nama atau alamat emailmu, dan bekerja tanpa menyentuh daftar kontakmu. Satu fitur opsional memang meminta izin membaca kontak: fungsinya memilih seseorang dan mengirimkan profil MindTheClub milikmu lewat MMS. Daftar itu tetap di ponselmu dan tidak diunggah ke mana pun.</p>
+
+            <h3 class="faq-q" id="q24">Bisakah orang lain melihat alamat IP saya saat memakai MindTheClub?</h3>
+            <p class="faq-a">Alamat IP-mu terlihat oleh Cloudflare selama koneksi disiapkan, dan oleh orang yang kamu hubungi, karena koneksi langsung mengharuskan setiap sisi tahu ke mana mengirim paket. Ini melekat pada peer-to-peer. Menjalankan VPN pihak ketiga di ponsel menyembunyikannya dari keduanya. MindTheClub tidak menyertakan VPN sendiri.</p>
+
+            <h3 class="faq-q" id="q25">Di mana pesan saya disimpan, dan apa yang terjadi kalau ponsel saya hilang?</h3>
+            <p class="faq-a">Pesanmu hanya tersimpan di perangkatmu dan perangkat kontakmu. Tidak ada salinan di cloud, jadi kalau ponsel hilang dan kamu tidak punya cadangan, percakapan itu hilang. MindTheClub menyediakan cadangan terenkripsi, memakai AES-256-GCM, yang kamu buat dan kendalikan sendiri.</p>
+
+            <h3 class="faq-q" id="q26">Apakah MindTheClub menampilkan iklan atau memakai pelacak?</h3>
+            <p class="faq-a">Tidak. MindTheClub tidak memuat iklan, tidak mengumpulkan analitik atas perilakumu, dan tidak memuat kode pelacak pihak ketiga. Langganan adalah seluruh model bisnisnya, dan itu bisa dikatakan terus terang karena desain peer-to-peer tidak menghasilkan data untuk dijual sekalipun perusahaan menginginkannya.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s5">
+            <h2>Fitur</h2>
+
+            <h3 class="faq-q" id="q27">Apakah MindTheClub bisa dipakai tanpa koneksi internet?</h3>
+            <p class="faq-a">Bisa, lewat Bluetooth. Ketika dua orang berada dalam jangkauan Bluetooth, MindTheClub menghubungkan perangkat mereka secara langsung, tanpa internet dan tanpa Wi-Fi. Di luar jangkauan Bluetooth, koneksi internet dibutuhkan di kedua perangkat, karena pesan berjalan langsung antara dua ponsel dan bukan menunggu di server.</p>
+
+            <h3 class="faq-q" id="q28">Bisakah saya melakukan panggilan video di MindTheClub?</h3>
+            <p class="faq-a">Bisa. Panggilan audio dan video satu lawan satu terenkripsi ujung ke ujung dan memakai koneksi peer-to-peer langsung yang sama seperti pesanmu. Panggilan video grup dialirkan lewat server media, sebuah SFU yang dihosting di Cloudflare, karena menghubungkan semua orang dengan semua orang tidak terskala. Frame-nya tetap terenkripsi ujung ke ujung, jadi server meneruskannya tanpa bisa melihatnya.</p>
+
+            <h3 class="faq-q" id="q29">Bisakah saya mengirim foto, video, dan berkas besar?</h3>
+            <p class="faq-a">Bisa. Foto, video, pesan suara, dokumen, GIF, dan stiker semuanya berjalan lewat kanal peer-to-peer terenkripsi yang sama dengan teks. Berkas besar dipecah menjadi potongan dan dikirim berurutan, jadi transfer yang terputus melanjutkan dari potongan yang hilang, bukan mengulang dari awal.</p>
+
+            <h3 class="faq-q" id="q30">Bisakah saya mencadangkan obrolan di MindTheClub?</h3>
+            <p class="faq-a">Bisa. MindTheClub membuat cadangan terenkripsi, dilindungi AES-256-GCM, yang bisa kamu pulihkan ke sebuah perangkat. Cadangan otomatis juga tersedia. Cadangan tetap dalam kendalimu alih-alih diunggah ke cloud perusahaan, yang juga berarti kehilangan ponsel dan cadangan sekaligus berarti kehilangan percakapan.</p>
+
+            <h3 class="faq-q" id="q31">Bagaimana cara menambahkan kontak di MindTheClub?</h3>
+            <p class="faq-a">Ada empat cara. Pindai kode QR orang lain secara tatap muka, ketuk tautan undangan yang dia kirim, pindai tangkapan layar kode QR-nya yang dibagikan lewat aplikasi lain, atau pilih seseorang dari kontak ponselmu dan kirimkan profilmu lewat MMS. Setiap cara membawa sidik jari kunci publik yang diverifikasi perangkatmu sebelum kontak diterima.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s6">
+            <h2>Harga dan pertanyaan praktis</h2>
+
+            <h3 class="faq-q" id="q32">Berapa biaya MindTheClub?</h3>
+            <p class="faq-a">MindTheClub berbiaya 1,20 EUR per bulan setelah masa coba gratis 30 hari. Itu harga dasarnya. Google Play menetapkan jumlah akhir untuk tiap negara, mengonversi mata uang dan menambahkan pajak setempat bila berlaku, lalu menunjukkan jumlah persisnya sebelum kamu mengonfirmasi. Hanya ada satu tingkatan dan semua fitur termasuk di dalamnya.</p>
+
+            <h3 class="faq-q" id="q33">Apakah ada masa coba gratis MindTheClub?</h3>
+            <p class="faq-a">Ada, 30 hari. Masa coba dimulai saat kamu mengaktifkan aplikasi, bukan saat mengunduhnya, jadi kamu tidak kehilangan hari karena pemasangan yang belum kamu buka. Tidak ada metode pembayaran yang diminta untuk memulai, dan jika kamu tidak melakukan apa pun di akhir masa coba, aplikasi berhenti begitu saja.</p>
+
+            <h3 class="faq-q" id="q34">Bagaimana cara membatalkan langganan MindTheClub?</h3>
+            <p class="faq-a">Langganan ditagih oleh Google Play, jadi kamu membatalkannya di pengaturan langganan Play pada ponselmu, kapan saja. Setelah itu langganan berjalan sampai akhir periode yang sudah dibayar dan tidak diperpanjang. MindTheClub tidak terlibat dalam penagihan dan tidak bisa menagihmu secara terpisah.</p>
+
+            <h3 class="faq-q" id="q35">Apakah MindTheClub tersedia untuk iPhone?</h3>
+            <p class="faq-a">Tidak. MindTheClub hanya untuk Android. Versi desktop sedang dikembangkan, tetapi belum ada aplikasi iOS maupun versi web, jadi saat ini kedua orang dalam sebuah percakapan membutuhkan perangkat Android. Ini keterbatasan aplikasi yang paling jelas.</p>
+
+            <h3 class="faq-q" id="q36">Versi Android apa saja yang didukung MindTheClub?</h3>
+            <p class="faq-a">MindTheClub berjalan di Android 8.0, API level 26, dan yang lebih baru. Android 8.0 dirilis pada 2017, jadi hampir semua ponsel yang masih dipakai sehari-hari tercakup. Aplikasi ini didistribusikan lewat Google Play, dan halaman toko memastikan kecocokan dengan perangkatmu sebelum kamu memasangnya.</p>
+        </div>
+
+        <p class="faq-updated">Terakhir diperbarui: 5 September 2026</p>
+
+        <div class="back-link-container">
+            <a href="white-paper.html" class="back-link" style="display: block; margin-bottom: 20px;">Baca white paper lengkap →</a>
+            <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Language">
+            <a href="../faq.html" data-lang="en" lang="en" hreflang="en">English</a>
+            <a href="../de/faq.html" data-lang="de" lang="de" hreflang="de">Deutsch</a>
+            <a href="../es/faq.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="../fr/faq.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="faq.html" data-lang="id" lang="id" hreflang="id" class="active">Bahasa Indonesia</a>
+            <a href="../it/faq.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="../pl/faq.html" data-lang="pl" lang="pl" hreflang="pl">Polski</a>
+            <a href="../pt/faq.html" data-lang="pt" lang="pt" hreflang="pt">Português</a>
+        </nav>
+        <p><a href="../privacy-policy.html">Kebijakan Privasi &amp; Kebijakan Penggunaan Wajar (bahasa Inggris)</a></p>
+        <p class="trademark-notice">Google Play dan logo Google Play adalah merek dagang Google LLC. Google Firebase™ adalah merek dagang Google LLC. Cloudflare® adalah merek dagang terdaftar Cloudflare, Inc.</p>
+    </footer>
+
+    <script src="../utm-tracker.js" defer></script>
+    <script src="../i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

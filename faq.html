@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions | MindTheClub</title>
+
+    <meta name="description" content="Direct answers about MindTheClub, the peer-to-peer encrypted messaging app for Android: how it works without servers, what data it holds, what it costs, and what it cannot do.">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/faq.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/faq.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/faq.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/faq.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/faq.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/faq.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/faq.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/faq.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/faq.html">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en",
+  "url": "https://www.mindtheclub.com/faq.html",
+  "name": "Frequently Asked Questions",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "MindTheClub",
+    "url": "https://www.mindtheclub.com/"
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there a messaging app that does not require a phone number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. MindTheClub works without a phone number, an email address, a username or a password. You add a contact by scanning their QR code in person or by tapping an invite link they send you. Nothing about your real identity is needed to register, and nothing is verified against a phone network."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub is a peer-to-peer encrypted messaging app for Android. Text, photos, files, voice messages and audio and video calls travel directly from one device to the other, without a company server in between holding the content. It is open source under GPLv3 and costs EUR 1.20 a month after a 30-day free trial."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a peer-to-peer messaging app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A peer-to-peer messaging app sends your message straight from your device to your contact's device, instead of uploading it to a company server that then passes it on. The practical difference is that no third party ever holds a copy of your conversation, not even an encrypted one waiting to be collected."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does MindTheClub have servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub runs no server that stores or relays message content. Three small supporting services exist: a Cloudflare Worker that helps two devices find each other, a Firebase directory holding a random user ID, a push token and a public key, and Firebase Cloud Messaging to wake a sleeping phone. None of them can see what you write."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can MindTheClub read my messages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, and not because of a promise. Message content never reaches MindTheClub's infrastructure at all, so there is no inbox, no database and no encrypted archive on the company side to read, to hand over or to lose in a breach. Messages exist only on your device and your contact's device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is MindTheClub open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. MindTheClub is released under the GPLv3 licence and the full source code is published on GitHub at github.com/AndreaVagheggi/mindtheclub. You can read the code, check the claims on this page against it, and build the app yourself if you prefer not to trust the version on Google Play."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who makes MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub is developed by MindTheClub LTD, a company registered in England and Wales under company number 17184156. It is funded entirely by its subscription. There are no advertisers, no investors buying access to user data, and no third party paying for anything inside the app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does MindTheClub send a message without a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub opens a direct encrypted channel between the two phones using WebRTC, the same open standard that carries video calls in web browsers. Your message enters that channel on your device and leaves it on your contact's device. Servers are involved only in setting the channel up, not in carrying what you send."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is WebRTC and why does MindTheClub use it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WebRTC is an open standard, built into browsers and phones, that lets two devices open a direct encrypted connection to each other. MindTheClub uses it because it is the mature, widely reviewed way to move data device to device. Encryption in transit is DTLS, the standard WebRTC encryption, rather than something invented for this app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does MindTheClub use Firebase Cloud Messaging if it has no servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because Android suspends network connections on a sleeping phone, and Firebase Cloud Messaging is the mechanism Android provides to wake an app. The wake-up carries no message content, only a signal to connect. The sender's identity is encrypted inside the payload, so the push service cannot see who is contacting you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a TURN relay and can it see my messages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A TURN relay is a fallback used when two devices cannot reach each other directly, usually because of a restrictive mobile network or firewall. MindTheClub uses Cloudflare's TURN service. The relay forwards encrypted packets and cannot read them. It is comparable to a courier carrying a sealed envelope: the destination is visible, the contents are not."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is signalling and what can the signalling server see?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Signalling is the short exchange two devices need before a direct connection can open, covering network addresses and connection parameters. MindTheClub carries it over a Cloudflare Worker that keeps nothing on disk. The payload is encrypted with the recipient's public key, and the two parties appear as opaque per-session identifiers that do not repeat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does MindTheClub verify that I am talking to the right person?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your QR code and your invite link both carry a fingerprint of your public key. When someone scans or taps, their device fetches your key, computes the fingerprint itself and rejects the key outright if it does not match. Their own fingerprint then comes back sealed with your verified key, so both sides are checked after one scan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the other person's phone is off or offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The message waits on your own device and is delivered later, automatically. MindTheClub uses Android's WorkManager to keep retrying across app restarts, reboots and battery optimisation. Nothing is parked on a server in the meantime, which is why delivery is not instant when the recipient is unreachable, but it does complete."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do group messages work without a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub uses a gossip protocol. The sender delivers the message to the group members currently reachable, and those members pass it on to members the sender could not reach. A member who comes online later and notices a gap requests the missing message from anyone who has it, not only from the original sender."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are group chats less secure than one-to-one chats in MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, with one exception worth stating plainly. Group messages, photos and files use the same end-to-end encryption and the same direct device-to-device delivery as one-to-one chats, with no weaker tier and no server-side group inbox. Group video calls stay end-to-end encrypted but pass through a media server instead of travelling directly between devices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is MindTheClub different from Signal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Signal is end-to-end encrypted but routes messages through Signal's own servers and, in most countries, still asks for a phone number. MindTheClub asks for no phone number and routes message content nowhere: it goes device to device. Signal is far larger, more mature and independently audited, which MindTheClub is not yet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is MindTheClub different from WhatsApp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WhatsApp encrypts message content but requires a phone number, keeps account and connection metadata, and belongs to an advertising company. MindTheClub requires no phone number, holds only a random ID, a push token and a public key, and is paid for by its users. WhatsApp is free and has billions of users; MindTheClub is a paid app with a small user base."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is MindTheClub different from Session, SimpleX or Briar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All four avoid phone numbers, but they route differently. Session passes messages through a network of service nodes, SimpleX through relay servers, and Briar connects over Tor or local Bluetooth with no push service. MindTheClub opens a direct WebRTC channel between the two phones and uses a push wake-up so messages arrive without the app running."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the limitations of MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub is Android only today. A desktop version is in development, and there is no iPhone or web version. It has had no independent third-party security audit. The user base is small, so most of your contacts will not already be on it. Group video calls pass through a media server rather than device to device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What data does MindTheClub collect?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For each user MindTheClub holds three things in its routing directory: a randomly generated user identifier, a push notification token and a public key. No name, no email address, no phone number, no contact list, no message content. IP addresses pass transiently through Cloudflare while a connection is being set up and are not retained by MindTheClub."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does MindTheClub know who I talk to?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. There is no server-side record of who messages whom. Signalling identifiers are derived from a random per-session channel ID, so they change every session and cannot be linked across sessions. The push wake-up uses a sealed-sender design, meaning the sender's identity stays encrypted and is not visible to the push service."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does MindTheClub need access to my contacts, my email or my name?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. MindTheClub never asks for your name or email address, and it works without touching your address book. One optional feature does ask permission to read your contacts: it lets you pick someone and send them your MindTheClub profile by MMS. That list stays on your phone and is never uploaded anywhere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can anyone see my IP address when I use MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your IP address is visible to Cloudflare while a connection is being set up, and to the person you are connecting to, because a direct connection requires each side to know where to send packets. This is inherent to peer-to-peer. Running a third-party VPN on your phone hides it from both. MindTheClub does not include a VPN of its own."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where are my messages stored, and what happens if I lose my phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your messages are stored only on your device and your contact's device. There is no cloud copy, so if you lose the phone and have no backup, the conversations are gone. MindTheClub offers an encrypted backup, using AES-256-GCM, that you create and control yourself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does MindTheClub show ads or use trackers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. MindTheClub carries no advertising, no analytics on your behaviour and no third-party tracking code. The subscription is the entire business model, which is stated plainly because a peer-to-peer design produces no data to sell even if the company wanted to."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does MindTheClub work without an internet connection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, over Bluetooth. When two people are within Bluetooth range, MindTheClub connects their devices directly, with no internet and no Wi-Fi needed. Outside Bluetooth range an internet connection is required on both devices, because the message travels directly between the two phones rather than waiting on a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I make video calls on MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. One-to-one audio and video calls are end-to-end encrypted and travel over the same direct peer-to-peer connection as your messages. Group video calls are routed through a media server, an SFU hosted on Cloudflare, because connecting everyone to everyone does not scale. The frames stay encrypted end to end, so the server forwards them without being able to view them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I send photos, videos and large files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Photos, videos, voice messages, documents, GIFs and stickers all travel over the same encrypted peer-to-peer channel as text. Large files are split into chunks and sent in sequence, so an interrupted transfer resumes from the missing chunks instead of restarting from the beginning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I back up my chats in MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. MindTheClub creates an encrypted backup, protected with AES-256-GCM, which you can restore onto a device. Automatic backup is available as well. The backup stays under your control rather than being uploaded to a company cloud, which also means losing both the phone and the backup means losing the conversations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add a contact on MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Four ways. Scan the other person's QR code face to face, tap an invite link they have sent you, scan a screenshot of their QR code shared through another app, or pick someone from your phone's contacts and send them your profile by MMS. Every method carries a public key fingerprint that your device verifies before accepting the contact."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does MindTheClub cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub costs EUR 1.20 a month after a 30-day free trial. That is the base price. Google Play sets the final amount for each country, converting the currency and adding local tax where it applies, and shows you that exact amount before you confirm. There is one tier only and every feature is included in it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free trial of MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, 30 days. The trial starts when you activate the app rather than when you download it, so days are not lost to an install you have not opened. No payment method is requested to begin, and if you do nothing at the end of the trial the app simply stops."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I cancel my MindTheClub subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The subscription is billed by Google Play, so you cancel it in Play's subscription settings on your phone, at any time. It then runs until the end of the period already paid for and does not renew. MindTheClub is not involved in the billing and cannot charge you separately."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is MindTheClub available for iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. MindTheClub is Android only. A desktop version is currently in development, but there is no iOS app and no web version, so today both people in a conversation need an Android device. This is the app's clearest limitation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Android versions does MindTheClub support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub runs on Android 8.0, API level 26, and later. Android 8.0 was released in 2017, so nearly every phone still in everyday use is covered. The app is distributed through Google Play, and the store listing confirms compatibility with your specific device before you install."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>Frequently Asked Questions</h1>
+            <p class="subtitle">Short, direct answers about how MindTheClub works, what it holds, what it costs, and what it cannot do yet.</p>
+        </header>
+
+        <nav class="faq-toc" aria-label="Sections">
+            <ul>
+                <li><a href="#s1">The basics</a></li>
+                <li><a href="#s2">How it works</a></li>
+                <li><a href="#s3">Comparisons</a></li>
+                <li><a href="#s4">Privacy and data</a></li>
+                <li><a href="#s5">Features</a></li>
+                <li><a href="#s6">Price and practical questions</a></li>
+            </ul>
+        </nav>
+
+        <div class="wp-section faq-section" id="s1">
+            <h2>The basics</h2>
+
+            <h3 class="faq-q" id="q01">Is there a messaging app that does not require a phone number?</h3>
+            <p class="faq-a">Yes. MindTheClub works without a phone number, an email address, a username or a password. You add a contact by scanning their QR code in person or by tapping an invite link they send you. Nothing about your real identity is needed to register, and nothing is verified against a phone network.</p>
+
+            <h3 class="faq-q" id="q02">What is MindTheClub?</h3>
+            <p class="faq-a">MindTheClub is a peer-to-peer encrypted messaging app for Android. Text, photos, files, voice messages and audio and video calls travel directly from one device to the other, without a company server in between holding the content. It is open source under GPLv3 and costs EUR 1.20 a month after a 30-day free trial.</p>
+
+            <h3 class="faq-q" id="q03">What is a peer-to-peer messaging app?</h3>
+            <p class="faq-a">A peer-to-peer messaging app sends your message straight from your device to your contact's device, instead of uploading it to a company server that then passes it on. The practical difference is that no third party ever holds a copy of your conversation, not even an encrypted one waiting to be collected.</p>
+
+            <h3 class="faq-q" id="q04">Does MindTheClub have servers?</h3>
+            <p class="faq-a">MindTheClub runs no server that stores or relays message content. Three small supporting services exist: a Cloudflare Worker that helps two devices find each other, a Firebase directory holding a random user ID, a push token and a public key, and Firebase Cloud Messaging to wake a sleeping phone. None of them can see what you write.</p>
+
+            <h3 class="faq-q" id="q05">Can MindTheClub read my messages?</h3>
+            <p class="faq-a">No, and not because of a promise. Message content never reaches MindTheClub's infrastructure at all, so there is no inbox, no database and no encrypted archive on the company side to read, to hand over or to lose in a breach. Messages exist only on your device and your contact's device.</p>
+
+            <h3 class="faq-q" id="q06">Is MindTheClub open source?</h3>
+            <p class="faq-a">Yes. MindTheClub is released under the GPLv3 licence and the full source code is published on GitHub at github.com/AndreaVagheggi/mindtheclub. You can read the code, check the claims on this page against it, and build the app yourself if you prefer not to trust the version on Google Play.</p>
+
+            <h3 class="faq-q" id="q07">Who makes MindTheClub?</h3>
+            <p class="faq-a">MindTheClub is developed by MindTheClub LTD, a company registered in England and Wales under company number 17184156. It is funded entirely by its subscription. There are no advertisers, no investors buying access to user data, and no third party paying for anything inside the app.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s2">
+            <h2>How it works</h2>
+
+            <h3 class="faq-q" id="q08">How does MindTheClub send a message without a server?</h3>
+            <p class="faq-a">MindTheClub opens a direct encrypted channel between the two phones using WebRTC, the same open standard that carries video calls in web browsers. Your message enters that channel on your device and leaves it on your contact's device. Servers are involved only in setting the channel up, not in carrying what you send.</p>
+
+            <h3 class="faq-q" id="q09">What is WebRTC and why does MindTheClub use it?</h3>
+            <p class="faq-a">WebRTC is an open standard, built into browsers and phones, that lets two devices open a direct encrypted connection to each other. MindTheClub uses it because it is the mature, widely reviewed way to move data device to device. Encryption in transit is DTLS, the standard WebRTC encryption, rather than something invented for this app.</p>
+
+            <h3 class="faq-q" id="q10">Why does MindTheClub use Firebase Cloud Messaging if it has no servers?</h3>
+            <p class="faq-a">Because Android suspends network connections on a sleeping phone, and Firebase Cloud Messaging is the mechanism Android provides to wake an app. The wake-up carries no message content, only a signal to connect. The sender's identity is encrypted inside the payload, so the push service cannot see who is contacting you.</p>
+
+            <h3 class="faq-q" id="q11">What is a TURN relay and can it see my messages?</h3>
+            <p class="faq-a">A TURN relay is a fallback used when two devices cannot reach each other directly, usually because of a restrictive mobile network or firewall. MindTheClub uses Cloudflare's TURN service. The relay forwards encrypted packets and cannot read them. It is comparable to a courier carrying a sealed envelope: the destination is visible, the contents are not.</p>
+
+            <h3 class="faq-q" id="q12">What is signalling and what can the signalling server see?</h3>
+            <p class="faq-a">Signalling is the short exchange two devices need before a direct connection can open, covering network addresses and connection parameters. MindTheClub carries it over a Cloudflare Worker that keeps nothing on disk. The payload is encrypted with the recipient's public key, and the two parties appear as opaque per-session identifiers that do not repeat.</p>
+
+            <h3 class="faq-q" id="q13">How does MindTheClub verify that I am talking to the right person?</h3>
+            <p class="faq-a">Your QR code and your invite link both carry a fingerprint of your public key. When someone scans or taps, their device fetches your key, computes the fingerprint itself and rejects the key outright if it does not match. Their own fingerprint then comes back sealed with your verified key, so both sides are checked after one scan.</p>
+
+            <h3 class="faq-q" id="q14">What happens if the other person's phone is off or offline?</h3>
+            <p class="faq-a">The message waits on your own device and is delivered later, automatically. MindTheClub uses Android's WorkManager to keep retrying across app restarts, reboots and battery optimisation. Nothing is parked on a server in the meantime, which is why delivery is not instant when the recipient is unreachable, but it does complete.</p>
+
+            <h3 class="faq-q" id="q15">How do group messages work without a server?</h3>
+            <p class="faq-a">MindTheClub uses a gossip protocol. The sender delivers the message to the group members currently reachable, and those members pass it on to members the sender could not reach. A member who comes online later and notices a gap requests the missing message from anyone who has it, not only from the original sender.</p>
+
+            <h3 class="faq-q" id="q16">Are group chats less secure than one-to-one chats in MindTheClub?</h3>
+            <p class="faq-a">No, with one exception worth stating plainly. Group messages, photos and files use the same end-to-end encryption and the same direct device-to-device delivery as one-to-one chats, with no weaker tier and no server-side group inbox. Group video calls stay end-to-end encrypted but pass through a media server instead of travelling directly between devices.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s3">
+            <h2>Comparisons</h2>
+
+            <h3 class="faq-q" id="q17">How is MindTheClub different from Signal?</h3>
+            <p class="faq-a">Signal is end-to-end encrypted but routes messages through Signal's own servers and, in most countries, still asks for a phone number. MindTheClub asks for no phone number and routes message content nowhere: it goes device to device. Signal is far larger, more mature and independently audited, which MindTheClub is not yet.</p>
+
+            <h3 class="faq-q" id="q18">How is MindTheClub different from WhatsApp?</h3>
+            <p class="faq-a">WhatsApp encrypts message content but requires a phone number, keeps account and connection metadata, and belongs to an advertising company. MindTheClub requires no phone number, holds only a random ID, a push token and a public key, and is paid for by its users. WhatsApp is free and has billions of users; MindTheClub is a paid app with a small user base.</p>
+
+            <h3 class="faq-q" id="q19">How is MindTheClub different from Session, SimpleX or Briar?</h3>
+            <p class="faq-a">All four avoid phone numbers, but they route differently. Session passes messages through a network of service nodes, SimpleX through relay servers, and Briar connects over Tor or local Bluetooth with no push service. MindTheClub opens a direct WebRTC channel between the two phones and uses a push wake-up so messages arrive without the app running.</p>
+
+            <h3 class="faq-q" id="q20">What are the limitations of MindTheClub?</h3>
+            <p class="faq-a">MindTheClub is Android only today. A desktop version is in development, and there is no iPhone or web version. It has had no independent third-party security audit. The user base is small, so most of your contacts will not already be on it. Group video calls pass through a media server rather than device to device.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s4">
+            <h2>Privacy and data</h2>
+
+            <h3 class="faq-q" id="q21">What data does MindTheClub collect?</h3>
+            <p class="faq-a">For each user MindTheClub holds three things in its routing directory: a randomly generated user identifier, a push notification token and a public key. No name, no email address, no phone number, no contact list, no message content. IP addresses pass transiently through Cloudflare while a connection is being set up and are not retained by MindTheClub.</p>
+
+            <h3 class="faq-q" id="q22">Does MindTheClub know who I talk to?</h3>
+            <p class="faq-a">No. There is no server-side record of who messages whom. Signalling identifiers are derived from a random per-session channel ID, so they change every session and cannot be linked across sessions. The push wake-up uses a sealed-sender design, meaning the sender's identity stays encrypted and is not visible to the push service.</p>
+
+            <h3 class="faq-q" id="q23">Does MindTheClub need access to my contacts, my email or my name?</h3>
+            <p class="faq-a">No. MindTheClub never asks for your name or email address, and it works without touching your address book. One optional feature does ask permission to read your contacts: it lets you pick someone and send them your MindTheClub profile by MMS. That list stays on your phone and is never uploaded anywhere.</p>
+
+            <h3 class="faq-q" id="q24">Can anyone see my IP address when I use MindTheClub?</h3>
+            <p class="faq-a">Your IP address is visible to Cloudflare while a connection is being set up, and to the person you are connecting to, because a direct connection requires each side to know where to send packets. This is inherent to peer-to-peer. Running a third-party VPN on your phone hides it from both. MindTheClub does not include a VPN of its own.</p>
+
+            <h3 class="faq-q" id="q25">Where are my messages stored, and what happens if I lose my phone?</h3>
+            <p class="faq-a">Your messages are stored only on your device and your contact's device. There is no cloud copy, so if you lose the phone and have no backup, the conversations are gone. MindTheClub offers an encrypted backup, using AES-256-GCM, that you create and control yourself.</p>
+
+            <h3 class="faq-q" id="q26">Does MindTheClub show ads or use trackers?</h3>
+            <p class="faq-a">No. MindTheClub carries no advertising, no analytics on your behaviour and no third-party tracking code. The subscription is the entire business model, which is stated plainly because a peer-to-peer design produces no data to sell even if the company wanted to.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s5">
+            <h2>Features</h2>
+
+            <h3 class="faq-q" id="q27">Does MindTheClub work without an internet connection?</h3>
+            <p class="faq-a">Yes, over Bluetooth. When two people are within Bluetooth range, MindTheClub connects their devices directly, with no internet and no Wi-Fi needed. Outside Bluetooth range an internet connection is required on both devices, because the message travels directly between the two phones rather than waiting on a server.</p>
+
+            <h3 class="faq-q" id="q28">Can I make video calls on MindTheClub?</h3>
+            <p class="faq-a">Yes. One-to-one audio and video calls are end-to-end encrypted and travel over the same direct peer-to-peer connection as your messages. Group video calls are routed through a media server, an SFU hosted on Cloudflare, because connecting everyone to everyone does not scale. The frames stay encrypted end to end, so the server forwards them without being able to view them.</p>
+
+            <h3 class="faq-q" id="q29">Can I send photos, videos and large files?</h3>
+            <p class="faq-a">Yes. Photos, videos, voice messages, documents, GIFs and stickers all travel over the same encrypted peer-to-peer channel as text. Large files are split into chunks and sent in sequence, so an interrupted transfer resumes from the missing chunks instead of restarting from the beginning.</p>
+
+            <h3 class="faq-q" id="q30">Can I back up my chats in MindTheClub?</h3>
+            <p class="faq-a">Yes. MindTheClub creates an encrypted backup, protected with AES-256-GCM, which you can restore onto a device. Automatic backup is available as well. The backup stays under your control rather than being uploaded to a company cloud, which also means losing both the phone and the backup means losing the conversations.</p>
+
+            <h3 class="faq-q" id="q31">How do I add a contact on MindTheClub?</h3>
+            <p class="faq-a">Four ways. Scan the other person's QR code face to face, tap an invite link they have sent you, scan a screenshot of their QR code shared through another app, or pick someone from your phone's contacts and send them your profile by MMS. Every method carries a public key fingerprint that your device verifies before accepting the contact.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s6">
+            <h2>Price and practical questions</h2>
+
+            <h3 class="faq-q" id="q32">How much does MindTheClub cost?</h3>
+            <p class="faq-a">MindTheClub costs EUR 1.20 a month after a 30-day free trial. That is the base price. Google Play sets the final amount for each country, converting the currency and adding local tax where it applies, and shows you that exact amount before you confirm. There is one tier only and every feature is included in it.</p>
+
+            <h3 class="faq-q" id="q33">Is there a free trial of MindTheClub?</h3>
+            <p class="faq-a">Yes, 30 days. The trial starts when you activate the app rather than when you download it, so days are not lost to an install you have not opened. No payment method is requested to begin, and if you do nothing at the end of the trial the app simply stops.</p>
+
+            <h3 class="faq-q" id="q34">How do I cancel my MindTheClub subscription?</h3>
+            <p class="faq-a">The subscription is billed by Google Play, so you cancel it in Play's subscription settings on your phone, at any time. It then runs until the end of the period already paid for and does not renew. MindTheClub is not involved in the billing and cannot charge you separately.</p>
+
+            <h3 class="faq-q" id="q35">Is MindTheClub available for iPhone?</h3>
+            <p class="faq-a">No. MindTheClub is Android only. A desktop version is currently in development, but there is no iOS app and no web version, so today both people in a conversation need an Android device. This is the app's clearest limitation.</p>
+
+            <h3 class="faq-q" id="q36">Which Android versions does MindTheClub support?</h3>
+            <p class="faq-a">MindTheClub runs on Android 8.0, API level 26, and later. Android 8.0 was released in 2017, so nearly every phone still in everyday use is covered. The app is distributed through Google Play, and the store listing confirms compatibility with your specific device before you install.</p>
+        </div>
+
+        <p class="faq-updated">Last updated: 5 September 2026</p>
+
+        <div class="back-link-container">
+            <a href="white-paper.html" class="back-link" style="display: block; margin-bottom: 20px;">Read the full white paper →</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Language">
+            <a href="faq.html" data-lang="en" lang="en" hreflang="en" class="active">English</a>
+            <a href="de/faq.html" data-lang="de" lang="de" hreflang="de">Deutsch</a>
+            <a href="es/faq.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="fr/faq.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="id/faq.html" data-lang="id" lang="id" hreflang="id">Bahasa Indonesia</a>
+            <a href="it/faq.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="pl/faq.html" data-lang="pl" lang="pl" hreflang="pl">Polski</a>
+            <a href="pt/faq.html" data-lang="pt" lang="pt" hreflang="pt">Português</a>
+        </nav>
+        <p><a href="privacy-policy.html">Privacy Policy &amp; Fair Use Policy</a></p>
+        <p class="trademark-notice">Google Play and the Google Play logo are trademarks of Google LLC. Google Firebase™ is a trademark of Google LLC. Cloudflare® is a registered trademark of Cloudflare, Inc.</p>
+    </footer>
+
+    <script src="utm-tracker.js" defer></script>
+    <script src="i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

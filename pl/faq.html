@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <link rel="icon" type="image/png" href="../images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Najczęstsze pytania | MindTheClub</title>
+
+    <meta name="description" content="Konkretne odpowiedzi o MindTheClub, szyfrowanym komunikatorze peer-to-peer na Androida: jak działa bez serwerów, jakie dane przechowuje, ile kosztuje i czego jeszcze nie potrafi.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/faq.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/faq.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/faq.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/faq.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/faq.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/faq.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/faq.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/faq.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/faq.html">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "pl",
+  "url": "https://www.mindtheclub.com/pl/faq.html",
+  "name": "Najczęstsze pytania",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "MindTheClub",
+    "url": "https://www.mindtheclub.com/"
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Czy istnieje komunikator, który nie wymaga numeru telefonu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak. MindTheClub działa bez numeru telefonu, bez adresu e-mail, bez nazwy użytkownika i bez hasła. Kontakt dodajesz, skanując jego kod QR na żywo albo klikając link z zaproszeniem, który Ci przyśle. Do rejestracji nie jest potrzebne nic z Twojej prawdziwej tożsamości i nic nie jest weryfikowane przez sieć telefoniczną."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czym jest MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub to szyfrowany komunikator peer-to-peer na Androida. Tekst, zdjęcia, pliki, wiadomości głosowe oraz połączenia audio i wideo płyną bezpośrednio z jednego urządzenia na drugie, bez firmowego serwera pośrodku, który przechowywałby treść. Kod jest otwarty na licencji GPLv3, a aplikacja kosztuje 1,20 EUR miesięcznie po 30 dniach bezpłatnego okresu próbnego."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czym jest komunikator peer-to-peer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Komunikator peer-to-peer wysyła wiadomość prosto z Twojego urządzenia na urządzenie odbiorcy, zamiast wgrywać ją na firmowy serwer, który potem ją przekazuje. Praktyczna różnica polega na tym, że żaden podmiot trzeci nigdy nie przechowuje kopii Twojej rozmowy, nawet zaszyfrowanej i czekającej na odbiór."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy MindTheClub ma serwery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub nie prowadzi żadnego serwera, który przechowywałby albo przekazywał treść wiadomości. Istnieją trzy małe usługi pomocnicze: Cloudflare Worker, który pomaga dwóm urządzeniom się odnaleźć, katalog Firebase z losowym identyfikatorem, tokenem powiadomień i kluczem publicznym, oraz Firebase Cloud Messaging do budzenia uśpionego telefonu. Żadna z nich nie widzi tego, co piszesz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy MindTheClub może czytać moje wiadomości?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie, i nie z powodu obietnicy. Treść wiadomości w ogóle nie trafia do infrastruktury MindTheClub, więc po stronie firmy nie ma skrzynki, bazy danych ani zaszyfrowanego archiwum, które można by odczytać, wydać albo utracić przy wycieku. Wiadomości istnieją wyłącznie na Twoim urządzeniu i na urządzeniu Twojego kontaktu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy MindTheClub jest oprogramowaniem open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak. MindTheClub jest wydany na licencji GPLv3, a pełny kod źródłowy jest opublikowany na GitHubie pod adresem github.com/AndreaVagheggi/mindtheclub. Możesz przeczytać kod, sprawdzić na jego podstawie twierdzenia z tej strony i samodzielnie zbudować aplikację, jeśli wolisz nie ufać wersji z Google Play."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kto tworzy MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub rozwija MindTheClub LTD, spółka zarejestrowana w Anglii i Walii pod numerem 17184156. Finansuje się w całości z abonamentu. Nie ma reklamodawców, nie ma inwestorów kupujących dostęp do danych użytkowników i żaden podmiot trzeci nie płaci za nic wewnątrz aplikacji."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak MindTheClub wysyła wiadomość bez serwera?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub otwiera bezpośredni szyfrowany kanał między dwoma telefonami przy użyciu WebRTC, tego samego otwartego standardu, który obsługuje rozmowy wideo w przeglądarkach. Twoja wiadomość wchodzi do kanału na Twoim urządzeniu i wychodzi na urządzeniu odbiorcy. Serwery biorą udział tylko w zestawieniu kanału, a nie w przenoszeniu tego, co wysyłasz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czym jest WebRTC i dlaczego MindTheClub go używa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WebRTC to otwarty standard, wbudowany w przeglądarki i telefony, który pozwala dwóm urządzeniom otworzyć bezpośrednie szyfrowane połączenie. MindTheClub go używa, bo jest to dojrzały i szeroko przeanalizowany sposób przesyłania danych między urządzeniami. Szyfrowanie w tranzycie to DTLS, standardowe szyfrowanie WebRTC, a nie coś wymyślonego na potrzeby tej aplikacji."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dlaczego MindTheClub używa Firebase Cloud Messaging, skoro nie ma serwerów?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ponieważ Android zawiesza połączenia sieciowe w uśpionym telefonie, a Firebase Cloud Messaging to mechanizm, który Android udostępnia do budzenia aplikacji. Sygnał budzenia nie zawiera treści wiadomości, tylko informację, żeby się połączyć. Tożsamość nadawcy jest zaszyfrowana wewnątrz ładunku, więc usługa powiadomień nie widzi, kto się z Tobą kontaktuje."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czym jest przekaźnik TURN i czy widzi moje wiadomości?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Przekaźnik TURN to rozwiązanie awaryjne używane wtedy, gdy dwa urządzenia nie mogą się połączyć bezpośrednio, zwykle przez restrykcyjną sieć komórkową albo zaporę. MindTheClub korzysta z usługi TURN Cloudflare. Przekaźnik przesyła zaszyfrowane pakiety i nie może ich odczytać. To jak kurier niosący zapieczętowaną kopertę: widzi adres, nie widzi zawartości."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czym jest sygnalizacja i co widzi serwer sygnalizacyjny?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sygnalizacja to krótka wymiana, której dwa urządzenia potrzebują, zanim otworzy się bezpośrednie połączenie: adresy sieciowe i parametry połączenia. MindTheClub prowadzi ją przez Cloudflare Worker, który nic nie zapisuje na dysku. Ładunek jest zaszyfrowany kluczem publicznym odbiorcy, a obie strony występują jako nieprzejrzyste identyfikatory zmieniające się w każdej sesji."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak MindTheClub sprawdza, że rozmawiam z właściwą osobą?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Twój kod QR i Twój link z zaproszeniem zawierają odcisk Twojego klucza publicznego. Gdy ktoś zeskanuje albo kliknie, jego urządzenie pobiera Twój klucz, samo wylicza odcisk i odrzuca klucz, jeśli się nie zgadza. Jego własny odcisk wraca następnie zapieczętowany Twoim zweryfikowanym kluczem, więc po jednym skanie sprawdzone są obie strony."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co się dzieje, gdy telefon drugiej osoby jest wyłączony albo offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wiadomość czeka na Twoim urządzeniu i zostaje dostarczona później, automatycznie. MindTheClub korzysta z WorkManagera Androida, żeby ponawiać próby mimo restartów aplikacji, restartów telefonu i optymalizacji baterii. W międzyczasie nic nie leży na serwerze, dlatego dostarczenie nie jest natychmiastowe, gdy odbiorca jest nieosiągalny, ale dochodzi do skutku."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak działają wiadomości grupowe bez serwera?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub używa protokołu gossip. Nadawca dostarcza wiadomość tym członkom grupy, którzy są w danej chwili osiągalni, a ci przekazują ją dalej osobom, do których nadawca nie dotarł. Członek, który wejdzie później i zauważy lukę, prosi o brakującą wiadomość każdego, kto ją ma, a nie tylko pierwotnego nadawcę."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy czaty grupowe w MindTheClub są mniej bezpieczne niż rozmowy jeden na jeden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie, z jednym wyjątkiem, który warto powiedzieć wprost. Wiadomości, zdjęcia i pliki w grupach korzystają z tego samego szyfrowania end-to-end i tego samego bezpośredniego przesyłu między urządzeniami co rozmowy jeden na jeden, bez słabszego poziomu i bez grupowej skrzynki na serwerze. Grupowe rozmowy wideo pozostają szyfrowane end-to-end, ale przechodzą przez serwer multimedialny zamiast płynąć wprost między urządzeniami."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czym MindTheClub różni się od Signala?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Signal jest szyfrowany end-to-end, ale kieruje wiadomości przez własne serwery i w większości krajów nadal prosi o numer telefonu. MindTheClub nie prosi o numer i nie kieruje treści wiadomości nigdzie: idzie ona z urządzenia na urządzenie. Signal jest znacznie większy, dojrzalszy i niezależnie audytowany, czego MindTheClub jeszcze nie ma."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czym MindTheClub różni się od WhatsAppa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WhatsApp szyfruje treść wiadomości, ale wymaga numeru telefonu, przechowuje metadane konta i połączeń oraz należy do firmy reklamowej. MindTheClub nie wymaga numeru, trzyma tylko losowy identyfikator, token powiadomień i klucz publiczny, a płacą za niego użytkownicy. WhatsApp jest darmowy i ma miliardy użytkowników; MindTheClub jest płatny i ma małą bazę."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czym MindTheClub różni się od Session, SimpleX czy Briara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wszystkie cztery unikają numeru telefonu, ale inaczej kierują ruch. Session przesyła wiadomości przez sieć węzłów usługowych, SimpleX przez serwery przekaźnikowe, a Briar łączy się przez Tor albo lokalny Bluetooth bez usługi powiadomień. MindTheClub otwiera bezpośredni kanał WebRTC między dwoma telefonami i używa powiadomienia budzącego, więc wiadomości docierają bez uruchomionej aplikacji."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jakie są ograniczenia MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub jest dziś tylko na Androida. Wersja na komputer jest w przygotowaniu, nie ma wersji na iPhone'a ani wersji webowej. Aplikacja nie przeszła jeszcze niezależnego audytu bezpieczeństwa. Baza użytkowników jest mała, więc większości Twoich kontaktów jeszcze tu nie będzie. Grupowe rozmowy wideo przechodzą przez serwer multimedialny, a nie bezpośrednio między urządzeniami."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jakie dane zbiera MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dla każdego użytkownika MindTheClub trzyma w katalogu routingu trzy rzeczy: losowo wygenerowany identyfikator, token powiadomień push i klucz publiczny. Żadnego imienia, adresu e-mail, numeru telefonu, książki adresowej ani treści wiadomości. Adresy IP przechodzą przejściowo przez Cloudflare podczas zestawiania połączenia i nie są przez MindTheClub przechowywane."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy MindTheClub wie, z kim rozmawiam?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie. Po stronie serwera nie ma żadnego zapisu, kto do kogo pisze. Identyfikatory sygnalizacyjne pochodzą z losowego identyfikatora kanału na sesję, więc zmieniają się za każdym razem i nie da się ich powiązać między sesjami. Powiadomienie budzące używa konstrukcji zapieczętowanego nadawcy: tożsamość piszącego pozostaje zaszyfrowana i niewidoczna dla usługi powiadomień."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy MindTheClub potrzebuje dostępu do moich kontaktów, e-maila albo imienia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie. MindTheClub nigdy nie pyta o imię ani adres e-mail i działa bez dotykania książki adresowej. Jedna opcjonalna funkcja prosi o zgodę na odczyt kontaktów: pozwala wybrać osobę i wysłać jej Twój profil MindTheClub przez MMS. Ta lista zostaje na Twoim telefonie i nigdzie nie jest wysyłana."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy ktoś może zobaczyć mój adres IP, gdy używam MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Twój adres IP jest widoczny dla Cloudflare podczas zestawiania połączenia oraz dla osoby, z którą się łączysz, bo bezpośrednie połączenie wymaga, żeby każda strona wiedziała, dokąd wysyłać pakiety. To cecha samego peer-to-peer. Zewnętrzny VPN na telefonie ukrywa adres przed obiema stronami. MindTheClub nie ma własnego VPN-a."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gdzie są przechowywane moje wiadomości i co się stanie, jeśli zgubię telefon?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Twoje wiadomości są przechowywane tylko na Twoim urządzeniu i na urządzeniu Twojego kontaktu. Nie ma kopii w chmurze, więc jeśli zgubisz telefon i nie masz kopii zapasowej, rozmowy przepadają. MindTheClub oferuje szyfrowaną kopię zapasową, chronioną AES-256-GCM, którą tworzysz i kontrolujesz sam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy MindTheClub pokazuje reklamy albo używa trackerów?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie. MindTheClub nie zawiera reklam, nie zbiera analityki Twojego zachowania i nie ma kodu śledzącego firm trzecich. Abonament to cały model biznesowy, co można powiedzieć wprost, bo architektura peer-to-peer nie wytwarza danych do sprzedania, nawet gdyby firma tego chciała."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy MindTheClub działa bez połączenia z internetem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak, przez Bluetooth. Gdy dwie osoby są w zasięgu Bluetootha, MindTheClub łączy ich urządzenia bezpośrednio, bez internetu i bez Wi-Fi. Poza zasięgiem Bluetootha potrzebne jest połączenie z internetem na obu urządzeniach, bo wiadomość idzie wprost między dwoma telefonami, zamiast czekać na serwerze."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy mogę prowadzić rozmowy wideo w MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak. Rozmowy audio i wideo jeden na jeden są szyfrowane end-to-end i korzystają z tego samego bezpośredniego połączenia peer-to-peer co wiadomości. Grupowe rozmowy wideo idą przez serwer multimedialny, SFU hostowany w Cloudflare, bo łączenie każdego z każdym się nie skaluje. Klatki pozostają szyfrowane end-to-end, więc serwer je rozsyła, nie mogąc ich zobaczyć."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy mogę wysyłać zdjęcia, filmy i duże pliki?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak. Zdjęcia, filmy, wiadomości głosowe, dokumenty, GIF-y i naklejki idą tym samym szyfrowanym kanałem peer-to-peer co tekst. Duże pliki są dzielone na części i wysyłane po kolei, więc przerwany transfer wznawia się od brakujących części, zamiast zaczynać od początku."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy mogę zrobić kopię zapasową rozmów w MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak. MindTheClub tworzy szyfrowaną kopię zapasową, chronioną AES-256-GCM, którą można przywrócić na urządzeniu. Dostępna jest też kopia automatyczna. Kopia zostaje pod Twoją kontrolą, zamiast trafiać do firmowej chmury, co oznacza też, że utrata jednocześnie telefonu i kopii oznacza utratę rozmów."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak dodać kontakt w MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Na cztery sposoby. Zeskanuj kod QR drugiej osoby na żywo, kliknij link z zaproszeniem, który Ci przysłała, zeskanuj zrzut ekranu jej kodu QR udostępniony inną aplikacją, albo wybierz kogoś z kontaktów w telefonie i wyślij mu swój profil przez MMS. Każdy sposób niesie odcisk klucza publicznego, który Twoje urządzenie weryfikuje przed przyjęciem kontaktu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ile kosztuje MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub kosztuje 1,20 EUR miesięcznie po 30 dniach bezpłatnego okresu próbnego. To cena bazowa. Google Play ustala kwotę końcową dla każdego kraju, przelicza walutę i dolicza lokalny podatek tam, gdzie obowiązuje, a dokładną kwotę pokazuje przed potwierdzeniem. Jest tylko jeden wariant i zawiera wszystkie funkcje."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy jest bezpłatny okres próbny MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak, 30 dni. Okres próbny zaczyna się, gdy aktywujesz aplikację, a nie gdy ją pobierzesz, więc nie tracisz dni na instalację, której jeszcze nie otworzyłeś. Na start nie jest wymagana metoda płatności, a jeśli po zakończeniu okresu próbnego nic nie zrobisz, aplikacja po prostu przestaje działać."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak anulować subskrypcję MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subskrypcję rozlicza Google Play, więc anulujesz ją w ustawieniach subskrypcji Play na telefonie, w dowolnym momencie. Potem działa do końca opłaconego okresu i się nie odnawia. MindTheClub nie uczestniczy w rozliczeniach i nie może obciążyć Cię osobno."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy MindTheClub jest dostępny na iPhone'a?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie. MindTheClub jest tylko na Androida. Wersja na komputer jest obecnie w przygotowaniu, ale nie ma aplikacji na iOS ani wersji webowej, więc dziś obie osoby w rozmowie potrzebują urządzenia z Androidem. To najbardziej widoczne ograniczenie aplikacji."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Które wersje Androida obsługuje MindTheClub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MindTheClub działa na Androidzie 8.0, poziom API 26, i nowszych. Android 8.0 ukazał się w 2017 roku, więc objęty jest niemal każdy telefon nadal używany na co dzień. Aplikacja jest dystrybuowana przez Google Play, a karta w sklepie potwierdza zgodność z Twoim urządzeniem przed instalacją."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>Najczęstsze pytania</h1>
+            <p class="subtitle">Krótkie, konkretne odpowiedzi o tym, jak działa MindTheClub, co przechowuje, ile kosztuje i czego jeszcze nie potrafi.</p>
+        </header>
+
+        <nav class="faq-toc" aria-label="Sekcje">
+            <ul>
+                <li><a href="#s1">Podstawy</a></li>
+                <li><a href="#s2">Jak to działa</a></li>
+                <li><a href="#s3">Porównania</a></li>
+                <li><a href="#s4">Prywatność i dane</a></li>
+                <li><a href="#s5">Funkcje</a></li>
+                <li><a href="#s6">Cena i sprawy praktyczne</a></li>
+            </ul>
+        </nav>
+
+        <div class="wp-section faq-section" id="s1">
+            <h2>Podstawy</h2>
+
+            <h3 class="faq-q" id="q01">Czy istnieje komunikator, który nie wymaga numeru telefonu?</h3>
+            <p class="faq-a">Tak. MindTheClub działa bez numeru telefonu, bez adresu e-mail, bez nazwy użytkownika i bez hasła. Kontakt dodajesz, skanując jego kod QR na żywo albo klikając link z zaproszeniem, który Ci przyśle. Do rejestracji nie jest potrzebne nic z Twojej prawdziwej tożsamości i nic nie jest weryfikowane przez sieć telefoniczną.</p>
+
+            <h3 class="faq-q" id="q02">Czym jest MindTheClub?</h3>
+            <p class="faq-a">MindTheClub to szyfrowany komunikator peer-to-peer na Androida. Tekst, zdjęcia, pliki, wiadomości głosowe oraz połączenia audio i wideo płyną bezpośrednio z jednego urządzenia na drugie, bez firmowego serwera pośrodku, który przechowywałby treść. Kod jest otwarty na licencji GPLv3, a aplikacja kosztuje 1,20 EUR miesięcznie po 30 dniach bezpłatnego okresu próbnego.</p>
+
+            <h3 class="faq-q" id="q03">Czym jest komunikator peer-to-peer?</h3>
+            <p class="faq-a">Komunikator peer-to-peer wysyła wiadomość prosto z Twojego urządzenia na urządzenie odbiorcy, zamiast wgrywać ją na firmowy serwer, który potem ją przekazuje. Praktyczna różnica polega na tym, że żaden podmiot trzeci nigdy nie przechowuje kopii Twojej rozmowy, nawet zaszyfrowanej i czekającej na odbiór.</p>
+
+            <h3 class="faq-q" id="q04">Czy MindTheClub ma serwery?</h3>
+            <p class="faq-a">MindTheClub nie prowadzi żadnego serwera, który przechowywałby albo przekazywał treść wiadomości. Istnieją trzy małe usługi pomocnicze: Cloudflare Worker, który pomaga dwóm urządzeniom się odnaleźć, katalog Firebase z losowym identyfikatorem, tokenem powiadomień i kluczem publicznym, oraz Firebase Cloud Messaging do budzenia uśpionego telefonu. Żadna z nich nie widzi tego, co piszesz.</p>
+
+            <h3 class="faq-q" id="q05">Czy MindTheClub może czytać moje wiadomości?</h3>
+            <p class="faq-a">Nie, i nie z powodu obietnicy. Treść wiadomości w ogóle nie trafia do infrastruktury MindTheClub, więc po stronie firmy nie ma skrzynki, bazy danych ani zaszyfrowanego archiwum, które można by odczytać, wydać albo utracić przy wycieku. Wiadomości istnieją wyłącznie na Twoim urządzeniu i na urządzeniu Twojego kontaktu.</p>
+
+            <h3 class="faq-q" id="q06">Czy MindTheClub jest oprogramowaniem open source?</h3>
+            <p class="faq-a">Tak. MindTheClub jest wydany na licencji GPLv3, a pełny kod źródłowy jest opublikowany na GitHubie pod adresem github.com/AndreaVagheggi/mindtheclub. Możesz przeczytać kod, sprawdzić na jego podstawie twierdzenia z tej strony i samodzielnie zbudować aplikację, jeśli wolisz nie ufać wersji z Google Play.</p>
+
+            <h3 class="faq-q" id="q07">Kto tworzy MindTheClub?</h3>
+            <p class="faq-a">MindTheClub rozwija MindTheClub LTD, spółka zarejestrowana w Anglii i Walii pod numerem 17184156. Finansuje się w całości z abonamentu. Nie ma reklamodawców, nie ma inwestorów kupujących dostęp do danych użytkowników i żaden podmiot trzeci nie płaci za nic wewnątrz aplikacji.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s2">
+            <h2>Jak to działa</h2>
+
+            <h3 class="faq-q" id="q08">Jak MindTheClub wysyła wiadomość bez serwera?</h3>
+            <p class="faq-a">MindTheClub otwiera bezpośredni szyfrowany kanał między dwoma telefonami przy użyciu WebRTC, tego samego otwartego standardu, który obsługuje rozmowy wideo w przeglądarkach. Twoja wiadomość wchodzi do kanału na Twoim urządzeniu i wychodzi na urządzeniu odbiorcy. Serwery biorą udział tylko w zestawieniu kanału, a nie w przenoszeniu tego, co wysyłasz.</p>
+
+            <h3 class="faq-q" id="q09">Czym jest WebRTC i dlaczego MindTheClub go używa?</h3>
+            <p class="faq-a">WebRTC to otwarty standard, wbudowany w przeglądarki i telefony, który pozwala dwóm urządzeniom otworzyć bezpośrednie szyfrowane połączenie. MindTheClub go używa, bo jest to dojrzały i szeroko przeanalizowany sposób przesyłania danych między urządzeniami. Szyfrowanie w tranzycie to DTLS, standardowe szyfrowanie WebRTC, a nie coś wymyślonego na potrzeby tej aplikacji.</p>
+
+            <h3 class="faq-q" id="q10">Dlaczego MindTheClub używa Firebase Cloud Messaging, skoro nie ma serwerów?</h3>
+            <p class="faq-a">Ponieważ Android zawiesza połączenia sieciowe w uśpionym telefonie, a Firebase Cloud Messaging to mechanizm, który Android udostępnia do budzenia aplikacji. Sygnał budzenia nie zawiera treści wiadomości, tylko informację, żeby się połączyć. Tożsamość nadawcy jest zaszyfrowana wewnątrz ładunku, więc usługa powiadomień nie widzi, kto się z Tobą kontaktuje.</p>
+
+            <h3 class="faq-q" id="q11">Czym jest przekaźnik TURN i czy widzi moje wiadomości?</h3>
+            <p class="faq-a">Przekaźnik TURN to rozwiązanie awaryjne używane wtedy, gdy dwa urządzenia nie mogą się połączyć bezpośrednio, zwykle przez restrykcyjną sieć komórkową albo zaporę. MindTheClub korzysta z usługi TURN Cloudflare. Przekaźnik przesyła zaszyfrowane pakiety i nie może ich odczytać. To jak kurier niosący zapieczętowaną kopertę: widzi adres, nie widzi zawartości.</p>
+
+            <h3 class="faq-q" id="q12">Czym jest sygnalizacja i co widzi serwer sygnalizacyjny?</h3>
+            <p class="faq-a">Sygnalizacja to krótka wymiana, której dwa urządzenia potrzebują, zanim otworzy się bezpośrednie połączenie: adresy sieciowe i parametry połączenia. MindTheClub prowadzi ją przez Cloudflare Worker, który nic nie zapisuje na dysku. Ładunek jest zaszyfrowany kluczem publicznym odbiorcy, a obie strony występują jako nieprzejrzyste identyfikatory zmieniające się w każdej sesji.</p>
+
+            <h3 class="faq-q" id="q13">Jak MindTheClub sprawdza, że rozmawiam z właściwą osobą?</h3>
+            <p class="faq-a">Twój kod QR i Twój link z zaproszeniem zawierają odcisk Twojego klucza publicznego. Gdy ktoś zeskanuje albo kliknie, jego urządzenie pobiera Twój klucz, samo wylicza odcisk i odrzuca klucz, jeśli się nie zgadza. Jego własny odcisk wraca następnie zapieczętowany Twoim zweryfikowanym kluczem, więc po jednym skanie sprawdzone są obie strony.</p>
+
+            <h3 class="faq-q" id="q14">Co się dzieje, gdy telefon drugiej osoby jest wyłączony albo offline?</h3>
+            <p class="faq-a">Wiadomość czeka na Twoim urządzeniu i zostaje dostarczona później, automatycznie. MindTheClub korzysta z WorkManagera Androida, żeby ponawiać próby mimo restartów aplikacji, restartów telefonu i optymalizacji baterii. W międzyczasie nic nie leży na serwerze, dlatego dostarczenie nie jest natychmiastowe, gdy odbiorca jest nieosiągalny, ale dochodzi do skutku.</p>
+
+            <h3 class="faq-q" id="q15">Jak działają wiadomości grupowe bez serwera?</h3>
+            <p class="faq-a">MindTheClub używa protokołu gossip. Nadawca dostarcza wiadomość tym członkom grupy, którzy są w danej chwili osiągalni, a ci przekazują ją dalej osobom, do których nadawca nie dotarł. Członek, który wejdzie później i zauważy lukę, prosi o brakującą wiadomość każdego, kto ją ma, a nie tylko pierwotnego nadawcę.</p>
+
+            <h3 class="faq-q" id="q16">Czy czaty grupowe w MindTheClub są mniej bezpieczne niż rozmowy jeden na jeden?</h3>
+            <p class="faq-a">Nie, z jednym wyjątkiem, który warto powiedzieć wprost. Wiadomości, zdjęcia i pliki w grupach korzystają z tego samego szyfrowania end-to-end i tego samego bezpośredniego przesyłu między urządzeniami co rozmowy jeden na jeden, bez słabszego poziomu i bez grupowej skrzynki na serwerze. Grupowe rozmowy wideo pozostają szyfrowane end-to-end, ale przechodzą przez serwer multimedialny zamiast płynąć wprost między urządzeniami.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s3">
+            <h2>Porównania</h2>
+
+            <h3 class="faq-q" id="q17">Czym MindTheClub różni się od Signala?</h3>
+            <p class="faq-a">Signal jest szyfrowany end-to-end, ale kieruje wiadomości przez własne serwery i w większości krajów nadal prosi o numer telefonu. MindTheClub nie prosi o numer i nie kieruje treści wiadomości nigdzie: idzie ona z urządzenia na urządzenie. Signal jest znacznie większy, dojrzalszy i niezależnie audytowany, czego MindTheClub jeszcze nie ma.</p>
+
+            <h3 class="faq-q" id="q18">Czym MindTheClub różni się od WhatsAppa?</h3>
+            <p class="faq-a">WhatsApp szyfruje treść wiadomości, ale wymaga numeru telefonu, przechowuje metadane konta i połączeń oraz należy do firmy reklamowej. MindTheClub nie wymaga numeru, trzyma tylko losowy identyfikator, token powiadomień i klucz publiczny, a płacą za niego użytkownicy. WhatsApp jest darmowy i ma miliardy użytkowników; MindTheClub jest płatny i ma małą bazę.</p>
+
+            <h3 class="faq-q" id="q19">Czym MindTheClub różni się od Session, SimpleX czy Briara?</h3>
+            <p class="faq-a">Wszystkie cztery unikają numeru telefonu, ale inaczej kierują ruch. Session przesyła wiadomości przez sieć węzłów usługowych, SimpleX przez serwery przekaźnikowe, a Briar łączy się przez Tor albo lokalny Bluetooth bez usługi powiadomień. MindTheClub otwiera bezpośredni kanał WebRTC między dwoma telefonami i używa powiadomienia budzącego, więc wiadomości docierają bez uruchomionej aplikacji.</p>
+
+            <h3 class="faq-q" id="q20">Jakie są ograniczenia MindTheClub?</h3>
+            <p class="faq-a">MindTheClub jest dziś tylko na Androida. Wersja na komputer jest w przygotowaniu, nie ma wersji na iPhone'a ani wersji webowej. Aplikacja nie przeszła jeszcze niezależnego audytu bezpieczeństwa. Baza użytkowników jest mała, więc większości Twoich kontaktów jeszcze tu nie będzie. Grupowe rozmowy wideo przechodzą przez serwer multimedialny, a nie bezpośrednio między urządzeniami.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s4">
+            <h2>Prywatność i dane</h2>
+
+            <h3 class="faq-q" id="q21">Jakie dane zbiera MindTheClub?</h3>
+            <p class="faq-a">Dla każdego użytkownika MindTheClub trzyma w katalogu routingu trzy rzeczy: losowo wygenerowany identyfikator, token powiadomień push i klucz publiczny. Żadnego imienia, adresu e-mail, numeru telefonu, książki adresowej ani treści wiadomości. Adresy IP przechodzą przejściowo przez Cloudflare podczas zestawiania połączenia i nie są przez MindTheClub przechowywane.</p>
+
+            <h3 class="faq-q" id="q22">Czy MindTheClub wie, z kim rozmawiam?</h3>
+            <p class="faq-a">Nie. Po stronie serwera nie ma żadnego zapisu, kto do kogo pisze. Identyfikatory sygnalizacyjne pochodzą z losowego identyfikatora kanału na sesję, więc zmieniają się za każdym razem i nie da się ich powiązać między sesjami. Powiadomienie budzące używa konstrukcji zapieczętowanego nadawcy: tożsamość piszącego pozostaje zaszyfrowana i niewidoczna dla usługi powiadomień.</p>
+
+            <h3 class="faq-q" id="q23">Czy MindTheClub potrzebuje dostępu do moich kontaktów, e-maila albo imienia?</h3>
+            <p class="faq-a">Nie. MindTheClub nigdy nie pyta o imię ani adres e-mail i działa bez dotykania książki adresowej. Jedna opcjonalna funkcja prosi o zgodę na odczyt kontaktów: pozwala wybrać osobę i wysłać jej Twój profil MindTheClub przez MMS. Ta lista zostaje na Twoim telefonie i nigdzie nie jest wysyłana.</p>
+
+            <h3 class="faq-q" id="q24">Czy ktoś może zobaczyć mój adres IP, gdy używam MindTheClub?</h3>
+            <p class="faq-a">Twój adres IP jest widoczny dla Cloudflare podczas zestawiania połączenia oraz dla osoby, z którą się łączysz, bo bezpośrednie połączenie wymaga, żeby każda strona wiedziała, dokąd wysyłać pakiety. To cecha samego peer-to-peer. Zewnętrzny VPN na telefonie ukrywa adres przed obiema stronami. MindTheClub nie ma własnego VPN-a.</p>
+
+            <h3 class="faq-q" id="q25">Gdzie są przechowywane moje wiadomości i co się stanie, jeśli zgubię telefon?</h3>
+            <p class="faq-a">Twoje wiadomości są przechowywane tylko na Twoim urządzeniu i na urządzeniu Twojego kontaktu. Nie ma kopii w chmurze, więc jeśli zgubisz telefon i nie masz kopii zapasowej, rozmowy przepadają. MindTheClub oferuje szyfrowaną kopię zapasową, chronioną AES-256-GCM, którą tworzysz i kontrolujesz sam.</p>
+
+            <h3 class="faq-q" id="q26">Czy MindTheClub pokazuje reklamy albo używa trackerów?</h3>
+            <p class="faq-a">Nie. MindTheClub nie zawiera reklam, nie zbiera analityki Twojego zachowania i nie ma kodu śledzącego firm trzecich. Abonament to cały model biznesowy, co można powiedzieć wprost, bo architektura peer-to-peer nie wytwarza danych do sprzedania, nawet gdyby firma tego chciała.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s5">
+            <h2>Funkcje</h2>
+
+            <h3 class="faq-q" id="q27">Czy MindTheClub działa bez połączenia z internetem?</h3>
+            <p class="faq-a">Tak, przez Bluetooth. Gdy dwie osoby są w zasięgu Bluetootha, MindTheClub łączy ich urządzenia bezpośrednio, bez internetu i bez Wi-Fi. Poza zasięgiem Bluetootha potrzebne jest połączenie z internetem na obu urządzeniach, bo wiadomość idzie wprost między dwoma telefonami, zamiast czekać na serwerze.</p>
+
+            <h3 class="faq-q" id="q28">Czy mogę prowadzić rozmowy wideo w MindTheClub?</h3>
+            <p class="faq-a">Tak. Rozmowy audio i wideo jeden na jeden są szyfrowane end-to-end i korzystają z tego samego bezpośredniego połączenia peer-to-peer co wiadomości. Grupowe rozmowy wideo idą przez serwer multimedialny, SFU hostowany w Cloudflare, bo łączenie każdego z każdym się nie skaluje. Klatki pozostają szyfrowane end-to-end, więc serwer je rozsyła, nie mogąc ich zobaczyć.</p>
+
+            <h3 class="faq-q" id="q29">Czy mogę wysyłać zdjęcia, filmy i duże pliki?</h3>
+            <p class="faq-a">Tak. Zdjęcia, filmy, wiadomości głosowe, dokumenty, GIF-y i naklejki idą tym samym szyfrowanym kanałem peer-to-peer co tekst. Duże pliki są dzielone na części i wysyłane po kolei, więc przerwany transfer wznawia się od brakujących części, zamiast zaczynać od początku.</p>
+
+            <h3 class="faq-q" id="q30">Czy mogę zrobić kopię zapasową rozmów w MindTheClub?</h3>
+            <p class="faq-a">Tak. MindTheClub tworzy szyfrowaną kopię zapasową, chronioną AES-256-GCM, którą można przywrócić na urządzeniu. Dostępna jest też kopia automatyczna. Kopia zostaje pod Twoją kontrolą, zamiast trafiać do firmowej chmury, co oznacza też, że utrata jednocześnie telefonu i kopii oznacza utratę rozmów.</p>
+
+            <h3 class="faq-q" id="q31">Jak dodać kontakt w MindTheClub?</h3>
+            <p class="faq-a">Na cztery sposoby. Zeskanuj kod QR drugiej osoby na żywo, kliknij link z zaproszeniem, który Ci przysłała, zeskanuj zrzut ekranu jej kodu QR udostępniony inną aplikacją, albo wybierz kogoś z kontaktów w telefonie i wyślij mu swój profil przez MMS. Każdy sposób niesie odcisk klucza publicznego, który Twoje urządzenie weryfikuje przed przyjęciem kontaktu.</p>
+        </div>
+
+        <div class="wp-section faq-section" id="s6">
+            <h2>Cena i sprawy praktyczne</h2>
+
+            <h3 class="faq-q" id="q32">Ile kosztuje MindTheClub?</h3>
+            <p class="faq-a">MindTheClub kosztuje 1,20 EUR miesięcznie po 30 dniach bezpłatnego okresu próbnego. To cena bazowa. Google Play ustala kwotę końcową dla każdego kraju, przelicza walutę i dolicza lokalny podatek tam, gdzie obowiązuje, a dokładną kwotę pokazuje przed potwierdzeniem. Jest tylko jeden wariant i zawiera wszystkie funkcje.</p>
+
+            <h3 class="faq-q" id="q33">Czy jest bezpłatny okres próbny MindTheClub?</h3>
+            <p class="faq-a">Tak, 30 dni. Okres próbny zaczyna się, gdy aktywujesz aplikację, a nie gdy ją pobierzesz, więc nie tracisz dni na instalację, której jeszcze nie otworzyłeś. Na start nie jest wymagana metoda płatności, a jeśli po zakończeniu okresu próbnego nic nie zrobisz, aplikacja po prostu przestaje działać.</p>
+
+            <h3 class="faq-q" id="q34">Jak anulować subskrypcję MindTheClub?</h3>
+            <p class="faq-a">Subskrypcję rozlicza Google Play, więc anulujesz ją w ustawieniach subskrypcji Play na telefonie, w dowolnym momencie. Potem działa do końca opłaconego okresu i się nie odnawia. MindTheClub nie uczestniczy w rozliczeniach i nie może obciążyć Cię osobno.</p>
+
+            <h3 class="faq-q" id="q35">Czy MindTheClub jest dostępny na iPhone'a?</h3>
+            <p class="faq-a">Nie. MindTheClub jest tylko na Androida. Wersja na komputer jest obecnie w przygotowaniu, ale nie ma aplikacji na iOS ani wersji webowej, więc dziś obie osoby w rozmowie potrzebują urządzenia z Androidem. To najbardziej widoczne ograniczenie aplikacji.</p>
+
+            <h3 class="faq-q" id="q36">Które wersje Androida obsługuje MindTheClub?</h3>
+            <p class="faq-a">MindTheClub działa na Androidzie 8.0, poziom API 26, i nowszych. Android 8.0 ukazał się w 2017 roku, więc objęty jest niemal każdy telefon nadal używany na co dzień. Aplikacja jest dystrybuowana przez Google Play, a karta w sklepie potwierdza zgodność z Twoim urządzeniem przed instalacją.</p>
+        </div>
+
+        <p class="faq-updated">Ostatnia aktualizacja: 5 września 2026</p>
+
+        <div class="back-link-container">
+            <a href="white-paper.html" class="back-link" style="display: block; margin-bottom: 20px;">Przeczytaj pełny white paper →</a>
+            <a href="index.html" class="back-link">← Powrót do strony głównej</a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Language">
+            <a href="../faq.html" data-lang="en" lang="en" hreflang="en">English</a>
+            <a href="../de/faq.html" data-lang="de" lang="de" hreflang="de">Deutsch</a>
+            <a href="../es/faq.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="../fr/faq.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="../id/faq.html" data-lang="id" lang="id" hreflang="id">Bahasa Indonesia</a>
+            <a href="../it/faq.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="faq.html" data-lang="pl" lang="pl" hreflang="pl" class="active">Polski</a>
+            <a href="../pt/faq.html" data-lang="pt" lang="pt" hreflang="pt">Português</a>
+        </nav>
+        <p><a href="../privacy-policy.html">Polityka prywatności i zasady uczciwego korzystania (po angielsku)</a></p>
+        <p class="trademark-notice">Google Play i logo Google Play są znakami towarowymi Google LLC. Google Firebase™ jest znakiem towarowym Google LLC. Cloudflare® jest zastrzeżonym znakiem towarowym Cloudflare, Inc.</p>
+    </footer>
+
+    <script src="../utm-tracker.js" defer></script>
+    <script src="../i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

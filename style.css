@@ -1283,3 +1283,82 @@ body {
     color: #1c1c1e;
     text-decoration: underline;
 }
+
+/* ============================================
+   FAQ PAGE
+   Reuses .wp-container / .wp-section from the
+   white-paper layout; only the question list,
+   the section index and the updated line are new.
+   ============================================ */
+
+.faq-toc {
+    background: #f3f7ff;
+    border: 1px solid #d6e4ff;
+    border-left: 4px solid #2196F3;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 50px;
+}
+
+.faq-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+}
+
+.faq-toc a {
+    color: #007aff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.faq-toc a:hover {
+    text-decoration: underline;
+}
+
+.faq-section {
+    margin-bottom: 45px;
+    scroll-margin-top: 20px;
+}
+
+.wp-section h3.faq-q {
+    font-size: 1.15em;
+    font-weight: 600;
+    color: #1c1c1e;
+    line-height: 1.45;
+    margin-top: 30px;
+    margin-bottom: 8px;
+    scroll-margin-top: 20px;
+}
+
+.wp-section h3.faq-q:first-of-type {
+    margin-top: 18px;
+}
+
+.faq-a {
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: #6c6c70;
+    margin-bottom: 0;
+}
+
+.faq-updated {
+    font-size: 0.9em;
+    color: #8e8e93;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+    .faq-toc ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .wp-section h3.faq-q {
+        font-size: 1.08em;
+    }
+}
