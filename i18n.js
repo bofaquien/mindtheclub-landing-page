@@ -7,7 +7,7 @@
     var TRANSLATED_PAGES = [
         'index.html', 'how-mtc-connects.html', 'white-paper.html',
         'how-to-guide.html', 'pricing.html', 'faq.html',
-        'contact.html'
+        'contact.html', 'fdroid.html'
     ];
 
     function storedLang() {

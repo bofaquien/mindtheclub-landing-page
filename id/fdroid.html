@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <link rel="icon" type="image/png" href="../images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanpa layanan Google | MindTheClub</title>
+
+    <meta name="description" content="MindTheClub untuk ponsel tanpa layanan Google: dipasang dari repositori F-Droid kami, dengan notifikasi lewat UnifiedPush dan pembaruan seperti aplikasi lain.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/fdroid.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/fdroid.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/fdroid.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/fdroid.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/fdroid.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/fdroid.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/fdroid.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/fdroid.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/fdroid.html">
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>MindTheClub tanpa layanan Google</h1>
+            <p class="subtitle">Aplikasi yang sama, untuk ponsel tanpa Play Store dan tanpa layanan Google. Anda memasangnya dari repositori kami, dan pembaruan datang seperti pada aplikasi lain.</p>
+        </header>
+
+        <div class="fdroid-cta">
+            <a href="https://fdroid.mindtheclub.com" class="fdroid-badge" aria-label="Pasang dari repositori F-Droid kami">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM4 17a1 1 0 0 1 1 1v1h14v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/>
+                </svg>
+                <span class="fdroid-badge-text">
+                    <span class="fdroid-badge-top">Pasang dari</span>
+                    <span class="fdroid-badge-main">Repositori F-Droid kami</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="wp-section">
+            <h2>Mengapa repositori sendiri dan bukan katalog resmi F-Droid</h2>
+            <p>Katalog resmi F-Droid hanya menerima aplikasi yang seluruh komponennya perangkat lunak bebas. MindTheClub memakai Firebase Firestore, yang bukan, jadi tidak bisa masuk ke sana. Kami memilih mengatakannya terus terang daripada memakai lencana resmi mereka dan membiarkan Anda tahu setelah menekannya.</p>
+            <p>Karena itu kami menjalankan repositori sendiri. Caranya sama: tambahkan sekali saja ke klien F-Droid mana pun, dan sejak itu MindTheClub muncul di katalog Anda serta diperbarui seperti yang lain. Repositori ini ditandatangani dengan kunci kami, dan klien Anda memeriksa tanda tangan itu pada setiap pembaruan.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Apa yang kami pakai dari Google, dan mengapa</h2>
+            <p>Notifikasi pada versi ini tidak lewat Firebase. Semuanya memakai UnifiedPush, dengan distributor pilihan Anda, jadi tidak ada komponen Google yang dibutuhkan untuk membangunkan aplikasi.</p>
+            <p>Yang tersisa adalah Firestore, dan alasannya interoperabilitas. Pengguna versi ini dan pengguna versi Play adalah satu jaringan: mereka saling menemukan lewat satu direktori identitas bersama. Jika versi ini punya direktori sendiri, kedua sisi tidak bisa saling bicara, dan inti MindTheClub hilang.</p>
+            <p>Direktori itu hanya penyimpanan, tidak lebih. Isinya siapa Anda dan cara menghubungi ponsel Anda. Pesan, foto, berkas dan panggilan tidak pernah melewatinya: semuanya berjalan langsung dari satu ponsel ke ponsel lain.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Cara memasang</h2>
+            <ol class="wp-summary-list">
+                <li>Pasang klien F-Droid jika belum punya: F-Droid, Droid-ify atau Neo Store.</li>
+                <li>Tekan tombol di atas, atau tambahkan alamat ini secara manual di klien Anda:
+                    <code class="fdroid-address">https://fdroid.mindtheclub.com/repo</code>
+                </li>
+                <li>Pasang MindTheClub dari klien tersebut.</li>
+                <li>Untuk notifikasi, pasang distributor UnifiedPush seperti ntfy, yang ada di katalog resmi F-Droid. Tanpa itu aplikasi tetap berjalan, tetapi hanya menerima selama terbuka.</li>
+            </ol>
+        </div>
+
+        <div class="wp-section">
+            <h2>Sidik jari</h2>
+            <p>Klien Anda menampilkannya saat repositori ditambahkan. Kalau yang muncul tidak cocok, hentikan dan beri tahu kami.</p>
+            <code class="fdroid-address">4B24EE293A87260FFEB3B530353EA749E8E70B1E1C4DDDEB52D59E3902B8C06E</code>
+        </div>
+
+        <div class="wp-section">
+            <h2>Kalau Anda tidak ingin memakai F-Droid</h2>
+            <p>Setiap rilis juga diterbitkan sebagai APK bertanda tangan di <a href="https://github.com/AndreaVagheggi/mindtheclub/releases" target="_blank" rel="noopener noreferrer">GitHub</a>, lengkap dengan SHA-256 di sebelahnya. Dipasang dengan cara itu, tidak ada pembaruan otomatis, jadi Anda perlu memeriksa sendiri sesekali.</p>
+            <p>Kode sumber kedua versi ada di repositori yang sama, dengan lisensi GPLv3.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Berapa biayanya</h2>
+            <p>30 hari pertama gratis, dan masa coba dimulai saat Anda mengaktifkan aplikasi. Setelah itu harganya sama dengan di Google Play, ditagih setiap tiga bulan, bukan bulanan. Pembelian dilakukan lewat web dan pengaktifan di dalam aplikasi, yang memberi Anda kode lisensi: kode itu ikut tersimpan di cadangan terenkripsi Anda.</p>
+            <p><a href="../pricing.html">Selengkapnya tentang harga</a></p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+        </div>
+    </div>
+
+    <a href="https://fdroid.mindtheclub.com" class="sticky-cta sticky-cta--fdroid" aria-label="Pasang dari repositori F-Droid kami">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM4 17a1 1 0 0 1 1 1v1h14v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/>
+        </svg>
+        Pasang dari repositori kami
+    </a>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Bahasa">
+            <a href="../fdroid.html" data-lang="en" lang="en" hreflang="en">English</a>
+            <a href="../de/fdroid.html" data-lang="de" lang="de" hreflang="de">Deutsch</a>
+            <a href="../es/fdroid.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="../fr/fdroid.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="fdroid.html" data-lang="id" lang="id" hreflang="id" class="active">Bahasa Indonesia</a>
+            <a href="../it/fdroid.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="../pl/fdroid.html" data-lang="pl" lang="pl" hreflang="pl">Polski</a>
+            <a href="../pt/fdroid.html" data-lang="pt" lang="pt" hreflang="pt">Português</a>
+        </nav>
+        <p><a href="../privacy-policy.html">Privacy Policy &amp; Fair Use Policy</a></p>
+        <p class="trademark-notice">Google Play dan logo Google Play adalah merek dagang Google LLC. F-Droid adalah merek dagang F-Droid Limited Liability Company; repositori ini tidak berafiliasi dengan proyek F-Droid.</p>
+    </footer>
+
+    <script src="../utm-tracker.js" defer></script>
+    <script src="../i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -9,5 +9,16 @@
         "E3:AB:0B:18:FA:EF:8B:D3:97:71:B3:5B:5D:43:E3:D6:A8:F2:AE:F6:E8:F0:3F:15:FF:5B:AD:AD:14:10:F6:8C"
       ]
     }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bolimot.mindtheclub.x",
+      "sha256_cert_fingerprints": [
+        "18:38:3A:9A:A5:A4:0D:E4:26:BB:AD:15:28:AC:EA:9B:08:C0:27:B1:5A:2E:F4:59:BF:88:40:80:7F:9E:D1:0E",
+        "E3:AB:0B:18:FA:EF:8B:D3:97:71:B3:5B:5D:43:E3:D6:A8:F2:AE:F6:E8:F0:3F:15:FF:5B:AD:AD:14:10:F6:8C"
+      ]
+    }
   }
 ]

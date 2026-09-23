@@ -1362,3 +1362,125 @@ body {
         font-size: 1.08em;
     }
 }
+
+/* ================================================= */
+/* F-Droid repository: hero line, badge, sticky CTA  */
+/* Play stays the main path everywhere; this is the  */
+/* quieter second door for phones without Google.    */
+/* ================================================= */
+
+.hero-fdroid-link {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.92em;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 0.2s ease;
+}
+
+.hero-fdroid-link:hover {
+    color: #ffffff;
+}
+
+/* Our own badge, not the official F-Droid one: the app is not in their
+   catalogue, and borrowing their badge would say otherwise. Same footprint
+   as the Play badge so the two sit together without fighting. */
+.fdroid-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    height: 76px;
+    padding: 0 24px;
+    border-radius: 12px;
+    background: #1c1c1e;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.fdroid-badge:hover {
+    transform: translateY(-3px);
+    opacity: 0.92;
+}
+
+.fdroid-badge svg {
+    width: 30px;
+    height: 30px;
+    flex: none;
+}
+
+.fdroid-badge-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    text-align: left;
+}
+
+.fdroid-badge-top {
+    font-size: 0.72em;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.82;
+}
+
+.fdroid-badge-main {
+    font-size: 1.12em;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.fdroid-cta {
+    display: flex;
+    justify-content: center;
+    margin: 32px 0 8px;
+}
+
+/* The repository address, meant to be copied by hand when the button
+   cannot work, so it must stay readable on a narrow screen. */
+.fdroid-address {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.95em;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 10px 0 4px;
+    word-break: break-all;
+}
+
+@media (max-width: 768px) {
+    .fdroid-badge {
+        height: 64px;
+        padding: 0 18px;
+    }
+
+    .fdroid-badge-main {
+        font-size: 0.95em;
+    }
+
+    /* On the F-Droid page the floating button carries this page's action,
+       not Play's, and it is text rather than an image. */
+    .sticky-cta--fdroid {
+        display: inline-flex;
+        white-space: nowrap;
+        align-items: center;
+        gap: 10px;
+        background: #1c1c1e;
+        color: #ffffff;
+        border-radius: 999px;
+        padding: 16px 26px;
+        font-size: 1em;
+        font-weight: 700;
+        line-height: 1;
+        text-decoration: none;
+    }
+
+    .sticky-cta--fdroid svg {
+        width: 22px;
+        height: 22px;
+        flex: none;
+    }
+}

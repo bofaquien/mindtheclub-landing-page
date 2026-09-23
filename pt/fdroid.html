@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="icon" type="image/png" href="../images/mtc_logo_icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sem serviços Google | MindTheClub</title>
+
+    <meta name="description" content="MindTheClub para telemóveis sem serviços Google: instala-se a partir do nosso repositório F-Droid, com notificações por UnifiedPush e atualizações como em qualquer outra aplicação.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="alternate" hreflang="en" href="https://www.mindtheclub.com/fdroid.html">
+    <link rel="alternate" hreflang="de" href="https://www.mindtheclub.com/de/fdroid.html">
+    <link rel="alternate" hreflang="es" href="https://www.mindtheclub.com/es/fdroid.html">
+    <link rel="alternate" hreflang="fr" href="https://www.mindtheclub.com/fr/fdroid.html">
+    <link rel="alternate" hreflang="id" href="https://www.mindtheclub.com/id/fdroid.html">
+    <link rel="alternate" hreflang="it" href="https://www.mindtheclub.com/it/fdroid.html">
+    <link rel="alternate" hreflang="pl" href="https://www.mindtheclub.com/pl/fdroid.html">
+    <link rel="alternate" hreflang="pt" href="https://www.mindtheclub.com/pt/fdroid.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.mindtheclub.com/fdroid.html">
+</head>
+<body>
+
+    <div class="wp-container">
+        <header>
+            <h1>MindTheClub sem serviços Google</h1>
+            <p class="subtitle">A mesma aplicação, para telemóveis sem Play Store e sem serviços Google. Instala-a a partir do nosso repositório e as atualizações chegam como em qualquer outra aplicação.</p>
+        </header>
+
+        <div class="fdroid-cta">
+            <a href="https://fdroid.mindtheclub.com" class="fdroid-badge" aria-label="Instalar a partir do nosso repositório F-Droid">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM4 17a1 1 0 0 1 1 1v1h14v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/>
+                </svg>
+                <span class="fdroid-badge-text">
+                    <span class="fdroid-badge-top">Instalar a partir do</span>
+                    <span class="fdroid-badge-main">Nosso repositório F-Droid</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="wp-section">
+            <h2>Porquê um repositório nosso e não o catálogo oficial F-Droid</h2>
+            <p>O catálogo oficial do F-Droid só aceita aplicações em que todos os componentes sejam software livre. O MindTheClub usa o Firebase Firestore, que não é, por isso não pode estar lá. Preferimos dizê-lo com clareza a usar o emblema oficial deles e deixar que descubra depois de tocar nele.</p>
+            <p>Por isso mantemos um repositório nosso. Funciona da mesma maneira: adiciona-o uma vez a qualquer cliente F-Droid e, a partir daí, o MindTheClub aparece no seu catálogo e atualiza-se como tudo o resto. O repositório está assinado com uma chave nossa, e o seu cliente verifica essa assinatura em cada atualização.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>O que usamos da Google, e porquê</h2>
+            <p>As notificações desta versão não passam pelo Firebase. Usam UnifiedPush, com o distribuidor que escolher, por isso não é preciso nada da Google para acordar a aplicação.</p>
+            <p>O que fica é o Firestore, e a razão é a interoperabilidade. Quem usa esta versão e quem usa a versão da Play são uma só rede: encontram-se através de um único diretório de identidades partilhado. Se esta versão tivesse um diretório próprio, as duas metades não conseguiriam falar uma com a outra, e o sentido do MindTheClub perdia-se.</p>
+            <p>Esse diretório é apenas armazenamento, mais nada. Guarda quem é e como chegar ao seu telemóvel. Mensagens, fotografias, ficheiros e chamadas nunca lhe tocam: vão diretamente de um telemóvel para o outro.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Como instalar</h2>
+            <ol class="wp-summary-list">
+                <li>Instale um cliente F-Droid, se ainda não tiver: F-Droid, Droid-ify ou Neo Store.</li>
+                <li>Toque no botão acima, ou acrescente este endereço à mão no seu cliente:
+                    <code class="fdroid-address">https://fdroid.mindtheclub.com/repo</code>
+                </li>
+                <li>Instale o MindTheClub a partir do cliente.</li>
+                <li>Para as notificações, instale um distribuidor UnifiedPush como o ntfy, que está no catálogo oficial do F-Droid. Sem ele a aplicação continua a funcionar, mas só recebe enquanto estiver aberta.</li>
+            </ol>
+        </div>
+
+        <div class="wp-section">
+            <h2>Impressão digital</h2>
+            <p>O seu cliente mostra-a quando adiciona o repositório. Se a que vir não corresponder, pare e avise-nos.</p>
+            <code class="fdroid-address">4B24EE293A87260FFEB3B530353EA749E8E70B1E1C4DDDEB52D59E3902B8C06E</code>
+        </div>
+
+        <div class="wp-section">
+            <h2>Se preferir não usar o F-Droid</h2>
+            <p>Cada versão é publicada também como APK assinado no <a href="https://github.com/AndreaVagheggi/mindtheclub/releases" target="_blank" rel="noopener noreferrer">GitHub</a>, com o respetivo SHA-256 ao lado. Instalada assim não há atualizações automáticas, por isso terá de voltar a verificar de vez em quando.</p>
+            <p>O código-fonte das duas versões está no mesmo repositório, sob GPLv3.</p>
+        </div>
+
+        <div class="wp-section">
+            <h2>Quanto custa</h2>
+            <p>Os primeiros 30 dias são gratuitos, e o período de experiência começa quando ativa a aplicação. Depois o preço é o mesmo da Google Play, cobrado de três em três meses em vez de todos os meses. A compra faz-se na web e a ativação dentro da aplicação, que lhe dá um código de licença: viaja também dentro da sua cópia de segurança cifrada.</p>
+            <p><a href="../pricing.html">Mais sobre os preços</a></p>
+        </div>
+
+        <div class="back-link-container">
+            <a href="index.html" class="back-link">← Voltar à página inicial</a>
+        </div>
+    </div>
+
+    <a href="https://fdroid.mindtheclub.com" class="sticky-cta sticky-cta--fdroid" aria-label="Instalar a partir do nosso repositório F-Droid">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM4 17a1 1 0 0 1 1 1v1h14v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/>
+        </svg>
+        Instalar a partir do nosso repositório
+    </a>
+
+    <footer class="site-footer">
+        <nav class="lang-switcher" aria-label="Idioma">
+            <a href="../fdroid.html" data-lang="en" lang="en" hreflang="en">English</a>
+            <a href="../de/fdroid.html" data-lang="de" lang="de" hreflang="de">Deutsch</a>
+            <a href="../es/fdroid.html" data-lang="es" lang="es" hreflang="es">Español</a>
+            <a href="../fr/fdroid.html" data-lang="fr" lang="fr" hreflang="fr">Français</a>
+            <a href="../id/fdroid.html" data-lang="id" lang="id" hreflang="id">Bahasa Indonesia</a>
+            <a href="../it/fdroid.html" data-lang="it" lang="it" hreflang="it">Italiano</a>
+            <a href="../pl/fdroid.html" data-lang="pl" lang="pl" hreflang="pl">Polski</a>
+            <a href="fdroid.html" data-lang="pt" lang="pt" hreflang="pt" class="active">Português</a>
+        </nav>
+        <p><a href="../privacy-policy.html">Privacy Policy &amp; Fair Use Policy</a></p>
+        <p class="trademark-notice">Google Play e o logótipo Google Play são marcas comerciais da Google LLC. F-Droid é uma marca comercial da F-Droid Limited Liability Company; este repositório não tem qualquer ligação ao projeto F-Droid.</p>
+    </footer>
+
+    <script src="../utm-tracker.js" defer></script>
+    <script src="../i18n.js" defer></script>
+
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc3c26fd54f744b78502b8d82fb9e520"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
