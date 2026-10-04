@@ -1196,7 +1196,11 @@ body {
 /* Phone sizing on smaller screens */
 @media (max-width: 768px) {
     .banner-container { padding: 0; }
-    .hero-phone { width: 175px; margin: 0 auto 30px auto; }
+    .hero-phone { width: 175px; margin: 0 auto 16px auto; }
+    /* Lift the hero text on mobile so the "Try it now" line clears the floating Play button */
+    .content { padding-top: 24px; }
+    .intro { margin-top: 0; }
+    .tagline { margin-bottom: 16px; }
     /* Hide the open-source badge on mobile so the hero fits the first screen (desktop keeps it) */
     .open-source-badge { display: none; }
 }
