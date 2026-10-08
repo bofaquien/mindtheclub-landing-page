@@ -1646,3 +1646,99 @@ body {
     .hero-platform::after { animation: none; }
     .hero-platform::after { display: none; }
 }
+
+
+/* ================================================= */
+/* Mobile floating bar: Play + F-Droid */
+/* Home page only. Play stays the main button (left, */
+/* its own badge); F-Droid sits beside it, quieter.  */
+/* The hero "No Google?" pill becomes "Who pays".    */
+/* ================================================= */
+.sticky-cta-bar { display: none; }        /* desktop: no floating buttons */
+.hero-whopays-link { display: none; }     /* desktop keeps the "No Google?" pill */
+
+@media (max-width: 768px) {
+    .sticky-cta-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        position: fixed;
+        left: 50%;
+        bottom: 16px;
+        transform: translateX(-50%);
+        z-index: 1000;
+        white-space: nowrap;
+        filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+    }
+
+    /* inside the bar the buttons are laid out by the bar, not fixed on their own */
+    .sticky-cta-bar .sticky-cta {
+        position: static;
+        transform: none;
+        filter: none;
+    }
+
+    /* the Play badge image has a transparent margin of ~16% on every side:
+       enlarge it and trim that margin so its visible height matches the F-Droid button */
+    .sticky-cta-bar .sticky-cta img {
+        height: 78px;
+        margin: -12.8px;
+    }
+
+    .sticky-cta--fdroid-mini {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        height: 40px;                              /* lower than Play: Play stays the main button */
+        padding: 0 12px 0 10px;
+        border-radius: 7px;                        /* same corner as the Play badge */
+        background: #3a3a3c;                       /* softer grey than Play's black, no bright border */
+        border: none;
+        color: #ffffff;
+        text-decoration: none;
+        line-height: 1;
+    }
+
+    .sticky-cta--fdroid-mini svg {
+        width: 17px;
+        height: 17px;
+        flex: none;
+        opacity: 0.8;
+    }
+
+    .fdroid-mini-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .fdroid-mini-cap {
+        font-size: 8px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        opacity: 0.8;
+    }
+
+    .fdroid-mini-main {
+        font-size: 13.5px;
+        font-weight: 700;
+        opacity: 0.92;
+    }
+
+    /* hero: swap the F-Droid pill for the "Who pays" pill */
+    .hero-cta-text .hero-fdroid-link { display: none; }
+    .hero-cta-text .hero-whopays-link { display: inline-flex; }
+
+    /* land the "Who pays" visitor on the right section of pricing.html */
+    #why-a-price { scroll-margin-top: 16px; }
+}
+
+@media (max-width: 380px) {
+    .sticky-cta-bar { gap: 6px; bottom: 12px; }
+    .sticky-cta-bar .sticky-cta img { height: 66px; margin: -10.8px; }
+    .sticky-cta--fdroid-mini { height: 34px; padding: 0 9px 0 8px; gap: 5px; }
+    .sticky-cta--fdroid-mini svg { width: 15px; height: 15px; }
+    .fdroid-mini-cap { font-size: 7px; }
+    .fdroid-mini-main { font-size: 12px; }
+}
