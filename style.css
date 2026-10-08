@@ -1512,3 +1512,137 @@ body {
         flex: none;
     }
 }
+
+
+/* ================================================= */
+/* Hero platforms intro (mobile only) */
+/* On phones the hero phone slides to the left and   */
+/* three pills (Android, GrapheneOS, Open Source)     */
+/* fade in on its right. Desktop is unchanged.        */
+/* ================================================= */
+.hero-stage { display: contents; }   /* desktop: wrapper is invisible to the layout */
+.hero-platforms { display: none; }   /* desktop: pills hidden */
+
+@media (max-width: 768px) {
+    .hero-stage {
+        --stage-w: min(calc(100vw - 30px), 440px);
+        --phone-w: 175px;
+        /* phone sits centred in the left half (or flush left if the half is too narrow) */
+        --lead: max(0px, calc((var(--stage-w) / 2 - var(--phone-w)) / 2));
+        /* distance from the centred start position to the final left position */
+        --shift: calc(var(--stage-w) / 2 - var(--lead) - var(--phone-w) / 2);
+        display: flex;
+        align-items: stretch;
+        gap: 12px;
+        width: var(--stage-w);
+        margin: 0 auto 16px auto;
+    }
+
+    .hero-stage .hero-phone {
+        width: var(--phone-w);
+        margin: 0 0 0 var(--lead);
+        animation: heroPhoneSlide 0.95s cubic-bezier(0.22, 0.8, 0.24, 1) 0.4s both;
+    }
+
+    .hero-platforms {
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        flex-direction: column;
+        justify-content: space-evenly;   /* the three pills span the phone height */
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .hero-platform {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px 8px 8px;
+        border-radius: 999px;
+        background: rgba(10, 28, 58, 0.30);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        color: #ffffff;
+        font-size: clamp(14px, 4.4vw, 19px);
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        line-height: 1.1;
+        white-space: nowrap;              /* every label stays on one line */
+        animation: heroPlatformIn 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    .hero-platform img {
+        flex-shrink: 0;
+        width: clamp(26px, 8vw, 34px);
+        height: clamp(26px, 8vw, 34px);
+        object-fit: contain;
+        animation: heroIconPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    /* one soft light sweep across each pill after it appears */
+    .hero-platform::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+        transform: translateX(-120%);
+        pointer-events: none;
+        animation: heroPlatformShine 1.1s ease-in-out both;
+    }
+
+    .hero-platform:nth-child(1)        { animation-delay: 1.15s; }
+    .hero-platform:nth-child(1) img    { animation-delay: 1.3s; }
+    .hero-platform:nth-child(1)::after { animation-delay: 2.3s; }
+    .hero-platform:nth-child(2)        { animation-delay: 1.45s; }
+    .hero-platform:nth-child(2) img    { animation-delay: 1.6s; }
+    .hero-platform:nth-child(2)::after { animation-delay: 2.5s; }
+    .hero-platform:nth-child(3)        { animation-delay: 1.75s; }
+    .hero-platform:nth-child(3) img    { animation-delay: 1.9s; }
+    .hero-platform:nth-child(3)::after { animation-delay: 2.7s; }
+
+    @keyframes heroPhoneSlide {
+        from { transform: translateX(var(--shift)); }
+        to   { transform: translateX(0); }
+    }
+
+    @keyframes heroPlatformIn {
+        from { opacity: 0; transform: translateX(18px); filter: blur(6px); }
+        to   { opacity: 1; transform: translateX(0);    filter: blur(0); }
+    }
+
+    @keyframes heroIconPop {
+        from { opacity: 0; transform: scale(0.5) rotate(-12deg); }
+        to   { opacity: 1; transform: scale(1) rotate(0); }
+    }
+
+    @keyframes heroPlatformShine {
+        from { transform: translateX(-120%); }
+        to   { transform: translateX(120%); }
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-stage { --phone-w: 150px; }
+}
+
+/* Very small phones (320-350px wide): smaller phone and tighter pills so labels never wrap or clip */
+@media (max-width: 350px) {
+    .hero-stage { --phone-w: 122px; gap: 8px; }
+    .hero-platform { padding: 6px 10px 6px 6px; gap: 7px; font-size: 13.5px; }
+    .hero-platform img { width: 24px; height: 24px; }
+}
+
+/* Reduced-motion visitors: final layout straight away, no movement */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+    .hero-stage .hero-phone,
+    .hero-platform,
+    .hero-platform img,
+    .hero-platform::after { animation: none; }
+    .hero-platform::after { display: none; }
+}
