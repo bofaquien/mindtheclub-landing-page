@@ -1528,12 +1528,12 @@ body {
         --stage-w: min(calc(100vw - 30px), 440px);
         --phone-w: 175px;
         /* phone sits centred in the left half (or flush left if the half is too narrow) */
-        --lead: max(0px, calc((var(--stage-w) / 2 - var(--phone-w)) / 2));
+        --lead: max(0px, calc((var(--stage-w) / 2 - var(--phone-w)) / 2 - 8px));
         /* distance from the centred start position to the final left position */
         --shift: calc(var(--stage-w) / 2 - var(--lead) - var(--phone-w) / 2);
         display: flex;
         align-items: stretch;
-        gap: 12px;
+        gap: 10px;
         width: var(--stage-w);
         margin: 0 auto 16px auto;
     }
@@ -1650,8 +1650,9 @@ body {
 
 /* ================================================= */
 /* Mobile floating bar: Play + F-Droid */
-/* Home page only. Play stays the main button (left, */
-/* its own badge); F-Droid sits beside it, quieter.  */
+/* Home page only. Two buttons of identical size,     */
+/* side by side: Play (black, coloured logo) on the   */
+/* left, F-Droid (soft grey) on the right.            */
 /* The hero "No Google?" pill becomes "Who pays".    */
 /* ================================================= */
 .sticky-cta-bar { display: none; }        /* desktop: no floating buttons */
@@ -1659,9 +1660,13 @@ body {
 
 @media (max-width: 768px) {
     .sticky-cta-bar {
+        /* one number drives both buttons: their visible height.
+           Width follows the Play badge's own proportions (564 x 168 visible pixels). */
+        --btn-h: 50px;
+        --btn-w: calc(var(--btn-h) * 564 / 168);
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 18px;
         position: fixed;
         left: 50%;
         bottom: 16px;
@@ -1678,42 +1683,44 @@ body {
         filter: none;
     }
 
-    /* the Play badge image has a transparent margin of ~16% on every side:
-       enlarge it and trim that margin so its visible height matches the F-Droid button */
+    /* the Play badge image (646 x 250) has a 41px transparent margin on every side:
+       size it so its visible part is exactly --btn-h tall, and trim that margin */
     .sticky-cta-bar .sticky-cta img {
-        height: 78px;
-        margin: -12.8px;
+        height: calc(var(--btn-h) * 250 / 168);
+        margin: calc(var(--btn-h) * -41 / 168);
     }
 
     .sticky-cta--fdroid-mini {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        height: 40px;                              /* lower than Play: Play stays the main button */
-        padding: 0 12px 0 10px;
-        border-radius: 7px;                        /* same corner as the Play badge */
-        background: #3a3a3c;                       /* softer grey than Play's black, no bright border */
-        border: none;
+        justify-content: center;
+        gap: 9px;
+        width: var(--btn-w);                       /* same size as the Play badge */
+        height: var(--btn-h);
+        padding: 0 10px;
+        border-radius: calc(var(--btn-h) * 0.15);  /* same corner as the Play badge */
+        background: #3a3a3c;                       /* soft grey: Play's black and logo still lead */
+        border: 1px solid #a6a6a6;                 /* same thin outline as the Play badge */
         color: #ffffff;
         text-decoration: none;
         line-height: 1;
     }
 
     .sticky-cta--fdroid-mini svg {
-        width: 17px;
-        height: 17px;
+        width: 20px;
+        height: 20px;
         flex: none;
-        opacity: 0.8;
+        opacity: 0.85;
     }
 
     .fdroid-mini-text {
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: 3px;
     }
 
     .fdroid-mini-cap {
-        font-size: 8px;
+        font-size: 9px;
         font-weight: 600;
         letter-spacing: 0.4px;
         text-transform: uppercase;
@@ -1721,9 +1728,8 @@ body {
     }
 
     .fdroid-mini-main {
-        font-size: 13.5px;
+        font-size: 15px;
         font-weight: 700;
-        opacity: 0.92;
     }
 
     /* hero: swap the F-Droid pill for the "Who pays" pill */
@@ -1734,11 +1740,45 @@ body {
     #why-a-price { scroll-margin-top: 16px; }
 }
 
-@media (max-width: 380px) {
-    .sticky-cta-bar { gap: 6px; bottom: 12px; }
-    .sticky-cta-bar .sticky-cta img { height: 66px; margin: -10.8px; }
-    .sticky-cta--fdroid-mini { height: 34px; padding: 0 9px 0 8px; gap: 5px; }
-    .sticky-cta--fdroid-mini svg { width: 15px; height: 15px; }
-    .fdroid-mini-cap { font-size: 7px; }
-    .fdroid-mini-main { font-size: 12px; }
+@media (max-width: 400px) {
+    .sticky-cta-bar { --btn-h: 46px; gap: 14px; bottom: 12px; }
+    .sticky-cta--fdroid-mini { gap: 7px; }
+    .sticky-cta--fdroid-mini svg { width: 18px; height: 18px; }
+    .fdroid-mini-cap { font-size: 8px; }
+    .fdroid-mini-main { font-size: 14px; }
+}
+
+@media (max-width: 350px) {
+    .sticky-cta-bar { --btn-h: 42px; gap: 10px; }
+    .sticky-cta--fdroid-mini { gap: 6px; padding: 0 8px; }
+    .sticky-cta--fdroid-mini svg { width: 16px; height: 16px; }
+    .fdroid-mini-cap { font-size: 7.5px; }
+    .fdroid-mini-main { font-size: 13px; }
+}
+
+/* ================================================= */
+/* Mobile hero: everything centred horizontally      */
+/* (intro, app name, tagline, CTA line, Who pays pill) */
+/* ================================================= */
+@media (max-width: 768px) {
+    .banner-container .text-content {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .banner-container .hero-cta-text {
+        align-items: center;
+        text-align: center;
+    }
+
+    /* phone + pills as one centred group: same empty space on the right as on the left */
+    .hero-stage .hero-platforms {
+        margin-right: var(--lead);
+    }
+
+    /* the "Try it now" pulse grows from its centre, not from the left edge */
+    .banner-container .hero-learn-more {
+        transform-origin: center center;
+    }
 }
